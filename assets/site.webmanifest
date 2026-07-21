@@ -1,0 +1,22 @@
+{
+  "name": "Teamstar Manufacturing",
+  "short_name": "Teamstar",
+  "description": "Custom industrial machine knives and technical RFQ",
+  "start_url": "/teamstar-website-review/",
+  "scope": "/teamstar-website-review/",
+  "display": "minimal-ui",
+  "background_color": "#ffffff",
+  "theme_color": "#10181d",
+  "icons": [
+    {
+      "src": "/teamstar-website-review/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/teamstar-website-review/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
