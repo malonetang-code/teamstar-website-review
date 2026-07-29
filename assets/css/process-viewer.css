@@ -20,9 +20,9 @@
   gap: 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid #cbd3cf;
+  border: 0;
   background: #fff;
-  box-shadow: 0 8px 24px rgba(16, 24, 29, 0.045);
+  box-shadow: none;
 }
 
 .process-evidence-row:nth-child(2n) .process-evidence-visuals,
