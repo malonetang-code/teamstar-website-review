@@ -195,7 +195,6 @@ async function createHero(width, height, filename, mobile = false) {
     <rect width="${width}" height="${height}" fill="#141618"/>
     <rect x="0" y="${floorY}" width="${width}" height="${height - floorY}" fill="#191c1f"/>
     <line x1="${mobile ? 36 : 930}" y1="${floorY}" x2="${width}" y2="${floorY}" stroke="#363a3e" stroke-width="1"/>
-    <rect x="${mobile ? 36 : 930}" y="${mobile ? 458 : 54}" width="4" height="${mobile ? 358 : 566}" fill="#c92f27"/>
   </svg>`);
   const accents = [
     {

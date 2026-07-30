@@ -48,10 +48,10 @@ function productCard({
 function hero({ eyebrow, title, intro, primary, secondary, rfq, products }) {
   return `<section class="home-hero">
     <picture class="home-hero-picture">
-      <source media="(max-width: 1079px)" srcset="${base}/assets/images/2w/hero-mobile.webp" type="image/webp">
-      <source srcset="${base}/assets/images/2w/hero-desktop.webp" type="image/webp">
-      <source media="(max-width: 1079px)" srcset="${base}/assets/images/2w/hero-mobile.jpg">
-      <img class="hero-media" src="${base}/assets/images/2w/hero-desktop.jpg" width="1920" height="720" loading="eager" fetchpriority="high" decoding="async" alt="">
+      <source media="(max-width: 1079px)" srcset="${base}/assets/images/2w/hero-mobile.webp?v=20260730-2y-hero-fix" type="image/webp">
+      <source srcset="${base}/assets/images/2w/hero-desktop.webp?v=20260730-2y-hero-fix" type="image/webp">
+      <source media="(max-width: 1079px)" srcset="${base}/assets/images/2w/hero-mobile.jpg?v=20260730-2y-hero-fix">
+      <img class="hero-media" src="${base}/assets/images/2w/hero-desktop.jpg?v=20260730-2y-hero-fix" width="1920" height="720" loading="eager" fetchpriority="high" decoding="async" alt="">
     </picture>
     <div class="container hero-inner">
       <div class="hero-copy">
