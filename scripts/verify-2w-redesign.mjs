@@ -42,6 +42,32 @@ for (const file of htmlFiles) {
   if (!html.includes("ga01@teamstarmfg.com")) {
     errors.push(`${file}: general administration mailbox missing`);
   }
+  if (!html.includes("rd01@teamstarmfg.com")) {
+    errors.push(`${file}: sales mailbox missing`);
+  }
+  const isEnglish = file.startsWith("en/");
+  const footerContact = isEnglish
+    ? [
+        "<strong>Contact</strong>",
+        "General enquiries: ga01@teamstarmfg.com",
+        "Sales enquiries: rd01@teamstarmfg.com",
+      ]
+    : [
+        "<strong>联系方式</strong>",
+        "一般咨询：ga01@teamstarmfg.com",
+        "销售咨询：rd01@teamstarmfg.com",
+      ];
+  for (const expected of footerContact) {
+    if (!html.includes(expected)) {
+      errors.push(`${file}: footer contact label missing: ${expected}`);
+    }
+  }
+  if (
+    html.includes("<strong>总务与一般咨询</strong>") ||
+    html.includes("<strong>General Administration</strong>")
+  ) {
+    errors.push(`${file}: superseded footer contact heading remains`);
+  }
   if (!html.includes("site-base.css?v=20260730-2w")) {
     errors.push(`${file}: shared base stylesheet missing`);
   }
@@ -229,8 +255,8 @@ for (const file of ["index.html", "en/index.html"]) {
 }
 
 const build = fs.readFileSync(path.join(root, "REVIEW_BUILD.txt"), "utf8");
-if (!build.includes("Version: 20260730-2x")) {
-  errors.push("REVIEW_BUILD.txt: 2x version missing");
+if (!build.includes("Version: 20260730-2y")) {
+  errors.push("REVIEW_BUILD.txt: 2y version missing");
 }
 if (!build.includes("Production status: NOT DEPLOYED")) {
   errors.push("REVIEW_BUILD.txt: production boundary missing");

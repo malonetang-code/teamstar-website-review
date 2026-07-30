@@ -119,6 +119,7 @@ for (const language of ["", "en/"]) {
       processLeft: left(".process-steps"),
       logos: document.querySelectorAll(".logo-item").length,
       generalEmail: document.body.textContent.includes("ga01@teamstarmfg.com"),
+      salesEmail: document.body.textContent.includes("rd01@teamstarmfg.com"),
       retiredContact:
         document.body.textContent.includes("info@teamstarmfg.com") ||
         document.body.textContent.includes("181-5070-7007"),
@@ -128,6 +129,7 @@ for (const language of ["", "en/"]) {
   if (desktop.cards !== 6) errors.push(`${route}: expected 6 product cards`);
   if (desktop.logos !== 10) errors.push(`${route}: expected 10 reference logos`);
   if (!desktop.generalEmail) errors.push(`${route}: general administration email missing`);
+  if (!desktop.salesEmail) errors.push(`${route}: sales email missing`);
   if (desktop.retiredContact) errors.push(`${route}: retired contact details remain`);
   const lefts = [
     desktop.heroLeft,
