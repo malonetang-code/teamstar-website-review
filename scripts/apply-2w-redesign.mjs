@@ -122,9 +122,8 @@ function zhHome(logos) {
   return `<main id="main-content">
   ${hero({
     eyebrow: "按图纸或样品定制",
-    title: "工业机械刀具制造",
-    intro:
-      "面向设备制造商与工业用户。提供图纸、样品或切割要求，我们确认制造方案后报价。",
+    title: "工业机械刀具定制制造",
+    intro: "按图纸、样品与实际工况确认制造方案",
     primary: "提交询价",
     secondary: "查看产品",
     rfq: `${base}/rfq/`,
@@ -287,7 +286,7 @@ function enHome(logos) {
   return `<main id="main-content">
   ${hero({
     eyebrow: "MADE TO DRAWING OR SAMPLE",
-    title: "Industrial Machine Knife Manufacturing",
+    title: "Custom Industrial Blades, Built to Your Requirements.",
     intro:
       "For equipment makers and industrial users. Send a drawing, sample or cutting requirement for engineering review and quotation.",
     primary: "Send an RFQ",

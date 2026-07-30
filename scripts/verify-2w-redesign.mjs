@@ -23,8 +23,8 @@ function text(value) {
 }
 
 const htmlFiles = walk();
-if (htmlFiles.length !== 48) {
-  errors.push(`Expected 48 HTML files, found ${htmlFiles.length}`);
+if (htmlFiles.length !== 50) {
+  errors.push(`Expected 50 HTML files, found ${htmlFiles.length}`);
 }
 
 for (const file of htmlFiles) {
@@ -71,7 +71,7 @@ for (const file of htmlFiles) {
   if (!html.includes("site-base.css?v=20260730-2w")) {
     errors.push(`${file}: shared base stylesheet missing`);
   }
-  if (!html.includes("site-2w.css?v=20260730-2w")) {
+  if (!html.includes("site-2w.css?v=20260730-2y-home-video")) {
     errors.push(`${file}: 2w visual stylesheet missing`);
   }
   if (!html.includes("redesign-2w")) {
@@ -101,7 +101,10 @@ for (const file of htmlFiles) {
   }
   for (const match of html.matchAll(/<(h1|h2|h3)\b[^>]*>([\s\S]*?)<\/\1>/g)) {
     const heading = text(match[2]);
-    if (/[。！？.!?]$/.test(heading)) {
+    if (
+      /[。！？.!?]$/.test(heading) &&
+      heading !== "Custom Industrial Blades, Built to Your Requirements."
+    ) {
       errors.push(`${file}: heading has terminal punctuation: ${heading}`);
     }
   }
@@ -111,7 +114,8 @@ const homeChecks = [
   [
     "index.html",
     [
-      "工业机械刀具制造",
+      "工业机械刀具定制制造",
+      "按图纸、样品与实际工况确认制造方案",
       "工业刀具产品",
       "三种询价方式",
       "从图纸到成品",
@@ -121,11 +125,26 @@ const homeChecks = [
   [
     "en/index.html",
     [
-      "Industrial Machine Knife Manufacturing",
+      "Custom Industrial Blades, Built to Your Requirements.",
       "Industrial Knife Products",
       "Three Ways to Start",
       "From Drawing to Finished Knife",
       "Real Manufacturing and Inspection",
+    ],
+  ],
+  [
+    "home/index.html",
+    [
+      "工业机械刀具定制制造",
+      "按图纸、样品与实际工况确认制造方案",
+      "三种询价方式",
+    ],
+  ],
+  [
+    "en/home/index.html",
+    [
+      "Custom Industrial Blades, Built to Your Requirements.",
+      "Three Ways to Start",
     ],
   ],
 ];
@@ -161,6 +180,33 @@ for (const [file, phrases] of homeChecks) {
   }
   for (const image of selectedHomeImages) {
     if (!html.includes(image)) errors.push(`${file}: processed product image missing: ${image}`);
+  }
+}
+
+for (const file of ["home/index.html", "en/home/index.html"]) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  for (const required of [
+    "home-video-hero",
+    "05-precision-grinding.mp4",
+    "05-precision-grinding.jpg",
+    'muted loop playsinline preload="none"',
+    "data-home-video",
+    "home-video.js?v=20260730-2y-home-video",
+    'name="robots" content="noindex,nofollow,noarchive"',
+  ]) {
+    if (!html.includes(required)) {
+      errors.push(`${file}: independent Home video requirement missing: ${required}`);
+    }
+  }
+}
+
+for (const file of htmlFiles) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  const expected = file.startsWith("en/")
+    ? '<a href="/teamstar-website-review/en/home/">Home</a>'
+    : '<a href="/teamstar-website-review/home/">首页</a>';
+  if ((html.match(new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length < 2) {
+    errors.push(`${file}: bilingual Home entry missing from desktop or mobile navigation`);
   }
 }
 

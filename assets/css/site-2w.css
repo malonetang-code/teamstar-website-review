@@ -1043,6 +1043,98 @@ html[lang="en"] .redesign-2w .hero-copy h1 {
   }
 }
 
+/* Independent video Home review. The existing root homepage remains unchanged. */
+.page-home-video .home-video-hero {
+  min-height: 680px;
+  background: #111416;
+}
+
+.page-home-video .home-video-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  background:
+    linear-gradient(90deg, rgba(10, 12, 14, 0.94) 0%, rgba(10, 12, 14, 0.82) 42%, rgba(10, 12, 14, 0.38) 72%, rgba(10, 12, 14, 0.52) 100%),
+    linear-gradient(0deg, rgba(10, 12, 14, 0.62) 0%, transparent 38%);
+  pointer-events: none;
+}
+
+.page-home-video .home-video-media,
+.page-home-video .home-video-poster,
+.page-home-video .home-video,
+.page-home-video .home-video-poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page-home-video .home-video-media {
+  z-index: 0;
+  overflow: hidden;
+}
+
+.page-home-video .home-video-poster,
+.page-home-video .home-video {
+  display: block;
+}
+
+.page-home-video .home-video-poster img,
+.page-home-video .home-video {
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-home-video .hero-copy {
+  max-width: 720px;
+}
+
+.page-home-video .hero-copy h1,
+html[lang="en"] .page-home-video .hero-copy h1 {
+  max-width: 720px;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .page-home-video .home-video-hero {
+    min-height: 680px;
+  }
+
+  .page-home-video .home-video {
+    display: none;
+  }
+
+  .page-home-video .home-video-poster img {
+    object-position: 62% center;
+  }
+
+  .page-home-video .home-video-hero::before {
+    background: linear-gradient(180deg, rgba(10, 12, 14, 0.9) 0%, rgba(10, 12, 14, 0.78) 55%, rgba(10, 12, 14, 0.52) 100%);
+  }
+
+  .page-home-video .hero-inner {
+    min-height: 680px;
+    align-items: center;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 479px) {
+  .page-home-video .hero-copy h1,
+  html[lang="en"] .page-home-video .hero-copy h1 {
+    font-size: 36px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home-video .home-video {
+    display: none;
+  }
+}
+
 /* 2w visual reset: Yishi-inspired industrial hierarchy with Teamstar assets. */
 :root {
   --ink: #17191c;
@@ -1794,5 +1886,51 @@ html[lang="en"] .redesign-2w .hero-copy h1 {
   html[lang="en"] .redesign-2w .hero-copy h1 {
     max-width: 560px;
     font-size: 54px;
+  }
+}
+
+/* Ensure the independent video Home wins over shared homepage breakpoints. */
+.page-home-video .home-video-hero {
+  min-height: 680px;
+}
+
+.page-home-video .home-video-hero::before {
+  display: block;
+}
+
+.page-home-video .hero-copy h1,
+html[lang="en"] .page-home-video .hero-copy h1 {
+  max-width: 720px;
+  text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+  .page-home-video .home-video-hero,
+  .page-home-video .hero-inner {
+    min-height: 680px;
+  }
+
+  .page-home-video .hero-inner {
+    align-items: center;
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 479px) {
+  .page-home-video .hero-copy h1,
+  html[lang="en"] .page-home-video .hero-copy h1 {
+    font-size: 36px;
+  }
+
+  html[lang="zh-CN"] .page-home .hero-copy h1 {
+    font-size: clamp(28px, 8.8vw, 34px);
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home-video .home-video {
+    display: none;
   }
 }

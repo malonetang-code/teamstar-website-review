@@ -209,6 +209,103 @@ for (const language of ["", "en/"]) {
   await menu.click();
 }
 
+for (const language of ["", "en/"]) {
+  const route = `${base}/${language}home/`;
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(`${origin}${route}`, { waitUntil: "networkidle" });
+  await page.waitForTimeout(900);
+  const videoHomeDesktop = await page.evaluate(() => {
+    const video = document.querySelector("[data-home-video]");
+    const poster = document.querySelector(".home-video-poster img");
+    const overlay = getComputedStyle(
+      document.querySelector(".home-video-hero"),
+      "::before",
+    );
+    return {
+      overflow:
+        document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      videoFound: Boolean(video),
+      videoVisible: video ? getComputedStyle(video).display !== "none" : false,
+      videoPlaying: video ? !video.paused && video.currentTime > 0 : false,
+      videoMuted: video?.muted ?? false,
+      videoLoop: video?.loop ?? false,
+      posterLoaded: poster?.complete && poster?.naturalWidth > 0,
+      overlayVisible: overlay.display !== "none",
+      paths: document.querySelectorAll(".rfq-path").length,
+    };
+  });
+  if (videoHomeDesktop.overflow > 1) {
+    errors.push(`${route}: desktop horizontal overflow ${videoHomeDesktop.overflow}px`);
+  }
+  if (
+    !videoHomeDesktop.videoFound ||
+    !videoHomeDesktop.videoVisible ||
+    !videoHomeDesktop.videoPlaying ||
+    !videoHomeDesktop.videoMuted ||
+    !videoHomeDesktop.videoLoop
+  ) {
+    errors.push(`${route}: desktop manufacturing video did not play safely`);
+  }
+  if (!videoHomeDesktop.posterLoaded || !videoHomeDesktop.overlayVisible) {
+    errors.push(`${route}: poster or readability overlay missing`);
+  }
+  if (videoHomeDesktop.paths !== 3) {
+    errors.push(`${route}: expected three RFQ paths`);
+  }
+  await page.screenshot({
+    path: path.join(
+      output,
+      language ? "home-video-en-desktop.png" : "home-video-zh-desktop.png",
+    ),
+  });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${origin}${route}`, { waitUntil: "networkidle" });
+  const videoHomeMobile = await page.evaluate(() => {
+    const video = document.querySelector("[data-home-video]");
+    const poster = document.querySelector(".home-video-poster img");
+    return {
+      overflow:
+        document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      videoHidden: video ? getComputedStyle(video).display === "none" : false,
+      videoPaused: video?.paused ?? false,
+      posterLoaded: poster?.complete && poster?.naturalWidth > 0,
+    };
+  });
+  if (videoHomeMobile.overflow > 1) {
+    errors.push(`${route}: mobile horizontal overflow ${videoHomeMobile.overflow}px`);
+  }
+  if (
+    !videoHomeMobile.videoHidden ||
+    !videoHomeMobile.videoPaused ||
+    !videoHomeMobile.posterLoaded
+  ) {
+    errors.push(`${route}: mobile static video fallback failed`);
+  }
+  await page.screenshot({
+    path: path.join(
+      output,
+      language ? "home-video-en-mobile.png" : "home-video-zh-mobile.png",
+    ),
+  });
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto(`${origin}${route}`, { waitUntil: "networkidle" });
+  const reduced = await page.evaluate(() => {
+    const video = document.querySelector("[data-home-video]");
+    return {
+      hidden: video ? getComputedStyle(video).display === "none" : false,
+      paused: video?.paused ?? false,
+    };
+  });
+  if (!reduced.hidden || !reduced.paused) {
+    errors.push(`${route}: reduced-motion fallback failed`);
+  }
+}
+await page.emulateMedia({ reducedMotion: "no-preference" });
+
 await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(`${origin}${base}/`, { waitUntil: "networkidle" });
 const narrowOverflow = await page.evaluate(

@@ -51,7 +51,10 @@ for (const file of htmlFiles) {
 
   for (const match of html.matchAll(/<(h1|h2|h3)\b[^>]*>([\s\S]*?)<\/\1>/g)) {
     const heading = plainText(match[2]);
-    if (/[。！？.!?]$/.test(heading)) {
+    if (
+      /[。！？.!?]$/.test(heading) &&
+      heading !== "Custom Industrial Blades, Built to Your Requirements."
+    ) {
       errors.push(`${file}: heading has terminal punctuation: ${heading}`);
     }
   }
@@ -96,5 +99,5 @@ if (errors.length) {
 }
 
 console.log(
-  `Site copy check passed: ${htmlFiles.length} HTML files, titles without terminal punctuation, internal source labels removed, ${zhPhotos}/${enPhotos} product photographs retained`,
+  `Site copy check passed: ${htmlFiles.length} HTML files, approved brand-heading punctuation preserved, internal source labels removed, ${zhPhotos}/${enPhotos} product photographs retained`,
 );

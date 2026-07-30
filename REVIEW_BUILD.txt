@@ -1,4 +1,5 @@
 Teamstar Website Review Mirror
 Version: 20260730-2y
 Direction: Yishi-inspired industrial hierarchy, concise B2B copy, processed real product photography
+Independent Home: /home/ and /en/home/ use verified real precision-grinding video with static mobile and reduced-motion fallbacks
 Production status: NOT DEPLOYED
