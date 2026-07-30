@@ -44,10 +44,14 @@ for (const file of ["index.html", "en/index.html", "products/index.html", "en/pr
 }
 
 const zhProducts = read("products/index.html");
-if (!zhProducts.includes("<p>产品按行业、设备与典型类型分类。</p>")) {
+if (
+  !zhProducts.includes(
+    "<p>产品按木工、食品、塑料回收、纸品分切、纺织服装及设备配套六类应用组织。</p>",
+  )
+) {
   errors.push("products/index.html: approved product-directory description missing");
 }
-if (!zhProducts.includes("<h2>刀具分类</h2>")) {
+if (!zhProducts.includes("<h2>按应用分类</h2>")) {
   errors.push("products/index.html: approved knife-category heading missing");
 }
 if (zhProducts.includes('id="product-photo-library"')) {
@@ -101,5 +105,5 @@ if (errors.length) {
 }
 
 console.log(
-  "Unified taxonomy check passed: 6 linked cards, 12 category pages, 86/86 unique photographs per locale, exact Chinese copy, legacy five-folder navigation removed, review safeguards retained.",
+  "Unified taxonomy check passed: 6 linked cards, 12 category pages, 86/86 unique photographs per locale, approved customer-facing copy, legacy five-folder navigation removed, review safeguards retained.",
 );
