@@ -19,9 +19,9 @@ async function htmlFiles(directory = root) {
 }
 
 function videoHome(source, english) {
-  const staticImage = `${base}/images/web/process-20260725/home-manufacturing-montage-poster.jpg`;
-  const mobileImage = `${base}/images/web/process-20260725/home-manufacturing-montage-poster-mobile.jpg`;
-  const video = `${base}/images/web/process-20260725/home-manufacturing-montage.mp4`;
+  const staticImage = `${base}/images/web/process-20260725/home-company-manufacturing-montage-20260730-poster.jpg`;
+  const mobileImage = `${base}/images/web/process-20260725/home-company-manufacturing-montage-20260730-poster-mobile.jpg`;
+  const video = `${base}/images/web/process-20260725/home-company-manufacturing-montage-20260730.mp4`;
   let html = source
     .replace(
       '<body class="page-home redesign-2w">',

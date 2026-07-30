@@ -166,7 +166,7 @@ for (const language of ["", "en/"]) {
     titleBottom: Math.round(document.querySelector(".hero-copy h1").getBoundingClientRect().bottom),
     introBottom: Math.round(document.querySelector(".hero-copy p").getBoundingClientRect().bottom),
     firstProductTop: Math.round(
-      document.querySelector(".home-hero-picture .hero-media").getBoundingClientRect().top
+      document.querySelector(".home-hero-picture .hero-media")?.getBoundingClientRect().top ?? -1
     ),
   }));
   if (tablet.overflow > 1) errors.push(`${route}: tablet horizontal overflow ${tablet.overflow}px`);

@@ -187,9 +187,9 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
   for (const required of [
     "home-video-hero",
-    "home-manufacturing-montage.mp4",
-    "home-manufacturing-montage-poster.jpg",
-    "home-manufacturing-montage-poster-mobile.jpg",
+    "home-company-manufacturing-montage-20260730.mp4",
+    "home-company-manufacturing-montage-20260730-poster.jpg",
+    "home-company-manufacturing-montage-20260730-poster-mobile.jpg",
     'muted loop playsinline preload="none"',
     "data-home-video",
     "home-video.js?v=20260730-2y-home-video",
