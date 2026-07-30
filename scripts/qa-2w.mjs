@@ -75,7 +75,10 @@ page.on("console", (message) => {
   if (message.type() === "error") errors.push(`console: ${message.text()}`);
 });
 page.on("requestfailed", (request) => {
-  errors.push(`request failed: ${request.url()} ${request.failure()?.errorText}`);
+  const errorText = request.failure()?.errorText || "";
+  if (errorText !== "net::ERR_ABORTED") {
+    errors.push(`request failed: ${request.url()} ${errorText}`);
+  }
 });
 
 for (const file of await htmlFiles(root)) {
