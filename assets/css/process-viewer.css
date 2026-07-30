@@ -116,7 +116,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .process-media-preview {
@@ -130,7 +130,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   background: #111a1f;
   opacity: 0;
   pointer-events: none;
@@ -138,7 +138,7 @@
 }
 
 .process-media-trigger .process-media-hover-preview {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .process-media-trigger.is-preview-playing .process-media-preview {
@@ -236,7 +236,7 @@
   width: 100%;
   height: 100%;
   aspect-ratio: auto;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .process-evidence-detail figcaption {
