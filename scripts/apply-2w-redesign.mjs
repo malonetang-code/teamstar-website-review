@@ -188,7 +188,7 @@ function zhHome(logos) {
         <div class="process-step-home"><b>03</b><h3>加工与研磨</h3><p>完成机加工、精密研磨和刃口处理</p></div>
         <div class="process-step-home"><b>04</b><h3>检验与交付</h3><p>检验、刃口防护和包装</p></div>
       </div>
-      <div class="section-actions"><a class="text-link" href="${base}/capabilities/">查看八道工序<span aria-hidden="true">→</span></a></div>
+      <div class="section-actions"><a class="text-link" href="${base}/capabilities/">查看制造与质量控制工序<span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
@@ -353,7 +353,7 @@ function enHome(logos) {
         <div class="process-step-home"><b>03</b><h3>Machining and Grinding</h3><p>Complete machining, precision grinding and edge work</p></div>
         <div class="process-step-home"><b>04</b><h3>Inspection and Delivery</h3><p>Inspect, protect the edge and pack for shipment</p></div>
       </div>
-      <div class="section-actions"><a class="text-link" href="${base}/en/capabilities/">View the Eight Stages<span aria-hidden="true">→</span></a></div>
+      <div class="section-actions"><a class="text-link" href="${base}/en/capabilities/">View Manufacturing and Quality Control<span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 

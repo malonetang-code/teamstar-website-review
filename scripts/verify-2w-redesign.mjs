@@ -187,8 +187,9 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
   for (const required of [
     "home-video-hero",
-    "05-precision-grinding.mp4",
-    "05-precision-grinding.jpg",
+    "home-manufacturing-montage.mp4",
+    "home-manufacturing-montage-poster.jpg",
+    "home-manufacturing-montage-poster-mobile.jpg",
     'muted loop playsinline preload="none"',
     "data-home-video",
     "home-video.js?v=20260730-2y-home-video",
@@ -205,8 +206,8 @@ for (const file of htmlFiles) {
   const expected = file.startsWith("en/")
     ? '<a href="/teamstar-website-review/en/home/">Home</a>'
     : '<a href="/teamstar-website-review/home/">首页</a>';
-  if ((html.match(new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length < 2) {
-    errors.push(`${file}: bilingual Home entry missing from desktop or mobile navigation`);
+  if ((html.match(new RegExp(expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 2) {
+    errors.push(`${file}: expected exactly one Home entry in each navigation`);
   }
 }
 

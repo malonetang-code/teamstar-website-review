@@ -26,6 +26,10 @@ function plainText(html) {
 
 const htmlFiles = walkHtml();
 const forbidden = [
+  "八道",
+  "8 道",
+  "Eight manufacturing and control stages",
+  "View the Eight Stages",
   "原文件夹名称与文件名仅作为来源标签保留",
   "来源标签：",
   "过往相似产品实拍案例",

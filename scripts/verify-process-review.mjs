@@ -71,5 +71,5 @@ if (errors.length) {
 }
 
 console.log(
-  "Process review check passed: complete-frame thumbnails, 8 bilingual stages, 21 media triggers and punctuated body copy",
+  "Process review check passed: complete-frame thumbnails, all bilingual process examples, 21 media triggers and punctuated body copy",
 );

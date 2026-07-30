@@ -19,8 +19,9 @@ async function htmlFiles(directory = root) {
 }
 
 function videoHome(source, english) {
-  const staticImage = `${base}/images/web/process-20260725/05-precision-grinding.jpg`;
-  const video = `${base}/images/web/process-20260725/05-precision-grinding.mp4`;
+  const staticImage = `${base}/images/web/process-20260725/home-manufacturing-montage-poster.jpg`;
+  const mobileImage = `${base}/images/web/process-20260725/home-manufacturing-montage-poster-mobile.jpg`;
+  const video = `${base}/images/web/process-20260725/home-manufacturing-montage.mp4`;
   let html = source
     .replace(
       '<body class="page-home redesign-2w">',
@@ -34,7 +35,8 @@ function videoHome(source, english) {
       /<picture class="home-hero-picture">[\s\S]*?<\/picture>/,
       `<div class="home-video-media" aria-hidden="true">
       <picture class="home-video-poster">
-        <img src="${staticImage}" width="1280" height="720" loading="eager" fetchpriority="high" decoding="async" alt="">
+        <source media="(max-width: 767px)" srcset="${mobileImage}">
+        <img src="${staticImage}" width="1536" height="720" loading="eager" fetchpriority="high" decoding="async" alt="">
       </picture>
       <video class="home-video" muted loop playsinline preload="none" poster="${staticImage}" data-home-video>
         <source src="${video}" type="video/mp4">
@@ -72,19 +74,18 @@ for (const file of await htmlFiles()) {
   const english = path.relative(root, file).startsWith("en/");
   const href = english ? `${base}/en/home/` : `${base}/home/`;
   const label = english ? "Home" : "首页";
+  const anchor = `<a href="${href}">${label}</a>`;
 
-  if (!html.includes(`class="desktop-nav"> <a href="${href}"`)) {
-    html = html.replace(
-      /(<nav\b[^>]*class="desktop-nav"[^>]*>)/,
-      `$1 <a href="${href}">${label}</a>`,
-    );
-  }
-  if (!html.includes(`class="mobile-menu-inner"> <a href="${href}"`)) {
-    html = html.replace(
-      /(<div\b[^>]*class="container mobile-menu-inner"[^>]*>)/,
-      `$1 <a href="${href}">${label}</a>`,
-    );
-  }
+  html = html.replace(
+    /(<nav\b[^>]*class="desktop-nav"[^>]*>)([\s\S]*?)(<\/nav>)/,
+    (_, open, content, close) =>
+      `${open} ${anchor} ${content.replaceAll(anchor, "").trimStart()}${close}`,
+  );
+  html = html.replace(
+    /(<div\b[^>]*class="container mobile-menu-inner"[^>]*>)([\s\S]*?)(<\/div>)/,
+    (_, open, content, close) =>
+      `${open} ${anchor} ${content.replaceAll(anchor, "").trimStart()}${close}`,
+  );
   html = html.replace(
     /site-2w\.css\?v=[^"]+/g,
     `site-2w.css?v=${styleVersion}`,
