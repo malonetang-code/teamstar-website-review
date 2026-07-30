@@ -29,6 +29,19 @@ if (htmlFiles.length !== 48) {
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
+  if (html.includes("info@teamstarmfg.com")) {
+    errors.push(`${file}: retired general mailbox remains`);
+  }
+  if (
+    html.includes("18150707007") ||
+    html.includes("181-5070-7007") ||
+    html.includes("tel:+8618150707007")
+  ) {
+    errors.push(`${file}: retired phone number remains`);
+  }
+  if (!html.includes("ga01@teamstarmfg.com")) {
+    errors.push(`${file}: general administration mailbox missing`);
+  }
   if (!html.includes("site-base.css?v=20260730-2w")) {
     errors.push(`${file}: shared base stylesheet missing`);
   }
@@ -152,6 +165,16 @@ for (const file of ["rfq/index.html", "en/rfq/index.html"]) {
   }
 }
 
+for (const file of [
+  "rfq/custom-industrial-knife-drawing-checklist/index.html",
+  "en/rfq/custom-industrial-knife-drawing-checklist/index.html",
+]) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  if (!html.includes("rd01@teamstarmfg.com")) {
+    errors.push(`${file}: sales attachment email missing from guide`);
+  }
+}
+
 const css = fs.readFileSync(
   path.join(root, "assets/css/site-2w.css"),
   "utf8",
@@ -206,8 +229,8 @@ for (const file of ["index.html", "en/index.html"]) {
 }
 
 const build = fs.readFileSync(path.join(root, "REVIEW_BUILD.txt"), "utf8");
-if (!build.includes("Version: 20260730-2w")) {
-  errors.push("REVIEW_BUILD.txt: 2w version missing");
+if (!build.includes("Version: 20260730-2x")) {
+  errors.push("REVIEW_BUILD.txt: 2x version missing");
 }
 if (!build.includes("Production status: NOT DEPLOYED")) {
   errors.push("REVIEW_BUILD.txt: production boundary missing");

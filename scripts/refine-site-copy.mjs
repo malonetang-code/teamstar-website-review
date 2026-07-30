@@ -829,8 +829,8 @@ applyReplacements("rfq/index.html", [
   ["填写技术询价", "提交询价"],
   ["有助于技术评估的资料", "可以提交的项目资料"],
   [
-    "可随询价直接上传文件，也可在提交后使用询价编号发送至 info@teamstarmfg.com。附件不是必填项。",
-    "可在表单中上传文件，也可在提交后注明询价编号发送至 info@teamstarmfg.com。附件为选填项。",
+    "可随询价直接上传文件，也可在提交后使用询价编号发送至 rd01@teamstarmfg.com。附件不是必填项。",
+    "可在表单中上传文件，也可在提交后注明询价编号发送至 rd01@teamstarmfg.com。附件为选填项。",
   ],
   ["查看完整询价资料指南", "查看完整资料清单"],
   ["提交现有技术资料", "填写现有项目资料"],
@@ -868,8 +868,8 @@ applyReplacements("en/rfq/index.html", [
   ["Open the RFQ form", "Submit an RFQ"],
   ["Information that supports review", "Project information you can send"],
   [
-    "Files can be uploaded with the RFQ or sent to info@teamstarmfg.com using the reference shown after submission. Uploading files is optional.",
-    "Upload files with the form or send them later to info@teamstarmfg.com with the RFQ reference. File upload is optional.",
+    "Files can be uploaded with the RFQ or sent to rd01@teamstarmfg.com using the reference shown after submission. Uploading files is optional.",
+    "Upload files with the form or send them later to rd01@teamstarmfg.com with the RFQ reference. File upload is optional.",
   ],
   ["View the complete RFQ preparation guide", "View the complete information checklist"],
   ["Submit the available information", "Enter the project information available"],
@@ -914,8 +914,8 @@ applyReplacements("rfq/custom-industrial-knife-drawing-checklist/index.html", [
     "图纸应标识影响安装、切割表现和检验的关键特性；尚未确认的公差或材料可注明“待评估”。",
   ],
   [
-    "附件上传为选填项。补充资料或超出限制的文件可注明询价编号，另行发送至 info@teamstarmfg.com。",
-    "附件为选填项。补充资料或超出限制的文件可注明询价编号，另行发送至 info@teamstarmfg.com。",
+    "附件上传为选填项。补充资料或超出限制的文件可注明询价编号，另行发送至 rd01@teamstarmfg.com。",
+    "附件为选填项。补充资料或超出限制的文件可注明询价编号，另行发送至 rd01@teamstarmfg.com。",
   ],
   [
     "报价在技术评估后形成。几何结构、材料、热处理、机加工、研磨及检验要求均可能影响工艺路线与价格。",
@@ -942,8 +942,8 @@ applyReplacements("en/rfq/custom-industrial-knife-drawing-checklist/index.html",
     "Mark the characteristics that control fit, cutting performance and inspection. Tolerances or materials not yet confirmed can be labelled “for review”.",
   ],
   [
-    "File upload is optional. Additional or oversized files can be referenced by the RFQ number and sent separately to info@teamstarmfg.com.",
-    "File upload is optional. Send additional or oversized files to info@teamstarmfg.com with the RFQ reference.",
+    "File upload is optional. Additional or oversized files can be referenced by the RFQ number and sent separately to rd01@teamstarmfg.com.",
+    "File upload is optional. Send additional or oversized files to rd01@teamstarmfg.com with the RFQ reference.",
   ],
   [
     "Quotation follows technical review. Geometry, material, heat treatment, machining, grinding and inspection requirements can each change the process route and price.",

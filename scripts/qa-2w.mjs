@@ -118,11 +118,17 @@ for (const language of ["", "en/"]) {
       rfqLeft: left(".rfq-paths"),
       processLeft: left(".process-steps"),
       logos: document.querySelectorAll(".logo-item").length,
+      generalEmail: document.body.textContent.includes("ga01@teamstarmfg.com"),
+      retiredContact:
+        document.body.textContent.includes("info@teamstarmfg.com") ||
+        document.body.textContent.includes("181-5070-7007"),
     };
   });
   if (!desktop.body.includes("redesign-2w")) errors.push(`${route}: missing 2w body marker`);
   if (desktop.cards !== 6) errors.push(`${route}: expected 6 product cards`);
   if (desktop.logos !== 10) errors.push(`${route}: expected 10 reference logos`);
+  if (!desktop.generalEmail) errors.push(`${route}: general administration email missing`);
+  if (desktop.retiredContact) errors.push(`${route}: retired contact details remain`);
   const lefts = [
     desktop.heroLeft,
     desktop.productsLeft,
@@ -225,6 +231,12 @@ await page.goto(`${origin}${base}/capabilities/`, { waitUntil: "networkidle" });
 const processMedia = await page.evaluate(() => ({
   videos: document.querySelectorAll('[data-media-kind="video"]').length,
   images: document.querySelectorAll(".process-evidence-media img").length,
+  heatVideo: document.querySelector(
+    '[data-media-src$="03-heat-treatment-002.mp4"]'
+  )?.dataset.mediaSrc,
+  heatPhoto: document.querySelector(
+    '[data-media-src$="03-heat-treatment-operation-010-full.jpg"]'
+  )?.dataset.mediaSrc,
   fits: [
     ...document.querySelectorAll(
       ".process-media-preview, .process-evidence-detail img"
@@ -232,6 +244,8 @@ const processMedia = await page.evaluate(() => ({
   ].map((element) => getComputedStyle(element).objectFit),
 }));
 if (processMedia.videos < 8) errors.push(`capabilities: expected at least 8 process videos`);
+if (!processMedia.heatVideo) errors.push("capabilities: updated heat-treatment video missing");
+if (!processMedia.heatPhoto) errors.push("capabilities: updated heat-treatment photo missing");
 if (processMedia.fits.some((fit) => fit !== "contain")) {
   errors.push(`capabilities: process media is cropped ${processMedia.fits.join(",")}`);
 }

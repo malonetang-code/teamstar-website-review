@@ -45,6 +45,21 @@ for (const file of ["capabilities/index.html", "en/capabilities/index.html"]) {
   if (!html.includes(`process-viewer.css?v=20260730-2s`)) {
     errors.push(`${file}: current process viewer stylesheet version missing`);
   }
+  for (const asset of [
+    "03-heat-treatment-002.mp4",
+    "03-heat-treatment-002-cover.jpg",
+    "03-heat-treatment-operation-010-full.jpg",
+  ]) {
+    if (!html.includes(asset)) {
+      errors.push(`${file}: updated heat-treatment asset missing: ${asset}`);
+    }
+  }
+  if (
+    html.includes("03-heat-treatment.mp4") ||
+    html.includes("03-heat-treatment-loading-full.jpg")
+  ) {
+    errors.push(`${file}: superseded heat-treatment asset remains`);
+  }
   if (!html.includes('meta name="robots" content="noindex,nofollow,noarchive"')) {
     errors.push(`${file}: review robots safeguard missing`);
   }
