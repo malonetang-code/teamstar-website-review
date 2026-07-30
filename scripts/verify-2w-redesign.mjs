@@ -29,14 +29,14 @@ if (htmlFiles.length !== 48) {
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
-  if (!html.includes("site-2v.css?v=20260730-2v")) {
-    errors.push(`${file}: 2v base stylesheet missing`);
+  if (!html.includes("site-base.css?v=20260730-2w")) {
+    errors.push(`${file}: shared base stylesheet missing`);
   }
-  if (!html.includes("site-2v-overrides.css?v=20260730-2v")) {
-    errors.push(`${file}: 2v visual stylesheet missing`);
+  if (!html.includes("site-2w.css?v=20260730-2w")) {
+    errors.push(`${file}: 2w visual stylesheet missing`);
   }
-  if (!html.includes("redesign-2v")) {
-    errors.push(`${file}: 2v body marker missing`);
+  if (!html.includes("redesign-2w")) {
+    errors.push(`${file}: 2w body marker missing`);
   }
   if (html.includes("benchmark.css") || html.includes("benchmark-york-yishi")) {
     errors.push(`${file}: rejected 2u design remains`);
@@ -46,6 +46,19 @@ for (const file of htmlFiles) {
   }
   if (!html.includes('name="robots" content="noindex,nofollow,noarchive"')) {
     errors.push(`${file}: review-mirror robots protection missing`);
+  }
+  for (const match of html.matchAll(
+    /\/teamstar-website-review\/([^"'(),?\s]+)/g,
+  )) {
+    const reference = decodeURIComponent(match[1]);
+    if (
+      /\.(?:avif|css|gif|jpe?g|js|json|mp4|png|svg|webmanifest|webp|woff2)$/i.test(
+        reference,
+      ) &&
+      !fs.existsSync(path.join(root, reference))
+    ) {
+      errors.push(`${file}: missing local asset ${reference}`);
+    }
   }
   for (const match of html.matchAll(/<(h1|h2|h3)\b[^>]*>([\s\S]*?)<\/\1>/g)) {
     const heading = text(match[2]);
@@ -59,32 +72,41 @@ const homeChecks = [
   [
     "index.html",
     [
-      "<span>按图、按样定制</span><span>工业机械刀具</span>",
-      "我们制造的刀具",
-      "三种方式开始询价",
-      "从材料到刃口",
-      "可核验的制造与质量能力",
+      "工业机械刀具制造",
+      "工业刀具产品",
+      "三种询价方式",
+      "从图纸到成品",
+      "真实工厂与检测现场",
     ],
   ],
   [
     "en/index.html",
     [
-      "<span>Custom Industrial</span><span>Machine Knives</span>",
-      "Industrial Knives We Manufacture",
-      "Start With What You Have",
-      "From Material to Cutting Edge",
-      "Manufacturing Evidence You Can Review",
+      "Industrial Machine Knife Manufacturing",
+      "Industrial Knife Products",
+      "Three Ways to Start",
+      "From Drawing to Finished Knife",
+      "Real Manufacturing and Inspection",
     ],
   ],
 ];
 
-const selectedStems = [
+const selectedCatalogStems = [
   "crotKizX0J",
   "mZaq84W78n",
   "kDD9SWMj0H",
   "W8YmneBOMh",
   "47jYn3TWma",
   "TTtdzuoFgG",
+];
+
+const selectedHomeImages = [
+  "product-woodworking",
+  "product-food",
+  "product-recycling",
+  "product-paper",
+  "product-textile",
+  "product-custom",
 ];
 
 for (const [file, phrases] of homeChecks) {
@@ -95,8 +117,11 @@ for (const [file, phrases] of homeChecks) {
   for (const phrase of phrases) {
     if (!html.includes(phrase)) errors.push(`${file}: missing concise copy: ${phrase}`);
   }
-  for (const stem of selectedStems) {
-    if (!html.includes(stem)) errors.push(`${file}: selected product image missing: ${stem}`);
+  if (html.includes("proof-rail")) {
+    errors.push(`${file}: rejected home metric rail remains`);
+  }
+  for (const image of selectedHomeImages) {
+    if (!html.includes(image)) errors.push(`${file}: processed product image missing: ${image}`);
   }
 }
 
@@ -108,7 +133,7 @@ for (const file of ["products/index.html", "en/products/index.html"]) {
   if ((html.match(/class="product-card-summary"/g) || []).length !== 6) {
     errors.push(`${file}: expected six concise product summaries`);
   }
-  for (const stem of selectedStems) {
+  for (const stem of selectedCatalogStems) {
     if (!html.includes(stem)) errors.push(`${file}: selected catalog image missing: ${stem}`);
   }
 }
@@ -128,20 +153,32 @@ for (const file of ["rfq/index.html", "en/rfq/index.html"]) {
 }
 
 const css = fs.readFileSync(
-  path.join(root, "assets/css/site-2v-overrides.css"),
+  path.join(root, "assets/css/site-2w.css"),
   "utf8",
 );
 for (const required of [
+  ".home-hero::after",
+  "display: none",
   ".blade-media img",
   "object-fit: contain",
   ".logo-item img",
   "filter: none",
   ".process-evidence-media video",
 ]) {
-  if (!css.includes(required)) errors.push(`2v CSS missing rule: ${required}`);
+  if (!css.includes(required)) errors.push(`2w CSS missing rule: ${required}`);
 }
 if (/grayscale\s*\(/.test(css)) {
-  errors.push("2v CSS must not grayscale the logo wall");
+  errors.push("2w CSS must not grayscale the logo wall");
+}
+
+for (const image of [
+  "hero-desktop.webp",
+  "hero-mobile.webp",
+  ...selectedHomeImages.flatMap((name) => [`${name}.webp`, `${name}.jpg`]),
+]) {
+  if (!fs.existsSync(path.join(root, "assets/images/2w", image))) {
+    errors.push(`2w visual asset missing: ${image}`);
+  }
 }
 
 for (const file of ["index.html", "en/index.html"]) {
@@ -169,8 +206,8 @@ for (const file of ["index.html", "en/index.html"]) {
 }
 
 const build = fs.readFileSync(path.join(root, "REVIEW_BUILD.txt"), "utf8");
-if (!build.includes("Version: 20260730-2v")) {
-  errors.push("REVIEW_BUILD.txt: 2v version missing");
+if (!build.includes("Version: 20260730-2w")) {
+  errors.push("REVIEW_BUILD.txt: 2w version missing");
 }
 if (!build.includes("Production status: NOT DEPLOYED")) {
   errors.push("REVIEW_BUILD.txt: production boundary missing");
@@ -182,5 +219,5 @@ if (errors.length) {
 }
 
 console.log(
-  `2v redesign check passed: ${htmlFiles.length} HTML files, concise bilingual core copy, six matched product images, colour logos, uncropped process media`,
+  `2w redesign check passed: ${htmlFiles.length} HTML files, concise bilingual core copy, six matched product images, colour logos, uncropped process media`,
 );
