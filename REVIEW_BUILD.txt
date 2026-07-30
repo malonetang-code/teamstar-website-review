@@ -1,4 +1,4 @@
-Teamstar Website Review Mirror
-Version: 20260730-2u
-Direction: York restraint + Yishi RFQ clarity
-Production status: NOT DEPLOYED
+Teamstar website review mirror
+Version: 20260730-2t
+Base path: /teamstar-website-review/
+Production form submission: disabled in this static review mirror
