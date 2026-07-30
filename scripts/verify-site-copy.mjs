@@ -86,8 +86,8 @@ if (zhPhotos !== 86 || enPhotos !== 86) {
 }
 
 const build = fs.readFileSync(path.join(root, "REVIEW_BUILD.txt"), "utf8");
-if (!build.includes("Version: 20260730-2t")) {
-  errors.push("REVIEW_BUILD.txt: expected version 20260730-2t");
+if (!build.includes("Version: 20260730-2v")) {
+  errors.push("REVIEW_BUILD.txt: expected version 20260730-2v");
 }
 
 if (errors.length) {

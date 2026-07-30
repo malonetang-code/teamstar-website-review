@@ -37,7 +37,9 @@ for (const [index, slug] of slugs.entries()) {
 
 for (const file of ["index.html", "en/index.html", "products/index.html", "en/products/index.html"]) {
   const html = read(file);
-  const cardLinks = (html.match(/class="product-card-hit-area"/g) || []).length;
+  const cardLinks = (
+    html.match(/class="(?:product-card-hit-area|blade-card-link)"/g) || []
+  ).length;
   if (cardLinks !== 6) {
     errors.push(`${file}: expected 6 whole-card links, found ${cardLinks}`);
   }
@@ -46,12 +48,12 @@ for (const file of ["index.html", "en/index.html", "products/index.html", "en/pr
 const zhProducts = read("products/index.html");
 if (
   !zhProducts.includes(
-    "<p>产品按木工、食品、塑料回收、纸品分切、纺织服装及设备配套六类应用组织。</p>",
+    "<p>六类应用产品，均可按图纸或样品定制。</p>",
   )
 ) {
   errors.push("products/index.html: approved product-directory description missing");
 }
-if (!zhProducts.includes("<h2>按应用分类</h2>")) {
+if (!zhProducts.includes("<h2>六类产品</h2>")) {
   errors.push("products/index.html: approved knife-category heading missing");
 }
 if (zhProducts.includes('id="product-photo-library"')) {
