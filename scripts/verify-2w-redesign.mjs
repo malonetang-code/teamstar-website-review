@@ -74,7 +74,12 @@ for (const file of htmlFiles) {
   if (!html.includes("site-2w.css?v=20260730-2y-home-video")) {
     errors.push(`${file}: 2w visual stylesheet missing`);
   }
-  if (!html.includes("redesign-2w")) {
+  const isIndependentHome =
+    file === "home/index.html" || file === "en/home/index.html";
+  if (
+    (!isIndependentHome && !html.includes("redesign-2w")) ||
+    (isIndependentHome && !html.includes("home-3b"))
+  ) {
     errors.push(`${file}: 2w body marker missing`);
   }
   if (html.includes("benchmark.css") || html.includes("benchmark-york-yishi")) {
@@ -138,8 +143,8 @@ const homeChecks = [
     [
       "因需而制，以准致信。",
       "按图纸、样品与实际工况确认制造方案",
-      "按应用快速浏览刀具范围",
-      "从设备与材料进入产品范围",
+      "工业机械刀具",
+      "面向不同切割任务",
       "检测与质量控制",
       "rd01@teamstarmfg.com",
     ],
@@ -148,8 +153,8 @@ const homeChecks = [
     "en/home/index.html",
     [
       "Engineered for Your Needs. Trusted for Precision.",
-      "Browse the Range by Application",
-      "Start with the Machine and Material",
+      "Industrial Machine Knives",
+      "Built Around Distinct Cutting Tasks",
       "Inspection and Quality Control",
       "rd01@teamstarmfg.com",
     ],
@@ -211,10 +216,13 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
     "home-video-hero",
     "home-company-manufacturing-montage-20260730.mp4",
     "home-company-manufacturing-montage-20260730-poster.jpg",
-    "home-company-manufacturing-montage-20260730-poster-mobile.jpg",
-    'muted loop playsinline preload="none"',
+    "muted",
+    "loop",
+    "playsinline",
+    'preload="none"',
     "data-home-video",
-    "home-video.js?v=20260730-2y-home-video",
+    "home-3b.css?v=20260731-3b",
+    "home-video.js?v=20260731-3b",
     'name="robots" content="noindex,nofollow,noarchive"',
   ]) {
     if (!html.includes(required)) {
@@ -224,11 +232,14 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
   if ((html.match(/class="solution-card"/g) || []).length !== 4) {
     errors.push(`${file}: expected four structured application cards`);
   }
-  if ((html.match(/class="button button-accent"/g) || []).length !== 1) {
-    errors.push(`${file}: expected one highlighted in-page RFQ entry before the final band`);
+  if ((html.match(/class="button button-accent"/g) || []).length !== 0) {
+    errors.push(`${file}: repeated highlighted RFQ entry remains before the final band`);
   }
-  if (!html.includes('class="home-contact-rail"')) {
-    errors.push(`${file}: quiet direct-contact rail missing`);
+  if (html.includes('class="home-contact-rail"')) {
+    errors.push(`${file}: dense direct-contact rail remains`);
+  }
+  if (html.includes('class="section process-band"')) {
+    errors.push(`${file}: redundant process band remains`);
   }
   if (!html.includes("3S8C5K_RK9-1600.jpeg")) {
     errors.push(`${file}: inspection-room evidence image missing`);

@@ -26,13 +26,11 @@
 
   const revealPlan = [
     [".section-head", "up"],
-    [".blade-card", "up"],
-    [".partner-media", "left"],
-    [".partner-copy", "right"],
-    [".solution-card", "up"],
-    [".process-step-home", "up"],
+    [".blade-grid", "up"],
+    [".solution-grid", "up"],
     [".evidence-home-item--manufacturing", "left"],
     [".evidence-home-item--quality", "right"],
+    [".reference-section .logo-wall", "up"],
     [".rfq-band-grid", "up"],
   ];
 
@@ -83,24 +81,6 @@
     revealItems.forEach((element) => revealObserver.observe(element));
   };
 
-  const parallaxMedia = document.querySelector("[data-home-parallax]");
-  let parallaxFrame;
-  const updateParallax = () => {
-    parallaxFrame = undefined;
-    if (!parallaxMedia || reducedMotion.matches || !desktop.matches) {
-      parallaxMedia?.style.removeProperty("--home-parallax-y");
-      return;
-    }
-    const rect = parallaxMedia.getBoundingClientRect();
-    const viewportCenter = window.innerHeight / 2;
-    const mediaCenter = rect.top + rect.height / 2;
-    const offset = Math.max(-18, Math.min(18, (viewportCenter - mediaCenter) * 0.035));
-    parallaxMedia.style.setProperty("--home-parallax-y", `${offset.toFixed(2)}px`);
-  };
-  const requestParallax = () => {
-    if (!parallaxFrame) parallaxFrame = requestAnimationFrame(updateParallax);
-  };
-
   const logoTrack = document.querySelector(".reference-section .logo-wall");
   let logoClones = [];
   const teardownLogoMarquee = () => {
@@ -127,11 +107,8 @@
   const syncExperience = () => {
     setupReveal();
     setupLogoMarquee();
-    requestParallax();
   };
 
-  window.addEventListener("scroll", requestParallax, { passive: true });
-  window.addEventListener("resize", requestParallax, { passive: true });
   reducedMotion.addEventListener("change", syncExperience);
   desktop.addEventListener("change", syncExperience);
   syncExperience();
