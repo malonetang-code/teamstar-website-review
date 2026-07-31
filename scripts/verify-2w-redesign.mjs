@@ -142,9 +142,10 @@ const homeChecks = [
     "home/index.html",
     [
       "因需而制，以准致信。",
-      "按图纸、样品与实际工况确认制造方案",
+      "先把要求说清，再确定怎么制造",
       "工业机械刀具",
-      "检测与质量控制",
+      "为什么客户选择我们",
+      "五个客户可理解的项目检查点",
       "rd01@teamstarmfg.com",
     ],
   ],
@@ -153,7 +154,8 @@ const homeChecks = [
     [
       "Engineered for Your Needs. Trusted for Precision.",
       "Industrial Machine Knives",
-      "Inspection and Quality Control",
+      "WHY CUSTOMERS CHOOSE US",
+      "Five project checkpoints customers can follow",
       "rd01@teamstarmfg.com",
     ],
   ],
@@ -219,8 +221,12 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
     "playsinline",
     'preload="none"',
     "data-home-video",
-    "home-3b.css?v=20260731-3c",
-    "home-video.js?v=20260731-3c",
+    "home-3b.css?v=20260731-3d",
+    "home-video.js?v=20260731-3d",
+    "data-hero-trigger",
+    "home-who-section",
+    "value-card-grid",
+    "assurance-steps",
     'name="robots" content="noindex,nofollow,noarchive"',
   ]) {
     if (!html.includes(required)) {
@@ -242,7 +248,7 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
   if (html.includes('class="section process-band"')) {
     errors.push(`${file}: redundant process band remains`);
   }
-  if (!html.includes("3S8C5K_RK9-1600.jpeg")) {
+  if (!html.includes("06-optical-inspection-full.jpg")) {
     errors.push(`${file}: inspection-room evidence image missing`);
   }
 }

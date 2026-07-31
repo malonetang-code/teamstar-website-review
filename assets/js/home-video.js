@@ -2,10 +2,18 @@
   const video = document.querySelector("[data-home-video]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const desktop = window.matchMedia("(min-width: 768px)");
+  const hero = document.querySelector("[data-home-hero]");
+  const heroPanels = Array.from(
+    hero?.querySelectorAll("[data-hero-panel]") ?? [],
+  );
+  const heroTriggers = Array.from(
+    hero?.querySelectorAll("[data-hero-trigger]") ?? [],
+  );
+  let activeHeroPanel = 0;
 
   const syncPlayback = () => {
     if (!video) return;
-    if (reducedMotion.matches || !desktop.matches) {
+    if (reducedMotion.matches || !desktop.matches || activeHeroPanel !== 0) {
       video.pause();
       video.currentTime = 0;
       return;
@@ -24,11 +32,52 @@
   });
   syncPlayback();
 
+  const activateHeroPanel = (index, moveFocus = false) => {
+    if (!heroPanels[index] || !heroTriggers[index]) return;
+    activeHeroPanel = index;
+    heroPanels.forEach((panel, panelIndex) => {
+      const isActive = panelIndex === activeHeroPanel;
+      panel.classList.toggle("is-active", isActive);
+      panel.setAttribute("aria-hidden", String(!isActive));
+    });
+    heroTriggers.forEach((trigger, triggerIndex) => {
+      const isActive = triggerIndex === activeHeroPanel;
+      trigger.classList.toggle("is-active", isActive);
+      trigger.setAttribute("aria-selected", String(isActive));
+      trigger.tabIndex = isActive ? 0 : -1;
+    });
+    if (moveFocus) heroTriggers[index].focus();
+    syncPlayback();
+  };
+
+  heroTriggers.forEach((trigger, index) => {
+    trigger.addEventListener("click", () => activateHeroPanel(index));
+    trigger.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+        return;
+      }
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === "ArrowLeft") {
+        nextIndex = (index - 1 + heroTriggers.length) % heroTriggers.length;
+      } else if (event.key === "ArrowRight") {
+        nextIndex = (index + 1) % heroTriggers.length;
+      } else if (event.key === "Home") {
+        nextIndex = 0;
+      } else if (event.key === "End") {
+        nextIndex = heroTriggers.length - 1;
+      }
+      activateHeroPanel(nextIndex, true);
+    });
+  });
+
   const revealPlan = [
     [".section-head", "up"],
+    [".who-copy", "left"],
+    [".who-outcomes", "right"],
+    [".value-card", "up"],
+    [".assurance-steps", "up"],
     [".blade-grid", "up"],
-    [".evidence-home-item--manufacturing", "left"],
-    [".evidence-home-item--quality", "right"],
     [".reference-section .logo-wall", "up"],
     [".rfq-band-grid", "up"],
   ];
