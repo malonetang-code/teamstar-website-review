@@ -46,6 +46,15 @@ function videoHome(source, english) {
     .replace(
       "</body>",
       `<script defer src="${base}/assets/js/home-video.js?v=${styleVersion}"></script> </body>`,
+    )
+    .replace(
+      /(<div class="footer-brand">\s*<strong>TEAMSTAR MANUFACTURING<\/strong>\s*<p>)[\s\S]*?(<\/p>)/,
+      (_, open, close) =>
+        `${open}${
+          english
+            ? "Engineered for Your Needs. Trusted for Precision."
+            : "因需而制，以准致信。"
+        }${close}`,
     );
 
   if (english) {

@@ -150,6 +150,21 @@ const homeChecks = [
   ],
 ];
 
+const videoHomeFooterChecks = [
+  ["home/index.html", "因需而制，以准致信。"],
+  ["en/home/index.html", "Engineered for Your Needs. Trusted for Precision."],
+];
+
+for (const [file, expected] of videoHomeFooterChecks) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  const footerDescription = html.match(
+    /<div class="footer-brand">\s*<strong>TEAMSTAR MANUFACTURING<\/strong>\s*<p>([\s\S]*?)<\/p>/,
+  )?.[1];
+  if (text(footerDescription || "") !== expected) {
+    errors.push(`${file}: expected final bilingual footer slogan`);
+  }
+}
+
 const selectedCatalogStems = [
   "crotKizX0J",
   "mZaq84W78n",
