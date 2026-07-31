@@ -27,7 +27,6 @@
   const revealPlan = [
     [".section-head", "up"],
     [".blade-grid", "up"],
-    [".solution-grid", "up"],
     [".evidence-home-item--manufacturing", "left"],
     [".evidence-home-item--quality", "right"],
     [".reference-section .logo-wall", "up"],

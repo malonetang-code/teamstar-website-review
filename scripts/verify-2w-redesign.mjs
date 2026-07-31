@@ -144,7 +144,6 @@ const homeChecks = [
       "因需而制，以准致信。",
       "按图纸、样品与实际工况确认制造方案",
       "工业机械刀具",
-      "面向不同切割任务",
       "检测与质量控制",
       "rd01@teamstarmfg.com",
     ],
@@ -154,7 +153,6 @@ const homeChecks = [
     [
       "Engineered for Your Needs. Trusted for Precision.",
       "Industrial Machine Knives",
-      "Built Around Distinct Cutting Tasks",
       "Inspection and Quality Control",
       "rd01@teamstarmfg.com",
     ],
@@ -221,16 +219,19 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
     "playsinline",
     'preload="none"',
     "data-home-video",
-    "home-3b.css?v=20260731-3b",
-    "home-video.js?v=20260731-3b",
+    "home-3b.css?v=20260731-3c",
+    "home-video.js?v=20260731-3c",
     'name="robots" content="noindex,nofollow,noarchive"',
   ]) {
     if (!html.includes(required)) {
       errors.push(`${file}: independent Home video requirement missing: ${required}`);
     }
   }
-  if ((html.match(/class="solution-card"/g) || []).length !== 4) {
-    errors.push(`${file}: expected four structured application cards`);
+  if (
+    html.includes('class="section home-solutions"') ||
+    html.includes('class="solution-card"')
+  ) {
+    errors.push(`${file}: redundant application-solutions section remains`);
   }
   if ((html.match(/class="button button-accent"/g) || []).length !== 0) {
     errors.push(`${file}: repeated highlighted RFQ entry remains before the final band`);

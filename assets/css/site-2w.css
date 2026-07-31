@@ -1785,100 +1785,6 @@ html[lang="zh-CN"] .page-home-video .section-head h2 {
   color: #ef655e;
 }
 
-/* Four structured application cards. */
-.page-home-video .home-solutions {
-  background: var(--home-paper);
-}
-
-.page-home-video .solution-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  border: 1px solid var(--home-line);
-  background: var(--home-line);
-}
-
-.page-home-video .solution-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(180px, 0.86fr) minmax(0, 1.14fr);
-  min-height: 300px;
-  overflow: hidden;
-  background: #fff;
-  color: var(--home-ink);
-}
-
-.page-home-video .solution-card figure {
-  min-width: 0;
-  margin: 0;
-  overflow: hidden;
-  background: #9b9e9d;
-}
-
-.page-home-video .solution-card figure picture {
-  display: block;
-  height: 100%;
-}
-
-.page-home-video .solution-card figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 650ms var(--home-ease);
-}
-
-.page-home-video .solution-card > div {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  padding: 30px 28px 26px;
-}
-
-.page-home-video .solution-card b {
-  color: var(--home-accent);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-}
-
-.page-home-video .solution-card h3 {
-  margin: 46px 0 12px;
-  font-size: 25px;
-  line-height: 1.2;
-}
-
-.page-home-video .solution-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.75;
-}
-
-.page-home-video .solution-card span {
-  display: flex;
-  justify-content: space-between;
-  margin-top: auto;
-  padding-top: 26px;
-  color: var(--home-ink);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.page-home-video .solution-card i {
-  color: var(--home-accent);
-  font-size: 16px;
-  font-style: normal;
-}
-
-.page-home-video .solution-card:hover figure img,
-.page-home-video .solution-card:focus-visible figure img {
-  transform: scale(1.045);
-}
-
-.page-home-video .solution-card:hover h3,
-.page-home-video .solution-card:focus-visible h3 {
-  color: var(--home-accent);
-}
-
 /* Four-step route: a concise rhythm, not a fixed-count manufacturing claim. */
 .page-home-video .process-band {
   overflow: hidden;
@@ -2131,9 +2037,6 @@ html[lang="zh-CN"] .page-home-video .section-head h2 {
     aspect-ratio: 4 / 3;
   }
 
-  .page-home-video .solution-card {
-    grid-template-columns: minmax(150px, 0.78fr) minmax(0, 1.22fr);
-  }
 }
 
 @media (max-width: 767px) {
@@ -2257,28 +2160,6 @@ html[lang="zh-CN"] .page-home-video .section-head h2 {
     font-size: 38px;
   }
 
-  .page-home-video .solution-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .page-home-video .solution-card {
-    grid-template-columns: minmax(132px, 0.76fr) minmax(0, 1.24fr);
-    min-height: 250px;
-  }
-
-  .page-home-video .solution-card > div {
-    padding: 22px 18px 20px;
-  }
-
-  .page-home-video .solution-card h3 {
-    margin-top: 30px;
-    font-size: 21px;
-  }
-
-  .page-home-video .solution-card p {
-    font-size: 12px;
-  }
-
   .page-home-video .process-steps {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2349,17 +2230,6 @@ html[lang="zh-CN"] .page-home-video .section-head h2 {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .page-home-video .solution-card {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .page-home-video .solution-card figure {
-    aspect-ratio: 16 / 9;
-  }
-
-  .page-home-video .solution-card h3 {
-    margin-top: 24px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
