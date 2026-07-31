@@ -138,14 +138,20 @@ const homeChecks = [
     [
       "因需而制，以准致信。",
       "按图纸、样品与实际工况确认制造方案",
-      "三种询价方式",
+      "按应用快速浏览刀具范围",
+      "从设备与材料进入产品范围",
+      "检测与质量控制",
+      "rd01@teamstarmfg.com",
     ],
   ],
   [
     "en/home/index.html",
     [
       "Engineered for Your Needs. Trusted for Precision.",
-      "Three Ways to Start",
+      "Browse the Range by Application",
+      "Start with the Machine and Material",
+      "Inspection and Quality Control",
+      "rd01@teamstarmfg.com",
     ],
   ],
 ];
@@ -215,6 +221,18 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
       errors.push(`${file}: independent Home video requirement missing: ${required}`);
     }
   }
+  if ((html.match(/class="solution-card"/g) || []).length !== 4) {
+    errors.push(`${file}: expected four structured application cards`);
+  }
+  if ((html.match(/class="button button-accent"/g) || []).length !== 1) {
+    errors.push(`${file}: expected one highlighted in-page RFQ entry before the final band`);
+  }
+  if (!html.includes('class="home-contact-rail"')) {
+    errors.push(`${file}: quiet direct-contact rail missing`);
+  }
+  if (!html.includes("3S8C5K_RK9-1600.jpeg")) {
+    errors.push(`${file}: inspection-room evidence image missing`);
+  }
 }
 
 for (const file of htmlFiles) {
@@ -276,6 +294,9 @@ for (const required of [
   ".logo-item img",
   "filter: none",
   ".process-evidence-media video",
+  ".has-home-motion [data-home-reveal]",
+  "@keyframes home-logo-drift",
+  "@media (prefers-reduced-motion: reduce)",
 ]) {
   if (!css.includes(required)) errors.push(`2w CSS missing rule: ${required}`);
 }
