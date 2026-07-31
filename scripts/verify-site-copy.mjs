@@ -57,7 +57,8 @@ for (const file of htmlFiles) {
     const heading = plainText(match[2]);
     if (
       /[。！？.!?]$/.test(heading) &&
-      heading !== "Custom Industrial Blades, Built to Your Requirements."
+      heading !== "因需而制，以准致信。" &&
+      heading !== "Engineered for Your Needs. Trusted for Precision."
     ) {
       errors.push(`${file}: heading has terminal punctuation: ${heading}`);
     }

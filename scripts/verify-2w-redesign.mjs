@@ -103,7 +103,8 @@ for (const file of htmlFiles) {
     const heading = text(match[2]);
     if (
       /[。！？.!?]$/.test(heading) &&
-      heading !== "Custom Industrial Blades, Built to Your Requirements."
+      heading !== "因需而制，以准致信。" &&
+      heading !== "Engineered for Your Needs. Trusted for Precision."
     ) {
       errors.push(`${file}: heading has terminal punctuation: ${heading}`);
     }
@@ -114,7 +115,7 @@ const homeChecks = [
   [
     "index.html",
     [
-      "工业机械刀具定制制造",
+      "因需而制，以准致信。",
       "按图纸、样品与实际工况确认制造方案",
       "工业刀具产品",
       "三种询价方式",
@@ -125,7 +126,7 @@ const homeChecks = [
   [
     "en/index.html",
     [
-      "Custom Industrial Blades, Built to Your Requirements.",
+      "Engineered for Your Needs. Trusted for Precision.",
       "Industrial Knife Products",
       "Three Ways to Start",
       "From Drawing to Finished Knife",
@@ -135,7 +136,7 @@ const homeChecks = [
   [
     "home/index.html",
     [
-      "工业机械刀具定制制造",
+      "因需而制，以准致信。",
       "按图纸、样品与实际工况确认制造方案",
       "三种询价方式",
     ],
@@ -143,7 +144,7 @@ const homeChecks = [
   [
     "en/home/index.html",
     [
-      "Custom Industrial Blades, Built to Your Requirements.",
+      "Engineered for Your Needs. Trusted for Precision.",
       "Three Ways to Start",
     ],
   ],

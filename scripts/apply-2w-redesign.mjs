@@ -122,7 +122,7 @@ function zhHome(logos) {
   return `<main id="main-content">
   ${hero({
     eyebrow: "按图纸或样品定制",
-    title: "工业机械刀具定制制造",
+    title: "因需而制，以准致信。",
     intro: "按图纸、样品与实际工况确认制造方案",
     primary: "提交询价",
     secondary: "查看产品",
@@ -286,7 +286,7 @@ function enHome(logos) {
   return `<main id="main-content">
   ${hero({
     eyebrow: "MADE TO DRAWING OR SAMPLE",
-    title: "Custom Industrial Blades, Built to Your Requirements.",
+    title: "Engineered for Your Needs. Trusted for Precision.",
     intro:
       "For equipment makers and industrial users. Send a drawing, sample or cutting requirement for engineering review and quotation.",
     primary: "Send an RFQ",
