@@ -78,7 +78,7 @@ for (const file of htmlFiles) {
     file === "home/index.html" || file === "en/home/index.html";
   if (
     (!isIndependentHome && !html.includes("redesign-2w")) ||
-    (isIndependentHome && !html.includes("home-3b"))
+    (isIndependentHome && !html.includes('class="page-home york-home"'))
   ) {
     errors.push(`${file}: 2w body marker missing`);
   }
@@ -141,28 +141,28 @@ const homeChecks = [
   [
     "home/index.html",
     [
-      "因需而制，以准致信。",
-      "40+ 年制刀经验，用在今天的每一个定制项目里",
-      "版式预览 · 含待确认数据",
-      "10 类检测设备",
-      "XX,000",
-      "工业机械刀具",
-      "经验、制造与检测，缺一不可",
-      "每一步，都让定制更放心",
+      "为设备制造真正合适的刀具",
+      "已公开的合作客户与设备品牌参考",
+      "从工业刀具经验，到漳州制造现场",
+      "这段行业积累属于伟群制刀工业集团",
+      "深圳生产基地成立",
+      "漳州群新工业成立",
+      "六类工业机械刀具，面向不同设备与应用",
+      "真实制造现场，配合适用的检验依据",
       "rd01@teamstarmfg.com",
     ],
   ],
   [
     "en/home/index.html",
     [
-      "Engineered for Your Needs. Trusted for Precision.",
-      "More than 40 years in industrial knives",
-      "Draft data · pending confirmation",
-      "10 TYPES OF INSPECTION EQUIPMENT",
-      "XX,000",
-      "Industrial Machine Knives",
-      "Experience, manufacturing, and inspection in one place",
-      "A clear path from your requirement to a blade ready for use",
+      "Industrial knives made for the machine, material, and cut",
+      "Published customer and equipment references",
+      "Industrial knife heritage, connected to manufacturing in Zhangzhou",
+      "The heritage belongs to Wei Qun Cutting Tools Group",
+      "Shenzhen production base established",
+      "Qunxin Industrial established in Zhangzhou",
+      "Six industrial knife families for different machines and applications",
+      "A real manufacturing site, with inspection matched to the blade",
       "rd01@teamstarmfg.com",
     ],
   ],
@@ -220,96 +220,106 @@ for (const [file, phrases] of homeChecks) {
 for (const file of ["home/index.html", "en/home/index.html"]) {
   const html = fs.readFileSync(path.join(root, file), "utf8");
   for (const required of [
-    "home-video-hero",
-    "home-company-manufacturing-montage-20260730.mp4",
+    "data-york-home",
+    "york-home-hero",
     "home-company-manufacturing-montage-20260730-poster.jpg",
-    "muted",
-    "loop",
-    "playsinline",
-    'preload="none"',
-    "data-home-video",
-    "home-3b.css?v=20260731-3e",
-    "home-video.js?v=20260731-3e",
+    "home-trust-band",
+    "york-about-section",
+    "york-heritage-section",
+    "york-products-section",
+    "york-industries-section",
+    "york-proof-section",
+    "home-3b.css?v=20260731-4a",
+    "home-video.js?v=20260731-4a",
+    'name="robots" content="noindex,nofollow,noarchive"',
+  ]) {
+    if (!html.includes(required)) {
+      errors.push(`${file}: York-inspired Home requirement missing: ${required}`);
+    }
+  }
+  for (const removed of [
+    "data-hero-panel",
     "data-hero-trigger",
     "data-hero-prev",
     "data-hero-next",
     "data-hero-autoplay",
-    "hero-pagination-progress",
-    "home-who-section",
-    "who-facility",
+    "hero-controls",
+    "hero-selector",
     "proof-band",
+    "proof-status",
     "value-card-grid",
     "assurance-steps",
-    'name="robots" content="noindex,nofollow,noarchive"',
+    "Draft data",
+    "XX,000",
   ]) {
-    if (!html.includes(required)) {
-      errors.push(`${file}: independent Home video requirement missing: ${required}`);
+    if (html.includes(removed)) {
+      errors.push(`${file}: superseded Home element remains: ${removed}`);
     }
   }
-  if (
-    html.includes('class="section home-solutions"') ||
-    html.includes('class="solution-card"')
-  ) {
-    errors.push(`${file}: redundant application-solutions section remains`);
+  if ((html.match(/class="york-home-hero"/g) || []).length !== 1) {
+    errors.push(`${file}: expected one non-carousel hero`);
   }
-  if ((html.match(/class="button button-accent"/g) || []).length !== 0) {
-    errors.push(`${file}: repeated highlighted RFQ entry remains before the final band`);
-  }
-  if (html.includes('class="home-contact-rail"')) {
-    errors.push(`${file}: dense direct-contact rail remains`);
-  }
-  if (html.includes('class="section process-band"')) {
-    errors.push(`${file}: redundant process band remains`);
-  }
-  if (
-    html.includes("hero-selector-wrap") ||
-    html.includes("hero-selector-button")
-  ) {
-    errors.push(`${file}: rejected separate hero button strip remains`);
+  if ((html.match(/class="button button-accent"/g) || []).length !== 1) {
+    errors.push(`${file}: expected one final highlighted RFQ entry`);
   }
   if (!html.includes("06-optical-inspection-full.jpg")) {
-    errors.push(`${file}: inspection-room evidence image missing`);
+    errors.push(`${file}: optical-inspection evidence image missing`);
   }
 }
 
-const homeCarouselCss = fs.readFileSync(
+const yorkHomeCss = fs.readFileSync(
   path.join(root, "assets/css/home-3b.css"),
   "utf8",
 );
 for (const required of [
-  ".hero-controls",
-  ".hero-pagination-progress",
-  "@keyframes home-hero-progress",
-  ".proof-band",
-  ".proof-status.is-verified",
+  ".york-home-hero",
+  ".home-trust-band",
+  ".york-about-grid",
+  ".york-heritage-grid",
+  ".product-story-grid",
+  ".york-industries-section",
+  ".proof-editorial-grid",
   "@media (prefers-reduced-motion: reduce)",
 ]) {
-  if (!homeCarouselCss.includes(required)) {
-    errors.push(`Home carousel CSS missing rule: ${required}`);
+  if (!yorkHomeCss.includes(required)) {
+    errors.push(`York-inspired Home CSS missing rule: ${required}`);
   }
 }
-if (
-  homeCarouselCss.includes(".hero-selector-wrap") ||
-  homeCarouselCss.includes(".hero-selector-button")
-) {
-  errors.push("Home CSS still contains the rejected separate hero button strip");
+for (const removed of [
+  ".hero-controls",
+  ".hero-selector",
+  ".proof-band",
+  ".value-card-grid",
+  ".assurance-steps",
+  "@keyframes home-hero-progress",
+]) {
+  if (yorkHomeCss.includes(removed)) {
+    errors.push(`Home CSS still contains superseded rule: ${removed}`);
+  }
 }
 
-const homeCarouselJs = fs.readFileSync(
+const yorkHomeJs = fs.readFileSync(
   path.join(root, "assets/js/home-video.js"),
   "utf8",
 );
 for (const required of [
-  "autoplayInterval = 8000",
   "prefers-reduced-motion: reduce",
-  "data-hero-prev",
-  "data-hero-next",
-  "data-hero-autoplay",
-  "mouseenter",
-  "focusin",
+  "IntersectionObserver",
+  "data-home-reveal",
+  "is-home-revealed",
 ]) {
-  if (!homeCarouselJs.includes(required)) {
-    errors.push(`Home carousel JS missing behavior: ${required}`);
+  if (!yorkHomeJs.includes(required)) {
+    errors.push(`York-inspired Home JS missing behavior: ${required}`);
+  }
+}
+for (const removed of [
+  "autoplayInterval",
+  "data-hero",
+  "data-home-video",
+  "logoClones",
+]) {
+  if (yorkHomeJs.includes(removed)) {
+    errors.push(`Home JS still contains superseded behavior: ${removed}`);
   }
 }
 
