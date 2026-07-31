@@ -131,7 +131,7 @@
       rel="stylesheet"
     />
     <link
-      href="/teamstar-website-review/assets/css/home-3b.css?v=20260731-3d"
+      href="/teamstar-website-review/assets/css/home-3b.css?v=20260731-3e"
       rel="stylesheet"
     />
   </head>
@@ -241,14 +241,14 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <span class="eyebrow">REAL MANUFACTURING EVIDENCE</span>
+              <span class="eyebrow">CUSTOM INDUSTRIAL MACHINE KNIVES</span>
               <h1>Engineered for Your Needs. Trusted for Precision.</h1>
-              <p>Real manufacturing and inspection capability supports a route aligned to each project.</p>
+              <p>From drawings and samples to real operating conditions, we help define a blade that fits the machine, material, and task.</p>
               <div class="hero-actions">
                 <a
                   class="button button-outline-light"
                   href="/teamstar-website-review/en/capabilities/"
-                  >View Manufacturing Capabilities</a
+                  >Explore Manufacturing</a
                 >
               </div>
             </div>
@@ -274,14 +274,14 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <span class="eyebrow">CUSTOM ENGINEERING COLLABORATION</span>
-              <h2>Clarify the requirement before deciding how to make it</h2>
-              <p>Start with a drawing, sample, or operating condition to align material, geometry, acceptance priorities, and delivery information.</p>
+              <span class="eyebrow">BUILT AROUND THE APPLICATION</span>
+              <h2>A custom blade should solve the cutting problem—not just match the drawing</h2>
+              <p>Share the machine, material, current blade, and what needs to improve. We turn the useful details into a practical starting point for sampling.</p>
               <div class="hero-actions">
                 <a
                   class="button button-outline-light"
                   href="/teamstar-website-review/en/rfq/"
-                  >Send Project Information</a
+                  >Discuss Your Application</a
                 >
               </div>
             </div>
@@ -310,9 +310,9 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <span class="eyebrow">INDUSTRIES AND PRODUCT SOLUTIONS</span>
-              <h2>Start with the machine and cutting task</h2>
-              <p>Explore knife ranges for woodworking, food processing, plastics recycling, paper converting, textile, and special-purpose equipment.</p>
+              <span class="eyebrow">SIX INDUSTRIAL APPLICATION AREAS</span>
+              <h2>The right blade starts with where and how it is used</h2>
+              <p>Explore knife options for woodworking, food processing, recycling, paper converting, textile, and special-purpose machinery.</p>
               <div class="hero-actions">
                 <a class="button button-outline-light" href="#product-directory"
                   >Browse Product Directory</a
@@ -321,84 +321,180 @@
             </div>
           </div>
         </div>
-        <div class="hero-selector-wrap">
-          <div
-            class="container hero-selector"
-            role="tablist"
-            aria-label="Homepage highlights"
-          >
+        <div class="container hero-controls" aria-label="Hero carousel controls">
+          <div class="hero-controls-cluster">
             <button
-              class="hero-selector-button is-active"
-              id="hero-tab-0"
+              class="hero-arrow"
               type="button"
-              role="tab"
-              aria-controls="hero-panel-0"
-              aria-selected="true"
-              data-hero-trigger="0"
+              aria-label="Previous slide"
+              data-hero-prev
             >
-              <span>01</span><strong>Manufacturing</strong>
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m15 18-6-6 6-6"></path>
+              </svg>
+            </button>
+            <div class="hero-pagination" role="tablist" aria-label="Choose a hero slide">
+              <button
+                class="hero-pagination-button is-active"
+                id="hero-tab-0"
+                type="button"
+                role="tab"
+                aria-controls="hero-panel-0"
+                aria-selected="true"
+                data-hero-trigger="0"
+              >
+                <span class="sr-only">Custom industrial machine knives</span>
+                <span class="hero-pagination-track" aria-hidden="true"
+                  ><span class="hero-pagination-progress"></span
+                ></span>
+              </button>
+              <button
+                class="hero-pagination-button"
+                id="hero-tab-1"
+                type="button"
+                role="tab"
+                aria-controls="hero-panel-1"
+                aria-selected="false"
+                tabindex="-1"
+                data-hero-trigger="1"
+              >
+                <span class="sr-only">Built around the application</span>
+                <span class="hero-pagination-track" aria-hidden="true"
+                  ><span class="hero-pagination-progress"></span
+                ></span>
+              </button>
+              <button
+                class="hero-pagination-button"
+                id="hero-tab-2"
+                type="button"
+                role="tab"
+                aria-controls="hero-panel-2"
+                aria-selected="false"
+                tabindex="-1"
+                data-hero-trigger="2"
+              >
+                <span class="sr-only">Industries and products</span>
+                <span class="hero-pagination-track" aria-hidden="true"
+                  ><span class="hero-pagination-progress"></span
+                ></span>
+              </button>
+            </div>
+            <span class="hero-counter"
+              ><strong data-hero-current>01</strong><span>/ 03</span></span
+            >
+            <button
+              class="hero-arrow"
+              type="button"
+              aria-label="Next slide"
+              data-hero-next
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
             </button>
             <button
-              class="hero-selector-button"
-              id="hero-tab-1"
+              class="hero-autoplay-toggle"
               type="button"
-              role="tab"
-              aria-controls="hero-panel-1"
-              aria-selected="false"
-              tabindex="-1"
-              data-hero-trigger="1"
+              aria-label="Pause automatic slides"
+              data-hero-autoplay
             >
-              <span>02</span><strong>Engineering</strong>
-            </button>
-            <button
-              class="hero-selector-button"
-              id="hero-tab-2"
-              type="button"
-              role="tab"
-              aria-controls="hero-panel-2"
-              aria-selected="false"
-              tabindex="-1"
-              data-hero-trigger="2"
-            >
-              <span>03</span><strong>Solutions</strong>
+              <svg aria-hidden="true" viewBox="0 0 24 24" data-hero-pause-icon>
+                <path d="M9 6v12M15 6v12"></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                data-hero-play-icon
+                hidden
+              >
+                <path d="m9 6 8 6-8 6Z"></path>
+              </svg>
             </button>
           </div>
         </div>
       </section>
 
       <section class="section home-who-section">
-        <div class="container who-grid">
-          <div class="who-copy" data-home-reveal="left">
-            <span class="eyebrow">HOW WE SUPPORT CUSTOMERS</span>
-            <h2>Turn knife requirements into a manufacturable, inspectable, and repeatable supply project</h2>
-            <p>
-              Teamstar supports customers who need industrial machine knives made from drawings, samples, or operating conditions. The priority is not a wall of impressive numbers: it is to confirm critical requirements before production, control them during manufacturing, and connect delivery to appropriate validation evidence.
-            </p>
-            <a class="text-link" href="/teamstar-website-review/en/company/"
-              >See the Company and Site<span aria-hidden="true">→</span></a
-            >
+        <div class="container">
+          <div class="who-grid">
+            <div class="who-copy" data-home-reveal="left">
+              <span class="eyebrow">ABOUT TEAMSTAR</span>
+              <h2>More than 40 years in industrial knives, applied to today’s custom projects</h2>
+              <p>
+                Teamstar is part of Wei Qun Cutting Tools Group. The group’s
+                cutting-tool business began in Taiwan, added a Shenzhen
+                production base in 1990, and today manufactures industrial
+                machine knives in Zhangzhou. Customers gain one connected
+                source for application judgement, manufacturing, and inspection.
+              </p>
+              <a class="text-link" href="/teamstar-website-review/en/company/"
+                >See the Company and Site<span aria-hidden="true">→</span></a
+              >
+            </div>
+            <figure class="who-facility" data-home-reveal="right">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    /teamstar-website-review/img/88hlgS3Czk-720.avif   720w,
+                    /teamstar-website-review/img/88hlgS3Czk-960.avif   960w,
+                    /teamstar-website-review/img/88hlgS3Czk-1440.avif 1440w
+                  "
+                  sizes="(min-width: 1080px) 48vw, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcset="
+                    /teamstar-website-review/img/88hlgS3Czk-720.webp   720w,
+                    /teamstar-website-review/img/88hlgS3Czk-960.webp   960w,
+                    /teamstar-website-review/img/88hlgS3Czk-1440.webp 1440w
+                  "
+                  sizes="(min-width: 1080px) 48vw, 100vw"
+                />
+                <img
+                  src="/teamstar-website-review/img/88hlgS3Czk-960.jpeg"
+                  width="1440"
+                  height="960"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Teamstar's Zhangzhou office and manufacturing building"
+                />
+              </picture>
+              <figcaption>Teamstar’s Zhangzhou manufacturing base</figcaption>
+            </figure>
           </div>
-          <div class="who-outcomes" data-home-reveal="right">
+          <div class="proof-band-heading" data-home-reveal="up">
+            <span>Company proof-point preview</span>
+            <strong>Draft data · pending confirmation</strong>
+          </div>
+          <div
+            class="proof-band"
+            aria-label="Company proof-point preview; some data is pending confirmation"
+            data-home-reveal="up"
+          >
             <article>
-              <span>01</span>
-              <div>
-                <h3>Reduce early interpretation gaps</h3>
-                <p>Confirm the machine, material, cutting task, and available drawing or sample information.</p>
-              </div>
+              <span class="proof-status is-verified">Verified</span>
+              <strong>40<sup>+</sup></strong>
+              <h3>Years in industrial knives</h3>
+              <p>Long experience helps the team read the machine, material, and cutting requirement sooner.</p>
+            </article>
+            <article class="is-draft">
+              <span class="proof-status">Pending</span>
+              <strong>XX,000<sup>m²</sup></strong>
+              <h3>Manufacturing-base scale</h3>
+              <p>A future scale figure will show the physical base behind project capacity and repeat supply.</p>
             </article>
             <article>
-              <span>02</span>
-              <div>
-                <h3>Make acceptance requirements actionable</h3>
-                <p>Align applicable dimensional, material, hardness, or edge-condition requirements with project inspection.</p>
-              </div>
+              <span class="proof-status is-verified">Verified</span>
+              <strong>10<sup>types</sup></strong>
+              <h3>Real inspection equipment</h3>
+              <p>Supports relevant checks of material, hardness, dimensions, and surface condition.</p>
             </article>
-            <article>
-              <span>03</span>
-              <div>
-                <h3>Preserve a basis for ongoing supply</h3>
-                <p>Carry confirmed project requirements from sample approval into repeat supply discussions.</p>
-              </div>
+            <article class="is-draft">
+              <span class="proof-status">Pending</span>
+              <strong>XX<sup>+</sup></strong>
+              <h3>Technical achievements and patents</h3>
+              <p>A future verified figure will show the technical accumulation behind custom development.</p>
             </article>
           </div>
         </div>
@@ -408,10 +504,10 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <span class="eyebrow">WHY CUSTOMERS CHOOSE US</span>
-              <h2>Each capability supports a more predictable sourcing outcome</h2>
+              <span class="eyebrow">WHY TEAMSTAR</span>
+              <h2>Experience, manufacturing, and inspection in one place</h2>
             </div>
-            <p>Work is organized around the risks customers need to control: application fit, manufacturing consistency, and continuity from sampling to ongoing supply.</p>
+            <p>A custom blade is not proven by appearance alone. It takes sound application judgement, a real manufacturing base, and inspection matched to the requirements—then the same clarity when repeat orders begin.</p>
           </div>
           <div class="value-card-grid">
             <article class="value-card" data-home-reveal="up">
@@ -420,18 +516,18 @@
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M12 2v2M12 20v2M2 12h2M20 12h2"></path>
               </svg>
-              <span>01 · APPLICATION UNDERSTANDING</span>
-              <h3>Understand how the knife works before discussing how to make it</h3>
-              <p>Customer value: reduce solution drift caused by looking only at shape or material grade.</p>
+              <span>01 · 40+ YEARS OF EXPERIENCE</span>
+              <h3>Start with the application, not the assumption</h3>
+              <p>Drawing, sample, machine, material, and current issue are considered together, giving the first sample a more useful starting point.</p>
             </article>
             <article class="value-card" data-home-reveal="up">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="m4 7 8-4 8 4-8 4-8-4Z"></path>
                 <path d="m4 12 8 4 8-4M4 17l8 4 8-4"></path>
               </svg>
-              <span>02 · STABLE, REPEATABLE MANUFACTURING</span>
-              <h3>Control manufacturing and inspection around confirmed requirements</h3>
-              <p>Customer value: give batch discussions a shared baseline and retain suitable validation evidence.</p>
+              <span>02 · ZHANGZHOU MANUFACTURING BASE</span>
+              <h3>Custom work backed by a real production site</h3>
+              <p>Published site evidence covers the production building, workshop, machining area, and inspection room. The route is set to suit the blade.</p>
             </article>
             <article class="value-card" data-home-reveal="up">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -439,9 +535,9 @@
                 <path d="M8 10h8M8 14h5"></path>
                 <path d="m17 21 3-3-3-3"></path>
               </svg>
-              <span>03 · SAMPLE TO ONGOING SUPPLY</span>
-              <h3>Keep project information continuous across the supply relationship</h3>
-              <p>Customer value: reduce repeated explanation and information gaps from sample approval to repeat orders.</p>
+              <span>03 · 10 TYPES OF INSPECTION EQUIPMENT</span>
+              <h3>Match the check to what matters in the blade</h3>
+              <p>Relevant checks cover material, hardness and metallography, dimensions and geometry, surface condition, and coating thickness from sample approval into repeat supply.</p>
             </article>
           </div>
         </div>
@@ -451,36 +547,36 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <span class="eyebrow">MANUFACTURING ASSURANCE</span>
-              <h2>Five project checkpoints customers can follow</h2>
+              <span class="eyebrow">FROM ENQUIRY TO DELIVERY</span>
+              <h2>A clear path from your requirement to a blade ready for use</h2>
             </div>
-            <p>This is a collaboration framework, not a claim that every product follows the same fixed shop-floor sequence.</p>
+            <p>The manufacturing route changes with the blade. The points that keep a custom project on track remain clear.</p>
           </div>
           <ol class="assurance-steps">
             <li>
               <span>01</span>
-              <h3>Requirement confirmation</h3>
-              <p>Review useful inputs from drawings, samples, equipment, and operating conditions.</p>
+              <h3>Share the need</h3>
+              <p>Start with a drawing, sample, or application and the issue that needs solving.</p>
             </li>
             <li>
               <span>02</span>
-              <h3>Solution alignment</h3>
-              <p>Clarify material, geometry, critical requirements, and open boundaries.</p>
+              <h3>Agree the direction</h3>
+              <p>Align material, geometry, critical dimensions, and acceptance priorities.</p>
             </li>
             <li>
               <span>03</span>
-              <h3>Controlled manufacturing</h3>
-              <p>Select applicable manufacturing routes for the product structure and requirements.</p>
+              <h3>Make to the requirement</h3>
+              <p>Use the manufacturing route suited to the blade and project.</p>
             </li>
             <li>
               <span>04</span>
-              <h3>Inspection and validation</h3>
-              <p>Arrange suitable checks and confirmation against project requirements.</p>
+              <h3>Check what matters</h3>
+              <p>Inspect relevant dimensions, material, hardness, edge condition, or other agreed features.</p>
             </li>
             <li>
               <span>05</span>
-              <h3>Delivery protection</h3>
-              <p>Align identification, packaging, and delivery information with the product form.</p>
+              <h3>Protect the delivery</h3>
+              <p>Identify, protect, pack, and hand over the blades with the appropriate information.</p>
             </li>
           </ol>
           <div class="section-actions">
@@ -1060,7 +1156,7 @@
     ></script>
     <script
       defer
-      src="/teamstar-website-review/assets/js/home-video.js?v=20260731-3d"
+      src="/teamstar-website-review/assets/js/home-video.js?v=20260731-3e"
     ></script>
   </body>
 </html>

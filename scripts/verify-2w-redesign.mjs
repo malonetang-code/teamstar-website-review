@@ -142,10 +142,13 @@ const homeChecks = [
     "home/index.html",
     [
       "因需而制，以准致信。",
-      "先把要求说清，再确定怎么制造",
+      "40+ 年制刀经验，用在今天的每一个定制项目里",
+      "版式预览 · 含待确认数据",
+      "10 类检测设备",
+      "XX,000",
       "工业机械刀具",
-      "为什么客户选择我们",
-      "五个客户可理解的项目检查点",
+      "经验、制造与检测，缺一不可",
+      "每一步，都让定制更放心",
       "rd01@teamstarmfg.com",
     ],
   ],
@@ -153,9 +156,13 @@ const homeChecks = [
     "en/home/index.html",
     [
       "Engineered for Your Needs. Trusted for Precision.",
+      "More than 40 years in industrial knives",
+      "Draft data · pending confirmation",
+      "10 TYPES OF INSPECTION EQUIPMENT",
+      "XX,000",
       "Industrial Machine Knives",
-      "WHY CUSTOMERS CHOOSE US",
-      "Five project checkpoints customers can follow",
+      "Experience, manufacturing, and inspection in one place",
+      "A clear path from your requirement to a blade ready for use",
       "rd01@teamstarmfg.com",
     ],
   ],
@@ -221,10 +228,16 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
     "playsinline",
     'preload="none"',
     "data-home-video",
-    "home-3b.css?v=20260731-3d",
-    "home-video.js?v=20260731-3d",
+    "home-3b.css?v=20260731-3e",
+    "home-video.js?v=20260731-3e",
     "data-hero-trigger",
+    "data-hero-prev",
+    "data-hero-next",
+    "data-hero-autoplay",
+    "hero-pagination-progress",
     "home-who-section",
+    "who-facility",
+    "proof-band",
     "value-card-grid",
     "assurance-steps",
     'name="robots" content="noindex,nofollow,noarchive"',
@@ -248,8 +261,55 @@ for (const file of ["home/index.html", "en/home/index.html"]) {
   if (html.includes('class="section process-band"')) {
     errors.push(`${file}: redundant process band remains`);
   }
+  if (
+    html.includes("hero-selector-wrap") ||
+    html.includes("hero-selector-button")
+  ) {
+    errors.push(`${file}: rejected separate hero button strip remains`);
+  }
   if (!html.includes("06-optical-inspection-full.jpg")) {
     errors.push(`${file}: inspection-room evidence image missing`);
+  }
+}
+
+const homeCarouselCss = fs.readFileSync(
+  path.join(root, "assets/css/home-3b.css"),
+  "utf8",
+);
+for (const required of [
+  ".hero-controls",
+  ".hero-pagination-progress",
+  "@keyframes home-hero-progress",
+  ".proof-band",
+  ".proof-status.is-verified",
+  "@media (prefers-reduced-motion: reduce)",
+]) {
+  if (!homeCarouselCss.includes(required)) {
+    errors.push(`Home carousel CSS missing rule: ${required}`);
+  }
+}
+if (
+  homeCarouselCss.includes(".hero-selector-wrap") ||
+  homeCarouselCss.includes(".hero-selector-button")
+) {
+  errors.push("Home CSS still contains the rejected separate hero button strip");
+}
+
+const homeCarouselJs = fs.readFileSync(
+  path.join(root, "assets/js/home-video.js"),
+  "utf8",
+);
+for (const required of [
+  "autoplayInterval = 8000",
+  "prefers-reduced-motion: reduce",
+  "data-hero-prev",
+  "data-hero-next",
+  "data-hero-autoplay",
+  "mouseenter",
+  "focusin",
+]) {
+  if (!homeCarouselJs.includes(required)) {
+    errors.push(`Home carousel JS missing behavior: ${required}`);
   }
 }
 

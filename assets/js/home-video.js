@@ -9,7 +9,17 @@
   const heroTriggers = Array.from(
     hero?.querySelectorAll("[data-hero-trigger]") ?? [],
   );
+  const previousButton = hero?.querySelector("[data-hero-prev]");
+  const nextButton = hero?.querySelector("[data-hero-next]");
+  const autoplayButton = hero?.querySelector("[data-hero-autoplay]");
+  const currentLabel = hero?.querySelector("[data-hero-current]");
+  const pauseIcon = hero?.querySelector("[data-hero-pause-icon]");
+  const playIcon = hero?.querySelector("[data-hero-play-icon]");
+  const autoplayInterval = 8000;
   let activeHeroPanel = 0;
+  let autoplayTimer;
+  let userPaused = false;
+  let temporarilyPaused = false;
 
   const syncPlayback = () => {
     if (!video) return;
@@ -23,14 +33,46 @@
     });
   };
 
-  reducedMotion.addEventListener("change", syncPlayback);
-  desktop.addEventListener("change", syncPlayback);
-  document.addEventListener("visibilitychange", () => {
-    if (!video) return;
-    if (document.hidden) video.pause();
-    else syncPlayback();
-  });
-  syncPlayback();
+  const canAutoplay = () =>
+    heroPanels.length > 1 &&
+    !reducedMotion.matches &&
+    !userPaused &&
+    !temporarilyPaused &&
+    !document.hidden;
+
+  const syncAutoplayState = () => {
+    const isPlaying = canAutoplay();
+    hero?.classList.toggle("is-autoplaying", isPlaying);
+    hero?.classList.toggle("is-temporarily-paused", temporarilyPaused);
+    if (!autoplayButton) return;
+    autoplayButton.disabled = reducedMotion.matches;
+    autoplayButton.setAttribute(
+      "aria-label",
+      isPlaying
+        ? document.documentElement.lang === "zh-CN"
+          ? "暂停自动播放"
+          : "Pause automatic slides"
+        : document.documentElement.lang === "zh-CN"
+          ? "继续自动播放"
+          : "Resume automatic slides",
+    );
+    if (pauseIcon) pauseIcon.hidden = !isPlaying;
+    if (playIcon) playIcon.hidden = isPlaying;
+  };
+
+  const clearAutoplay = () => {
+    window.clearTimeout(autoplayTimer);
+    autoplayTimer = undefined;
+  };
+
+  const scheduleAutoplay = () => {
+    clearAutoplay();
+    syncAutoplayState();
+    if (!canAutoplay()) return;
+    autoplayTimer = window.setTimeout(() => {
+      activateHeroPanel((activeHeroPanel + 1) % heroPanels.length);
+    }, autoplayInterval);
+  };
 
   const activateHeroPanel = (index, moveFocus = false) => {
     if (!heroPanels[index] || !heroTriggers[index]) return;
@@ -46,12 +88,24 @@
       trigger.setAttribute("aria-selected", String(isActive));
       trigger.tabIndex = isActive ? 0 : -1;
     });
+    if (currentLabel) {
+      currentLabel.textContent = String(activeHeroPanel + 1).padStart(2, "0");
+    }
     if (moveFocus) heroTriggers[index].focus();
     syncPlayback();
+    scheduleAutoplay();
+  };
+
+  const pauseForUser = () => {
+    userPaused = true;
+    scheduleAutoplay();
   };
 
   heroTriggers.forEach((trigger, index) => {
-    trigger.addEventListener("click", () => activateHeroPanel(index));
+    trigger.addEventListener("click", () => {
+      pauseForUser();
+      activateHeroPanel(index);
+    });
     trigger.addEventListener("keydown", (event) => {
       if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
         return;
@@ -67,14 +121,74 @@
       } else if (event.key === "End") {
         nextIndex = heroTriggers.length - 1;
       }
+      pauseForUser();
       activateHeroPanel(nextIndex, true);
     });
   });
 
+  previousButton?.addEventListener("click", () => {
+    pauseForUser();
+    activateHeroPanel(
+      (activeHeroPanel - 1 + heroPanels.length) % heroPanels.length,
+    );
+  });
+
+  nextButton?.addEventListener("click", () => {
+    pauseForUser();
+    activateHeroPanel((activeHeroPanel + 1) % heroPanels.length);
+  });
+
+  autoplayButton?.addEventListener("click", () => {
+    if (reducedMotion.matches) return;
+    userPaused = !userPaused;
+    temporarilyPaused = false;
+    scheduleAutoplay();
+  });
+
+  hero?.addEventListener("mouseenter", () => {
+    temporarilyPaused = true;
+    scheduleAutoplay();
+  });
+
+  hero?.addEventListener("mouseleave", () => {
+    temporarilyPaused = false;
+    scheduleAutoplay();
+  });
+
+  hero?.addEventListener("focusin", () => {
+    temporarilyPaused = true;
+    scheduleAutoplay();
+  });
+
+  hero?.addEventListener("focusout", () => {
+    window.setTimeout(() => {
+      temporarilyPaused = Boolean(hero?.contains(document.activeElement));
+      scheduleAutoplay();
+    }, 0);
+  });
+
+  hero?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "touch") pauseForUser();
+  });
+
+  const syncHeroExperience = () => {
+    syncPlayback();
+    scheduleAutoplay();
+  };
+
+  reducedMotion.addEventListener("change", syncHeroExperience);
+  desktop.addEventListener("change", syncPlayback);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) video?.pause();
+    syncHeroExperience();
+  });
+  activateHeroPanel(0);
+
   const revealPlan = [
     [".section-head", "up"],
     [".who-copy", "left"],
-    [".who-outcomes", "right"],
+    [".who-facility", "right"],
+    [".proof-band", "up"],
     [".value-card", "up"],
     [".assurance-steps", "up"],
     [".blade-grid", "up"],

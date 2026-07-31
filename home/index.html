@@ -128,7 +128,7 @@
       rel="stylesheet"
     />
     <link
-      href="/teamstar-website-review/assets/css/home-3b.css?v=20260731-3d"
+      href="/teamstar-website-review/assets/css/home-3b.css?v=20260731-3e"
       rel="stylesheet"
     />
   </head>
@@ -235,14 +235,14 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <span class="eyebrow">真实制造现场</span>
+              <span class="eyebrow">工业机械刀具定制</span>
               <h1>因需而制，以准致信。</h1>
-              <p>以真实制造与检验能力，支持按项目要求确定合适方案。</p>
+              <p>从图纸、样品到实际工况，找到真正适合设备、材料与切割任务的刀具方案。</p>
               <div class="hero-actions">
                 <a
                   class="button button-outline-light"
                   href="/teamstar-website-review/capabilities/"
-                  >查看制造能力</a
+                  >了解制造能力</a
                 >
               </div>
             </div>
@@ -268,14 +268,14 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <span class="eyebrow">定制工程协作</span>
-              <h2>先把要求说清，再确定怎么制造</h2>
-              <p>从图纸、样品或实际工况出发，对齐材料、几何、验收重点与交付资料。</p>
+              <span class="eyebrow">定制刀具，从应用出发</span>
+              <h2>不只按图加工，更要懂你的切割难题</h2>
+              <p>告诉我们设备、材料、现有刀具和想改善的问题，让第一把样刀更接近真正需要。</p>
               <div class="hero-actions">
                 <a
                   class="button button-outline-light"
                   href="/teamstar-website-review/rfq/"
-                  >提交项目资料</a
+                  >开始定制沟通</a
                 >
               </div>
             </div>
@@ -304,9 +304,9 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <span class="eyebrow">行业与产品方案</span>
-              <h2>从设备与切割任务，找到合适的刀具入口</h2>
-              <p>覆盖木工、食品加工、塑料回收、纸品分切、纺织服装及专用设备配套。</p>
+              <span class="eyebrow">六类工业应用</span>
+              <h2>为不同设备，找到恰当的一刀</h2>
+              <p>木工、食品加工、塑料回收、纸品分切、纺织服装与专用设备配套，都从实际使用要求出发。</p>
               <div class="hero-actions">
                 <a class="button button-outline-light" href="#product-directory"
                   >浏览产品目录</a
@@ -315,84 +315,177 @@
             </div>
           </div>
         </div>
-        <div class="hero-selector-wrap">
-          <div
-            class="container hero-selector"
-            role="tablist"
-            aria-label="首页重点内容"
-          >
+        <div class="container hero-controls" aria-label="首页轮播控制">
+          <div class="hero-controls-cluster">
             <button
-              class="hero-selector-button is-active"
-              id="hero-tab-0"
+              class="hero-arrow"
               type="button"
-              role="tab"
-              aria-controls="hero-panel-0"
-              aria-selected="true"
-              data-hero-trigger="0"
+              aria-label="上一张"
+              data-hero-prev
             >
-              <span>01</span><strong>制造实力</strong>
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m15 18-6-6 6-6"></path>
+              </svg>
+            </button>
+            <div class="hero-pagination" role="tablist" aria-label="选择首页内容">
+              <button
+                class="hero-pagination-button is-active"
+                id="hero-tab-0"
+                type="button"
+                role="tab"
+                aria-controls="hero-panel-0"
+                aria-selected="true"
+                data-hero-trigger="0"
+              >
+                <span class="sr-only">工业机械刀具定制</span>
+                <span class="hero-pagination-track" aria-hidden="true"
+                  ><span class="hero-pagination-progress"></span
+                ></span>
+              </button>
+              <button
+                class="hero-pagination-button"
+                id="hero-tab-1"
+                type="button"
+                role="tab"
+                aria-controls="hero-panel-1"
+                aria-selected="false"
+                tabindex="-1"
+                data-hero-trigger="1"
+              >
+                <span class="sr-only">从应用出发的定制</span>
+                <span class="hero-pagination-track" aria-hidden="true"
+                  ><span class="hero-pagination-progress"></span
+                ></span>
+              </button>
+              <button
+                class="hero-pagination-button"
+                id="hero-tab-2"
+                type="button"
+                role="tab"
+                aria-controls="hero-panel-2"
+                aria-selected="false"
+                tabindex="-1"
+                data-hero-trigger="2"
+              >
+                <span class="sr-only">行业与产品</span>
+                <span class="hero-pagination-track" aria-hidden="true"
+                  ><span class="hero-pagination-progress"></span
+                ></span>
+              </button>
+            </div>
+            <span class="hero-counter"
+              ><strong data-hero-current>01</strong><span>/ 03</span></span
+            >
+            <button
+              class="hero-arrow"
+              type="button"
+              aria-label="下一张"
+              data-hero-next
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
             </button>
             <button
-              class="hero-selector-button"
-              id="hero-tab-1"
+              class="hero-autoplay-toggle"
               type="button"
-              role="tab"
-              aria-controls="hero-panel-1"
-              aria-selected="false"
-              tabindex="-1"
-              data-hero-trigger="1"
+              aria-label="暂停自动播放"
+              data-hero-autoplay
             >
-              <span>02</span><strong>工程协作</strong>
-            </button>
-            <button
-              class="hero-selector-button"
-              id="hero-tab-2"
-              type="button"
-              role="tab"
-              aria-controls="hero-panel-2"
-              aria-selected="false"
-              tabindex="-1"
-              data-hero-trigger="2"
-            >
-              <span>03</span><strong>产品方案</strong>
+              <svg aria-hidden="true" viewBox="0 0 24 24" data-hero-pause-icon>
+                <path d="M9 6v12M15 6v12"></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                data-hero-play-icon
+                hidden
+              >
+                <path d="m9 6 8 6-8 6Z"></path>
+              </svg>
             </button>
           </div>
         </div>
       </section>
 
       <section class="section home-who-section">
-        <div class="container who-grid">
-          <div class="who-copy" data-home-reveal="left">
-            <span class="eyebrow">我们如何支持客户</span>
-            <h2>把刀具要求，转化为可制造、可检验、可持续供货的项目</h2>
-            <p>
-              群新工业服务需要按图纸、样品或工况定制工业机械刀具的客户。我们的工作重点不是展示一组漂亮数字，而是让关键要求在制造前被确认、在生产中被控制、在交付前有对应的验证依据。
-            </p>
-            <a class="text-link" href="/teamstar-website-review/company/"
-              >了解公司与现场<span aria-hidden="true">→</span></a
-            >
+        <div class="container">
+          <div class="who-grid">
+            <div class="who-copy" data-home-reveal="left">
+              <span class="eyebrow">关于群新</span>
+              <h2>40+ 年制刀经验，用在今天的每一个定制项目里</h2>
+              <p>
+                群新工业是伟群制刀工业集团成员企业。集团业务始于台湾，1990
+                年在深圳建立生产基地，如今在漳州制造工业机械刀具。对客户而言，这意味着应用判断、现场制造与质量检验可以在同一段合作里衔接起来。
+              </p>
+              <a class="text-link" href="/teamstar-website-review/company/"
+                >了解公司与现场<span aria-hidden="true">→</span></a
+              >
+            </div>
+            <figure class="who-facility" data-home-reveal="right">
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    /teamstar-website-review/img/88hlgS3Czk-720.avif   720w,
+                    /teamstar-website-review/img/88hlgS3Czk-960.avif   960w,
+                    /teamstar-website-review/img/88hlgS3Czk-1440.avif 1440w
+                  "
+                  sizes="(min-width: 1080px) 48vw, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcset="
+                    /teamstar-website-review/img/88hlgS3Czk-720.webp   720w,
+                    /teamstar-website-review/img/88hlgS3Czk-960.webp   960w,
+                    /teamstar-website-review/img/88hlgS3Czk-1440.webp 1440w
+                  "
+                  sizes="(min-width: 1080px) 48vw, 100vw"
+                />
+                <img
+                  src="/teamstar-website-review/img/88hlgS3Czk-960.jpeg"
+                  width="1440"
+                  height="960"
+                  loading="lazy"
+                  decoding="async"
+                  alt="群新工业漳州生产基地办公及生产楼实景"
+                />
+              </picture>
+              <figcaption>群新工业漳州生产基地实景</figcaption>
+            </figure>
           </div>
-          <div class="who-outcomes" data-home-reveal="right">
+          <div class="proof-band-heading" data-home-reveal="up">
+            <span>实力数字预览</span>
+            <strong>版式预览 · 含待确认数据</strong>
+          </div>
+          <div
+            class="proof-band"
+            aria-label="企业实力数字预览，部分数据待确认"
+            data-home-reveal="up"
+          >
             <article>
-              <span>01</span>
-              <div>
-                <h3>减少前期理解偏差</h3>
-                <p>围绕设备、材料、切割任务和图样信息确认真正需要解决的问题。</p>
-              </div>
+              <span class="proof-status is-verified">已核实</span>
+              <strong>40<sup>+</sup></strong>
+              <h3>年工业刀具经验</h3>
+              <p>长期积累帮助团队更快看懂设备、材料与切割要求。</p>
+            </article>
+            <article class="is-draft">
+              <span class="proof-status">待确认</span>
+              <strong>XX,000<sup>m²</sup></strong>
+              <h3>生产基地规模</h3>
+              <p>用于呈现项目承接与持续供货所依托的制造空间。</p>
             </article>
             <article>
-              <span>02</span>
-              <div>
-                <h3>让验收要求可以落地</h3>
-                <p>将适用的尺寸、材料、硬度或刃口状态要求对齐到项目检验安排。</p>
-              </div>
+              <span class="proof-status is-verified">已核实</span>
+              <strong>10<sup>类</sup></strong>
+              <h3>真实检测设备</h3>
+              <p>为材料、硬度、尺寸与表面等适用项目提供检验依据。</p>
             </article>
-            <article>
-              <span>03</span>
-              <div>
-                <h3>为后续供货保留依据</h3>
-                <p>从样品确认到持续供货，以已确认的项目要求作为沟通基线。</p>
-              </div>
+            <article class="is-draft">
+              <span class="proof-status">待确认</span>
+              <strong>XX<sup>+</sup></strong>
+              <h3>技术成果与专利</h3>
+              <p>用于呈现长期改进与定制开发背后的技术积累。</p>
             </article>
           </div>
         </div>
@@ -402,10 +495,10 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <span class="eyebrow">为什么客户选择我们</span>
-              <h2>每项能力，都对应一个更安心的采购结果</h2>
+              <span class="eyebrow">为什么选择群新</span>
+              <h2>经验、制造与检测，缺一不可</h2>
             </div>
-            <p>从应用理解、制造稳定性到持续供货支持，围绕客户真正需要控制的风险组织工作。</p>
+            <p>定制刀具不能只看样品外观。能不能理解应用、把刀具稳定做出来，并在复购时保持同一套要求，才决定一段合作能走多远。</p>
           </div>
           <div class="value-card-grid">
             <article class="value-card" data-home-reveal="up">
@@ -414,18 +507,18 @@
                 <circle cx="12" cy="12" r="3"></circle>
                 <path d="M12 2v2M12 20v2M2 12h2M20 12h2"></path>
               </svg>
-              <span>01 · 应用与方案理解</span>
-              <h3>先理解怎么用，再讨论怎么做</h3>
-              <p>客户价值：减少只看外形或材料牌号带来的方案偏差，更快对齐关键输入。</p>
+              <span>01 · 40+ 年行业积累</span>
+              <h3>先看应用，再定刀具</h3>
+              <p>图纸、样品、设备、材料和现有问题放在一起判断，让样刀从一开始就更接近真实需要。</p>
             </article>
             <article class="value-card" data-home-reveal="up">
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <path d="m4 7 8-4 8 4-8 4-8-4Z"></path>
                 <path d="m4 12 8 4 8-4M4 17l8 4 8-4"></path>
               </svg>
-              <span>02 · 稳定与可重复制造</span>
-              <h3>围绕已确认要求控制制造与检验</h3>
-              <p>客户价值：让批次沟通有共同基线，并为适用项目保留验证依据。</p>
+              <span>02 · 漳州生产基地</span>
+              <h3>真实现场承接定制制造</h3>
+              <p>生产楼、制造车间、机加工设备区与检测室均有公开实景，制造路线按刀具结构和要求确定。</p>
             </article>
             <article class="value-card" data-home-reveal="up">
               <svg aria-hidden="true" viewBox="0 0 24 24">
@@ -433,9 +526,9 @@
                 <path d="M8 10h8M8 14h5"></path>
                 <path d="m17 21 3-3-3-3"></path>
               </svg>
-              <span>03 · 从打样到持续供货</span>
-              <h3>让项目资料与后续沟通保持连续</h3>
-              <p>客户价值：从初次样品确认到复购补货，减少重复说明与信息断层。</p>
+              <span>03 · 10 类检测设备</span>
+              <h3>把关键要求落到适用检验</h3>
+              <p>围绕材料、硬度与金相、尺寸几何、表面与膜厚选择对应检测，支持从样品确认到批次供货。</p>
             </article>
           </div>
         </div>
@@ -445,36 +538,36 @@
         <div class="container">
           <div class="section-head">
             <div>
-              <span class="eyebrow">制造保障</span>
-              <h2>五个客户可理解的项目检查点</h2>
+              <span class="eyebrow">从需求到交付</span>
+              <h2>每一步，都让定制更放心</h2>
             </div>
-            <p>这是项目协作框架，并非所有产品都必须经过相同或固定的车间工序。</p>
+            <p>不同刀具有不同的制造路线，但一段可靠的合作，始终离不开几个关键环节。</p>
           </div>
           <ol class="assurance-steps">
             <li>
               <span>01</span>
-              <h3>需求确认</h3>
-              <p>核对图纸、样品、设备与工况等有效输入。</p>
+              <h3>说清需求</h3>
+              <p>图纸、样品或工况均可开始，先确认真正要解决的问题。</p>
             </li>
             <li>
               <span>02</span>
-              <h3>方案对齐</h3>
-              <p>明确材料、几何、关键要求与需要确认的边界。</p>
+              <h3>确定方向</h3>
+              <p>对齐材料、结构、关键尺寸与验收重点。</p>
             </li>
             <li>
               <span>03</span>
-              <h3>受控制造</h3>
-              <p>按产品结构与要求确定适用制造路线。</p>
+              <h3>安排制造</h3>
+              <p>根据刀具类型与要求，选择适合的加工路线。</p>
             </li>
             <li>
               <span>04</span>
-              <h3>检验验证</h3>
-              <p>依据项目要求安排适用的检查与确认。</p>
+              <h3>认真检验</h3>
+              <p>围绕产品要求，检查尺寸、材料、硬度或刃口状态等适用项目。</p>
             </li>
             <li>
               <span>05</span>
-              <h3>交付保护</h3>
-              <p>结合产品形态安排标识、包装与交付资料。</p>
+              <h3>妥善交付</h3>
+              <p>做好标识、刃口保护、包装与资料交接。</p>
             </li>
           </ol>
           <div class="section-actions">
@@ -1048,7 +1141,7 @@
     ></script>
     <script
       defer
-      src="/teamstar-website-review/assets/js/home-video.js?v=20260731-3d"
+      src="/teamstar-website-review/assets/js/home-video.js?v=20260731-3e"
     ></script>
   </body>
 </html>
