@@ -1385,6 +1385,45 @@ html[lang="en"] .page-home-video.redesign-2w .hero-copy h1 {
   }
 }
 
+/* Continuous reference band for the approved bilingual Home review. */
+.redesign-2w .reference-section {
+  overflow: hidden;
+}
+
+.redesign-2w .reference-section .logo-wall.is-home-marquee {
+  display: flex;
+  grid-template-columns: none;
+  width: max-content;
+  border: 0;
+  animation: home-logo-drift 40s linear infinite;
+  will-change: transform;
+}
+
+.redesign-2w .reference-section .logo-wall.is-home-marquee:hover,
+.redesign-2w .reference-section .logo-wall.is-home-marquee:focus-within {
+  animation-play-state: paused;
+}
+
+.redesign-2w .reference-section .logo-wall.is-home-marquee .logo-item {
+  flex: 0 0 clamp(164px, 16vw, 220px);
+  min-height: 108px;
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-left: 0;
+}
+
+.redesign-2w .reference-section .logo-wall.is-home-marquee .logo-item:first-child {
+  border-left: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .redesign-2w .reference-section .logo-wall {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* 3a Home experience: isolated to the independent bilingual Home routes. */
 .page-home-video {
   --home-ink: #141719;
