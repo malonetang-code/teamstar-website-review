@@ -1,0 +1,49 @@
+.page-home-video .reference-section {
+  overflow: hidden;
+}
+
+.page-home-video .reference-section .logo-wall.is-home-marquee {
+  display: flex;
+  grid-template-columns: none;
+  width: max-content;
+  max-width: none;
+  border: 0;
+  animation: home-logo-marquee 42s linear infinite;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.page-home-video .reference-section .logo-wall.is-home-marquee:hover,
+.page-home-video .reference-section .logo-wall.is-home-marquee:focus-within {
+  animation-play-state: paused;
+}
+
+.page-home-video .reference-section .logo-wall.is-home-marquee .logo-item {
+  flex: 0 0 clamp(164px, 16vw, 220px);
+  min-height: 108px;
+  border: 1px solid var(--line);
+}
+
+@keyframes home-logo-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .page-home-video .reference-section .logo-wall.is-home-marquee {
+    animation-duration: 36s;
+  }
+
+  .page-home-video .reference-section .logo-wall.is-home-marquee .logo-item {
+    flex-basis: 156px;
+    min-height: 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home-video .reference-section .logo-wall {
+    animation: none !important;
+    transform: none !important;
+  }
+}

@@ -16,12 +16,6 @@
     clearDuplicates();
     if (reducedMotion.matches) return;
 
-    originalItems.forEach((item) => {
-      item.querySelectorAll("img").forEach((image) => {
-        image.loading = "eager";
-      });
-    });
-
     const fragment = document.createDocumentFragment();
     duplicateItems = originalItems.map((item) => {
       const duplicate = item.cloneNode(true);
@@ -37,6 +31,11 @@
     marquee.classList.add("is-home-marquee");
   };
 
-  reducedMotion.addEventListener("change", configureMarquee);
+  if (typeof reducedMotion.addEventListener === "function") {
+    reducedMotion.addEventListener("change", configureMarquee);
+  } else {
+    reducedMotion.addListener(configureMarquee);
+  }
+
   configureMarquee();
 })();
