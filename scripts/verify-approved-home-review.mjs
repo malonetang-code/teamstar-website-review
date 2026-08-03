@@ -74,8 +74,8 @@ for (const [file, heading, removedInquiry] of pageChecks) {
     "images/web/process-20260725/04-machining.jpg",
     "img/DjfribI31j-720.jpeg",
     "reference-section",
-    "home-reference-marquee.css?v=20260803-2",
-    "home-reference-marquee.js?v=20260803-2",
+    "home-reference-marquee.css?v=20260803-3",
+    "home-reference-marquee.js?v=20260803-3",
   ]) {
     expect(html.includes(required), `${file}: required production content is missing: ${required}`);
   }
@@ -108,6 +108,11 @@ expect(
 expect(
   marqueeJs.includes("if (reducedMotion.matches) return"),
   "Marquee script does not preserve a static reduced-motion layout",
+);
+expect(
+  marqueeJs.includes("await Promise.allSettled") &&
+    marqueeJs.includes('image.loading = "eager"'),
+  "Marquee does not preload and decode logos before motion starts",
 );
 
 if (errors.length) {

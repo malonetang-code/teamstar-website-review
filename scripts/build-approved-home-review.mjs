@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const approvedCommit = "2a3705438a6a0309f32a4ea512c2a19889ab0ca2";
 const productionRelease = "20260731-3a";
-const reviewRelease = "20260803-2";
+const reviewRelease = "20260803-3";
 
 function approvedFile(relativePath) {
   return execFileSync(
