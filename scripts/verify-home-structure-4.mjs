@@ -25,6 +25,8 @@ const pages = [
       "工业刀具、手工具与裁布设备",
       "手工具",
       "裁布机成品",
+      "找到适合您的刀具",
+      "请发送询价或说明您的需求",
     ],
   },
   {
@@ -38,6 +40,8 @@ const pages = [
       "工业刀具、手工具与裁布设备",
       "手工具",
       "裁布机成品",
+      "找到适合您的刀具",
+      "请发送询价或说明您的需求",
     ],
   },
   {
@@ -51,6 +55,8 @@ const pages = [
       "Industrial Knives, Hand Tools and Cloth Cutting Machines",
       "Hand Tools",
       "Complete Cloth Cutting Machines",
+      "Let’s find your perfect blade",
+      "Send us your inquiry or describe your issue",
     ],
   },
   {
@@ -64,6 +70,8 @@ const pages = [
       "Industrial Knives, Hand Tools and Cloth Cutting Machines",
       "Hand Tools",
       "Complete Cloth Cutting Machines",
+      "Let’s find your perfect blade",
+      "Send us your inquiry or describe your issue",
     ],
   },
 ];
@@ -76,7 +84,7 @@ for (const page of pages) {
     `${page.file}: review robots protection is missing`,
   );
   expect(
-    html.includes("home-structure-4.css?v=20260826-4a"),
+    html.includes("home-structure-4.css?v=20260826-4b"),
     `${page.file}: structural stylesheet is missing`,
   );
   expect(
@@ -108,6 +116,14 @@ for (const page of pages) {
     (html.match(/class="section legacy-home-section/g) || []).length === 4,
     `${page.file}: superseded Home sections are not fully isolated`,
   );
+  for (const removed of [
+    "提交项目资料",
+    "图纸、样品与工况任选其一即可开始",
+    "Send Your Project Information",
+    "Start with a drawing, sample or application description",
+  ]) {
+    expect(!html.includes(removed), `${page.file}: old RFQ copy remains: ${removed}`);
+  }
 
   const logoSection = html.slice(logos, why);
   expect(

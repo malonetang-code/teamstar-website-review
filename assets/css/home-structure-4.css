@@ -144,6 +144,49 @@
   color: #777f7d;
 }
 
+.home-structure-4 .rfq-band {
+  padding: clamp(64px, 8vw, 96px) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: #111315;
+}
+
+.home-structure-4 .rfq-band-grid {
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr) auto;
+  gap: 28px 52px;
+}
+
+.home-structure-4 .rfq-band .eyebrow {
+  color: #ef4b3f;
+}
+
+.home-structure-4 .rfq-band h2 {
+  max-width: 700px;
+  margin-top: 10px;
+  color: #fff;
+  font-size: clamp(32px, 4vw, 54px);
+  letter-spacing: -0.035em;
+}
+
+.home-structure-4 .rfq-band p {
+  max-width: 430px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+.home-structure-4 .rfq-band .button {
+  min-height: 50px;
+  padding-right: 26px;
+  padding-left: 26px;
+  border-color: #ef4b3f;
+  background: #ef4b3f;
+  color: #fff;
+}
+
+.home-structure-4 .rfq-band .button:hover {
+  border-color: #d93b30;
+  background: #d93b30;
+}
+
 @media (min-width: 1080px) {
   .home-structure-4 .desktop-nav a {
     padding-right: 10px;
@@ -184,6 +227,15 @@
 
   .home-product-section .blade-grid {
     grid-template-columns: 1fr;
+  }
+
+  .home-structure-4 .rfq-band-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .home-structure-4 .rfq-band p {
+    margin-top: -8px;
   }
 }
 
