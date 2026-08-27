@@ -29,7 +29,7 @@ for (const relativePath of ['rfq/index.html', 'en/rfq/index.html']) {
 
 const zh = read('rfq/index.html');
 [
-  '我们能为您做什么？',
+  '告诉我们您需要什么样的刀具',
   '请告诉我们所需刀具、规格及数量。',
   '直接联系我们',
   '联系方式',
@@ -42,6 +42,7 @@ const zh = read('rfq/index.html');
   '价格和交期将在查看需求后确认。',
 ].forEach((text) => requireText('rfq/index.html', zh, text));
 [
+  '我们能为您做什么？',
   '上传图纸不是必选项',
   '询价资料入口',
   '按图制造',
@@ -54,7 +55,7 @@ const zh = read('rfq/index.html');
 
 const en = read('en/rfq/index.html');
 [
-  'How can we help?',
+  'Talk to Our Knife Experts',
   'Tell us the blade type, specifications and quantity you need.',
   'Contact us directly',
   'Contact details',
@@ -66,6 +67,7 @@ const en = read('en/rfq/index.html');
   'Price and lead time will be confirmed after review.',
 ].forEach((text) => requireText('en/rfq/index.html', en, text));
 [
+  'How can we help?',
   'A drawing is helpful, but not required.',
   'Starting point',
   'Submit technical RFQ',
@@ -94,9 +96,20 @@ for (const file of htmlFiles) {
   const relativePath = path.relative(root, file);
   const html = fs.readFileSync(file, 'utf8');
   const labels = [...html.matchAll(/class="nav-rfq"[^>]*>([^<]+)<\/a>/g)].map((match) => match[1]);
+  if (labels.length !== 1) failures.push(`${relativePath}: expected one desktop expert CTA, found ${labels.length}`);
   for (const label of labels) {
-    const expected = relativePath.startsWith('en/') ? 'Request a Quote' : '获取报价';
-    if (label !== expected) failures.push(`${relativePath}: nav RFQ label is ${label}, expected ${expected}`);
+    const expected = relativePath.startsWith('en/') ? 'Talk to a Knife Expert' : '咨询刀具专家';
+    if (label !== expected) failures.push(`${relativePath}: expert CTA label is ${label}, expected ${expected}`);
+  }
+
+  const mobileMatch = html.match(/<nav\b[^>]*class="[^"]*\bmobile-menu\b[^"]*"[^>]*>[\s\S]*?<\/nav>/);
+  if (!mobileMatch) {
+    failures.push(`${relativePath}: mobile navigation is missing`);
+  } else {
+    const expected = relativePath.startsWith('en/')
+      ? '<a href="/teamstar-website-review/en/rfq/">Talk to a Knife Expert</a>'
+      : '<a href="/teamstar-website-review/rfq/">咨询刀具专家</a>';
+    if (!mobileMatch[0].includes(expected)) failures.push(`${relativePath}: mobile expert CTA is missing`);
   }
 }
 
