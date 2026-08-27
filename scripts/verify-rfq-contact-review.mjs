@@ -30,14 +30,15 @@ for (const relativePath of ['rfq/index.html', 'en/rfq/index.html']) {
 const zh = read('rfq/index.html');
 [
   '我们能为您做什么？',
-  '请发送询价，或说明您的切割需求。',
+  '请告诉我们所需刀具、规格及数量。',
   '直接联系我们',
   '联系方式',
   '产品与需求',
   '核对并发送',
   '现有资料',
   '实物或照片',
-  '应用需求',
+  '使用信息',
+  '设备、所切材料及现有问题',
   '价格和交期将在查看需求后确认。',
 ].forEach((text) => requireText('rfq/index.html', zh, text));
 [
@@ -47,28 +48,33 @@ const zh = read('rfq/index.html');
   '按样复刻',
   '工况评估',
   '提交技术询价',
+  '切割需求',
+  '应用需求',
 ].forEach((text) => rejectText('rfq/index.html', zh, text));
 
 const en = read('en/rfq/index.html');
 [
   'How can we help?',
-  'Send us your inquiry or tell us about your cutting application.',
+  'Tell us the blade type, specifications and quantity you need.',
   'Contact us directly',
   'Contact details',
   'Product &amp; requirements',
   'Review &amp; send',
   'Sample or photo',
   'Application details',
+  'Machine, material and current issue',
   'Price and lead time will be confirmed after review.',
 ].forEach((text) => requireText('en/rfq/index.html', en, text));
 [
   'A drawing is helpful, but not required.',
   'Starting point',
   'Submit technical RFQ',
+  'tell us about your cutting application',
 ].forEach((text) => rejectText('en/rfq/index.html', en, text));
 
 const siteJs = read('assets/js/site.js');
 requireText('assets/js/site.js', siteJs, 'sample:"实物或照片"');
+requireText('assets/js/site.js', siteJs, 'application:"使用信息"');
 requireText('assets/js/site.js', siteJs, 'sample:"Sample or photo"');
 requireText('assets/js/site.js', siteJs, 'rd01@teamstarmfg.com');
 rejectText('assets/js/site.js', siteJs, 'email info@teamstarmfg.com.');
