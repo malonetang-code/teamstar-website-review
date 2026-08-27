@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN" data-scheme="a">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Teamstar 全站排版预案｜本地评审</title>
+  <script>
+    (function () {
+      var style = new URLSearchParams(window.location.search).get('style');
+      document.documentElement.dataset.scheme = ['a', 'b', 'c'].indexOf(style) > -1 ? style : 'a';
+    }());
+  </script>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="typography-preview.css">
+</head>
+<body>
+  <a class="skip-link" href="#preview-main">跳到主要内容</a>
+
+  <aside class="preview-switcher" aria-label="排版预案切换">
+    <div class="preview-switcher__title">
+      <span>TEAMSTAR</span>
+      <strong>全站排版预案 · 本地评审</strong>
+    </div>
+    <nav aria-label="选择排版预案">
+      <a data-preview-link="a" href="?style=a"><b>A</b><span>强工业黑白</span></a>
+      <a data-preview-link="b" href="?style=b"><b>B</b><span>精密白底</span></a>
+      <a data-preview-link="c" href="?style=c"><b>C</b><span>工业编辑式</span></a>
+    </nav>
+    <div class="preview-switcher__note">同一内容 · 仅比较字体、字号与版式</div>
+  </aside>
+
+  <div class="site-stage">
+    <header class="site-header">
+      <div class="shell nav-shell">
+        <a class="brand" href="#top" aria-label="Teamstar Manufacturing 首页">
+          <strong>TEAMSTAR MFG</strong>
+          <span>漳州群新工业</span>
+        </a>
+        <nav class="main-nav" aria-label="主要导航">
+          <a href="#products">产品与应用</a>
+          <a href="#proof">为什么选择群新</a>
+          <a href="#quality">制造与质量</a>
+          <a href="#contact">联系我们</a>
+        </nav>
+        <a class="header-cta" href="#contact">咨询刀具专家</a>
+      </div>
+    </header>
+
+    <main id="preview-main">
+      <section class="hero" id="top">
+        <div class="hero-media" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 680px)" srcset="images/web/process-20260725/home-company-manufacturing-montage-20260730-poster.jpg">
+            <img src="images/web/process-20260725/home-company-manufacturing-montage-20260730-poster.jpg" alt="" width="1536" height="720">
+          </picture>
+        </div>
+        <div class="shell hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">CUSTOM INDUSTRIAL MACHINE KNIVES</p>
+            <h1>因需而制，<br>以准致信。</h1>
+            <p class="hero-lead">面向设备制造商与工业用户，按图纸、样品及实际工况定制工业机械刀具。</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#products">查看产品</a>
+              <a class="button button-secondary" href="#contact">咨询刀具专家</a>
+            </div>
+          </div>
+          <p class="hero-index" aria-hidden="true"><span>01</span> / 03</p>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="合作客户与设备品牌">
+        <div class="shell trust-inner">
+          <p>合作客户与设备品牌</p>
+          <div class="trust-logos">
+            <img src="images/logos/eastman.png" alt="Eastman" width="239" height="65">
+            <img src="images/logos/sata.png" alt="SATA" width="271" height="73">
+            <img src="images/logos/lectra.png" alt="Lectra" width="140" height="58">
+            <img src="images/logos/bullmer.png" alt="Bullmer" width="192" height="92">
+          </div>
+        </div>
+      </section>
+
+      <section class="proof-section" id="proof">
+        <div class="shell">
+          <header class="section-heading proof-heading">
+            <div>
+              <p class="eyebrow">WHY QUNXIN</p>
+              <h2>为什么选择群新</h2>
+            </div>
+            <p>长期制造积累、自主完成关键工序，并支持从单件试制到持续供货。</p>
+          </header>
+          <div class="proof-grid">
+            <article class="proof-item">
+              <p class="proof-number">40<sup>+</sup><small>年</small></p>
+              <h3>集团刀具制造积累</h3>
+              <p>工艺资料与经验团队，为稳定制造和长期供货提供基础。</p>
+            </article>
+            <article class="proof-item">
+              <p class="proof-number proof-number--text">关键工序</p>
+              <h3>自主完成</h3>
+              <p>重要制造环节在厂内完成，质量控制路径更加直接。</p>
+            </article>
+            <article class="proof-item">
+              <p class="proof-number">1<small>件起</small></p>
+              <h3>灵活定制</h3>
+              <p>从单件试制到批量供货，根据项目的实际需要安排。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section" id="products">
+        <div class="shell">
+          <header class="section-heading product-heading">
+            <div>
+              <p class="eyebrow">WHAT WE MAKE</p>
+              <h2>工业机械刀具</h2>
+            </div>
+            <p>按应用、设备与切割条件确认产品类别和制造要求。</p>
+          </header>
+          <div class="product-grid">
+            <article class="product-card">
+              <figure><img src="assets/images/2w/product-custom.jpg" alt="异型工业机械刀具实物" width="900" height="675"></figure>
+              <div class="product-card__body">
+                <span>01</span>
+                <h3>异型配套刀具</h3>
+                <p>适用于专用设备、非标安装结构及特定切割应用。</p>
+                <a href="#quality">查看产品资料 <i aria-hidden="true">↗</i></a>
+              </div>
+            </article>
+            <article class="product-card">
+              <figure><img src="assets/images/2w/product-textile.jpg" alt="纺织服装机械刀具实物" width="900" height="675"></figure>
+              <div class="product-card__body">
+                <span>02</span>
+                <h3>纺织服装刀具</h3>
+                <p>用于自动裁床、裁布设备及服装加工相关设备。</p>
+                <a href="#quality">查看产品资料 <i aria-hidden="true">↗</i></a>
+              </div>
+            </article>
+            <article class="product-card">
+              <figure><img src="assets/images/2w/product-paper.jpg" alt="纸品分切机械刀具实物" width="900" height="675"></figure>
+              <div class="product-card__body">
+                <span>03</span>
+                <h3>纸品分切刀具</h3>
+                <p>用于纸张、纸板及相关材料的分切与裁切设备。</p>
+                <a href="#quality">查看产品资料 <i aria-hidden="true">↗</i></a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="technical-section" id="quality">
+        <div class="shell technical-grid">
+          <div class="technical-media">
+            <img src="images/web/process-20260725/05-precision-grinding.jpg" alt="工业刀具精密磨削现场" width="1280" height="720">
+            <p>PRECISION GRINDING / ZHANGZHOU</p>
+          </div>
+          <div class="technical-copy">
+            <p class="eyebrow">PRODUCT DETAIL SAMPLE</p>
+            <h2>产品信息如何呈现</h2>
+            <p class="technical-intro">产品页需要同时容纳用途说明、产品参数、制造能力和询价入口。下面使用同一组信息观察不同方案的阅读效率。</p>
+            <dl class="spec-list">
+              <div><dt>适用设备</dt><dd>自动裁切及专用工业设备</dd></div>
+              <div><dt>材料</dt><dd>根据图纸、样品和使用条件确认</dd></div>
+              <div><dt>尺寸与公差</dt><dd>按项目技术要求评估</dd></div>
+              <div><dt>刃口形式</dt><dd>结合被处理材料与切割方式确认</dd></div>
+            </dl>
+            <div class="english-sample" lang="en">
+              <span>ENGLISH TYPE SAMPLE</span>
+              <h3>Custom machine knives for application-specific requirements</h3>
+              <p>Drawing-based manufacture, physical-sample replication and application review for industrial cutting equipment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <div class="shell contact-inner">
+          <div>
+            <p class="eyebrow">START A CONVERSATION</p>
+            <h2>与刀具专家讨论您的项目</h2>
+            <p>发送图纸、产品照片或现有刀具资料，我们将根据应用和制造要求进行评估。</p>
+          </div>
+          <a class="button contact-button" href="mailto:rd01@teamstarmfg.com">联系销售与技术团队</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div><strong>TEAMSTAR MANUFACTURING</strong><span>漳州群新工业有限公司</span></div>
+        <p>福建省漳州市长泰区古农农场顺兴路6号</p>
+        <p>rd01@teamstarmfg.com</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var style = document.documentElement.dataset.scheme;
+      document.querySelectorAll('[data-preview-link]').forEach(function (link) {
+        if (link.dataset.previewLink === style) link.setAttribute('aria-current', 'page');
+      });
+    }());
+  </script>
+</body>
+</html>
