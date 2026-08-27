@@ -127,7 +127,7 @@ function languageMenu(scheme, language) {
   const isEn = language === "en";
   const label = isEn ? "Language" : "多语言";
   const planned = isEn ? "Planned" : "筹备中";
-  return `<details class="language-menu"><summary aria-label="${isEn ? "Choose language" : "选择语言"}"><span>${isEn ? "EN" : "中文"}</span></summary><div class="language-menu-panel"><strong>${label}</strong><a href="${previewPath(scheme, "zh")}" hreflang="zh-CN"${isEn ? "" : ' aria-current="page"'}><span>简体中文</span><small>ZH</small></a><a href="${previewPath(scheme, "en")}" hreflang="en"${isEn ? ' aria-current="page"' : ""}><span>English</span><small>EN</small></a><span class="is-disabled" aria-disabled="true"><span>Français</span><small>${planned}</small></span><span class="is-disabled" aria-disabled="true"><span>Español</span><small>${planned}</small></span></div></details>`;
+  return `<details class="language-menu"><summary aria-label="${isEn ? "Choose language" : "English / 选择语言"}"><span>EN</span></summary><div class="language-menu-panel"><strong>${label}</strong><a href="${previewPath(scheme, "zh")}" hreflang="zh-CN"${isEn ? "" : ' aria-current="page"'}><span>简体中文</span><small>ZH</small></a><a href="${previewPath(scheme, "en")}" hreflang="en"${isEn ? ' aria-current="page"' : ""}><span>English</span><small>EN</small></a><span class="is-disabled" aria-disabled="true"><span>Français</span><small>${planned}</small></span><span class="is-disabled" aria-disabled="true"><span>Español</span><small>${planned}</small></span></div></details>`;
 }
 
 function buildPage(scheme, language) {
