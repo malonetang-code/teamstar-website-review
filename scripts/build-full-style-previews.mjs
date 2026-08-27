@@ -105,13 +105,13 @@ function contactPanel(language) {
   return `<div class="fp-mega fp-mega-contact" role="group" aria-label="${isEn ? "Contact preview" : "联系预览"}"><div class="container fp-mega-inner"><div class="fp-mega-intro"><small>${copy[0]}</small><strong>${copy[1]}</strong><p>${copy[2]}</p></div><div class="fp-mega-contact-details"><span>${copy[3]}</span><a href="mailto:rd01@teamstarmfg.com">rd01@teamstarmfg.com</a><a class="button button-accent" href="${base}rfq/">${copy[4]}</a></div></div></div>`;
 }
 
-function desktopNav(language) {
+function desktopNav(scheme, language) {
   const isEn = language === "en";
   const base = isEn ? "/teamstar-review/en/" : "/teamstar-review/";
   const labels = isEn
-    ? ["Products & Applications", "Manufacturing & Quality", "About Us", "Contact"]
-    : ["产品与应用", "制造与质量", "关于我们", "联系我们"];
-  return `<nav aria-label="${isEn ? "Primary navigation" : "主要导航"}" class="desktop-nav fp-desktop-nav"><div class="fp-nav-item"><a class="fp-nav-link" href="${base}products/">${labels[0]}</a>${productPanel(language)}</div><div class="fp-nav-item"><a class="fp-nav-link" href="${base}capabilities/">${labels[1]}</a>${manufacturingPanel(language)}</div><div class="fp-nav-item"><a class="fp-nav-link" href="${base}company/">${labels[2]}</a>${companyPanel(language)}</div><div class="fp-nav-item"><a class="fp-nav-link" href="#contact">${labels[3]}</a>${contactPanel(language)}</div></nav>`;
+    ? ["Home", "Products & Applications", "Manufacturing & Quality", "About Us", "Contact"]
+    : ["首页", "产品与应用", "制造与质量", "关于我们", "联系我们"];
+  return `<nav aria-label="${isEn ? "Primary navigation" : "主要导航"}" class="desktop-nav fp-desktop-nav"><div class="fp-nav-item"><a class="fp-nav-link" href="${previewPath(scheme, language)}" aria-current="page">${labels[0]}</a></div><div class="fp-nav-item"><a class="fp-nav-link" href="${base}products/">${labels[1]}</a>${productPanel(language)}</div><div class="fp-nav-item"><a class="fp-nav-link" href="${base}capabilities/">${labels[2]}</a>${manufacturingPanel(language)}</div><div class="fp-nav-item"><a class="fp-nav-link" href="${base}company/">${labels[3]}</a>${companyPanel(language)}</div><div class="fp-nav-item"><a class="fp-nav-link" href="#contact">${labels[4]}</a>${contactPanel(language)}</div></nav>`;
 }
 
 function mobileNav(scheme, language) {
@@ -139,10 +139,10 @@ function buildPage(scheme, language) {
 
   html = html.replace(/<html lang="([^"]+)">/, `<html lang="$1" data-full-preview="${scheme}">`);
   html = html.replace(/<title>([^<]+)<\/title>/, `<title>${titlePrefix}｜$1</title>`);
-  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=20260827-3" rel="stylesheet">\n</head>`);
+  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=20260827-4" rel="stylesheet">\n</head>`);
   html = html.replace(/<body class="([^"]+)"/, `<body class="full-style-preview $1"`);
   html = html.replace(/(<body[^>]*>)/, `$1${switcherMarkup(scheme, language)}`);
-  html = html.replace(/<nav aria-label="(?:主要导航|Primary navigation)" class="desktop-nav">[\s\S]*?<\/nav>/, desktopNav(language));
+  html = html.replace(/<nav aria-label="(?:主要导航|Primary navigation)" class="desktop-nav">[\s\S]*?<\/nav>/, desktopNav(scheme, language));
   html = html.replace(/<nav aria-label="(?:移动端导航|Mobile navigation)" class="mobile-menu"[\s\S]*?<\/nav>/, mobileNav(scheme, language));
 
   if (isEn) {
