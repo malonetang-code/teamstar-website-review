@@ -139,7 +139,7 @@ function buildPage(scheme, language) {
 
   html = html.replace(/<html lang="([^"]+)">/, `<html lang="$1" data-full-preview="${scheme}">`);
   html = html.replace(/<title>([^<]+)<\/title>/, `<title>${titlePrefix}｜$1</title>`);
-  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=20260827-4" rel="stylesheet">\n</head>`);
+  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=20260827-5" rel="stylesheet">\n</head>`);
   html = html.replace(/<body class="([^"]+)"/, `<body class="full-style-preview $1"`);
   html = html.replace(/(<body[^>]*>)/, `$1${switcherMarkup(scheme, language)}`);
   html = html.replace(/<nav aria-label="(?:主要导航|Primary navigation)" class="desktop-nav">[\s\S]*?<\/nav>/, desktopNav(scheme, language));
