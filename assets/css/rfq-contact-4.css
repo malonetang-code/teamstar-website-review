@@ -1,0 +1,219 @@
+.page-rfq .rfq-hero {
+  min-height: 350px;
+}
+
+.page-rfq .rfq-hero::after {
+  background: linear-gradient(90deg, rgba(8, 13, 16, 0.9) 0%, rgba(8, 13, 16, 0.7) 52%, rgba(8, 13, 16, 0.32) 100%);
+}
+
+.page-rfq .rfq-hero .page-hero-inner {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.page-rfq .rfq-hero h1 {
+  max-width: 780px;
+  margin-top: 10px;
+  font-size: clamp(42px, 6vw, 68px);
+  letter-spacing: -0.035em;
+}
+
+.page-rfq .rfq-hero p {
+  max-width: 610px;
+  margin-top: 16px;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.65;
+}
+
+.page-rfq .page-hero-actions {
+  margin-top: 26px;
+}
+
+.page-rfq .rfq-section {
+  background: #f3f4f1;
+}
+
+.page-rfq .rfq-layout {
+  gap: 42px;
+}
+
+.page-rfq .rfq-guide {
+  padding-top: 8px;
+}
+
+.page-rfq .rfq-guide h2 {
+  max-width: 390px;
+  margin: 10px 0 14px;
+  font-size: clamp(27px, 3vw, 38px);
+}
+
+.page-rfq .rfq-guide-copy {
+  max-width: 410px;
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.page-rfq .rfq-contact-list {
+  border-top: 3px solid var(--accent);
+}
+
+.page-rfq .rfq-contact-list a {
+  display: grid;
+  gap: 5px;
+  min-height: 76px;
+  padding: 16px 2px;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-rfq .rfq-contact-list span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-rfq .rfq-contact-list strong {
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.page-rfq .rfq-contact-list a:hover strong,
+.page-rfq .rfq-contact-list a:focus-visible strong {
+  color: var(--accent);
+}
+
+.page-rfq .rfq-guide-note {
+  margin-top: 26px;
+  padding: 18px 0;
+}
+
+.page-rfq .rfq-guide-note p {
+  line-height: 1.65;
+}
+
+.page-rfq .rfq-form {
+  padding: clamp(22px, 4vw, 42px);
+  border: 0;
+  border-top: 4px solid var(--accent);
+  box-shadow: 0 18px 55px rgba(12, 21, 25, 0.1);
+}
+
+.page-rfq .rfq-form-head {
+  margin-bottom: 24px;
+}
+
+.page-rfq .rfq-form h2 {
+  font-size: clamp(29px, 3vw, 40px);
+  letter-spacing: -0.025em;
+}
+
+.page-rfq .rfq-progress {
+  gap: 0;
+  margin-bottom: 34px;
+  border: 0;
+  background: #eef0ec;
+}
+
+.page-rfq .rfq-progress li {
+  min-height: 68px;
+  padding: 12px 14px;
+  font-size: 11px;
+}
+
+.page-rfq .rfq-progress li + li {
+  border-left-color: #d8ddd8;
+}
+
+.page-rfq .rfq-step legend {
+  font-size: clamp(23px, 2.4vw, 30px);
+}
+
+.page-rfq .rfq-step-intro {
+  margin-top: 10px;
+  margin-bottom: 26px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.page-rfq .field label,
+.page-rfq .field-label {
+  font-size: 13px;
+}
+
+.page-rfq .field input,
+.page-rfq .field select {
+  min-height: 50px;
+}
+
+.page-rfq .field textarea {
+  min-height: 150px;
+}
+
+.page-rfq .choice-option {
+  min-height: 88px;
+  padding: 16px;
+}
+
+.page-rfq .choice-option strong {
+  font-size: 14px;
+}
+
+.page-rfq .choice-option small {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.page-rfq .form-actions {
+  margin-top: 24px;
+}
+
+.page-rfq .form-actions .button {
+  min-height: 48px;
+}
+
+@media (min-width: 900px) {
+  .page-rfq .rfq-layout {
+    grid-template-columns: minmax(250px, 0.58fr) minmax(520px, 1.42fr);
+    gap: 68px;
+  }
+}
+
+@media (max-width: 599px) {
+  .page-rfq .rfq-hero {
+    min-height: 390px;
+  }
+
+  .page-rfq .rfq-hero .page-hero-inner {
+    padding-top: 42px;
+    padding-bottom: 42px;
+  }
+
+  .page-rfq .page-hero-actions .button {
+    width: 100%;
+  }
+
+  .page-rfq .rfq-form {
+    margin-inline: -8px;
+  }
+
+  .page-rfq .rfq-progress li {
+    min-height: 76px;
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 6px;
+    padding: 10px;
+    line-height: 1.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-rfq .rfq-contact-list a,
+  .page-rfq .rfq-contact-list strong {
+    transition: none;
+  }
+}
