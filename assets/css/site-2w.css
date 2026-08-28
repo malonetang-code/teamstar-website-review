@@ -1664,9 +1664,168 @@ html[lang="en"] .redesign-2w .hero-copy h1 {
   display: none;
 }
 
+.redesign-2w .product-why-minimal {
+  padding: 78px 0 72px;
+  color: #171a1d;
+  background: #fff;
+  border-top: 1px solid #e1e1df;
+  border-bottom: 1px solid #e1e1df;
+}
+
+.redesign-2w .product-why-minimal-heading {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.redesign-2w .product-why-minimal-heading > span {
+  display: block;
+  margin-bottom: 14px;
+  color: #666b70;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.redesign-2w .product-why-minimal-heading h2 {
+  margin: 0 0 12px;
+  color: #171a1d;
+  font-size: clamp(27px, 2.35vw, 34px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+}
+
+.redesign-2w .product-why-minimal-heading p {
+  margin: 0;
+  color: #5c6166;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.redesign-2w .product-why-minimal-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.redesign-2w .product-why-minimal-grid article {
+  min-width: 0;
+  padding: 0 clamp(26px, 3.4vw, 48px);
+  text-align: center;
+  border-right: 1px solid #d4d5d6;
+}
+
+.redesign-2w .product-why-minimal-grid article:last-child {
+  border-right: 0;
+}
+
+.redesign-2w .product-why-minimal-grid strong {
+  min-height: 41px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  color: #171a1d;
+  font-size: 34px;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.redesign-2w .product-why-minimal-grid strong.is-text-value {
+  font-size: 25px;
+  letter-spacing: -0.025em;
+}
+
+.redesign-2w .product-why-minimal-grid sup {
+  margin-left: 2px;
+  font-size: 0.47em;
+}
+
+.redesign-2w .product-why-minimal-grid small {
+  margin-left: 5px;
+  color: #696e73;
+  font-size: 0.32em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.redesign-2w .product-why-minimal-grid h3 {
+  margin: 0 0 7px;
+  color: #171a1d;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.redesign-2w .product-why-minimal-grid p {
+  max-width: 250px;
+  margin: 0 auto;
+  color: #666b70;
+  font-size: 11px;
+  line-height: 1.62;
+}
+
 .redesign-2w .page-hero h1 {
   max-width: 800px;
   font-size: 50px;
+}
+
+@media (max-width: 767px) {
+  .redesign-2w .product-why-minimal {
+    padding: 66px 0 58px;
+  }
+
+  .redesign-2w .product-why-minimal-heading p {
+    max-width: 330px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .redesign-2w .product-why-minimal-grid {
+    margin-top: 48px;
+    grid-template-columns: minmax(0, 1fr);
+    border-top: 1px solid #d4d5d6;
+  }
+
+  .redesign-2w .product-why-minimal-grid article {
+    padding: 26px 0 25px;
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 20px;
+    text-align: left;
+    border-right: 0;
+    border-bottom: 1px solid #d4d5d6;
+  }
+
+  .redesign-2w .product-why-minimal-grid strong {
+    grid-row: 1 / 3;
+    justify-content: flex-start;
+    align-self: center;
+  }
+
+  .redesign-2w .product-why-minimal-grid h3,
+  .redesign-2w .product-why-minimal-grid p {
+    max-width: none;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 359px) {
+  .redesign-2w .product-why-minimal-grid article {
+    grid-template-columns: 94px minmax(0, 1fr);
+    column-gap: 14px;
+  }
+
+  .redesign-2w .product-why-minimal-grid strong {
+    font-size: 30px;
+  }
+
+  .redesign-2w .product-why-minimal-grid strong.is-text-value {
+    font-size: 21px;
+  }
 }
 
 .redesign-2w .product-library-media img,
