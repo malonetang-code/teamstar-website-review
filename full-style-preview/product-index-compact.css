@@ -1,4 +1,4 @@
-/* Compact homepage product index for A/B/C/D review variants. */
+/* Compact homepage product index for A/B/C/D/E review variants. */
 
 body.full-style-preview .home-product-index {
   --product-index-bg: #f4f1eb;
@@ -6,7 +6,7 @@ body.full-style-preview .home-product-index {
   --product-index-muted: #66645f;
   --product-index-line: #cec8bf;
   --product-index-canvas: #e6e1d9;
-  padding-block: clamp(56px, 5.25vw, 72px);
+  padding-block: clamp(52px, 4.75vw, 64px);
   scroll-margin-top: calc(var(--fp-switcher-height) + var(--header-height) + 18px);
   color: var(--product-index-ink);
   background: var(--product-index-bg);
@@ -18,7 +18,7 @@ html[data-full-preview="b"] body.full-style-preview .home-product-section.home-p
 html[data-full-preview="c"] body.full-style-preview .home-product-section.home-product-index,
 html[data-full-preview="d"] body.full-style-preview .home-product-section.home-product-index,
 html[data-full-preview="e"] body.full-style-preview .home-product-section.home-product-index {
-  padding-block: clamp(56px, 5.25vw, 72px);
+  padding-block: clamp(52px, 4.75vw, 64px);
   color: var(--product-index-ink);
   background: var(--product-index-bg);
   border-top-color: var(--product-index-line);
@@ -114,8 +114,8 @@ html[data-full-preview="e"] body.full-style-preview .home-product-index .blade-g
   grid-column: 2;
   grid-row: 1 / span 2;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 20px;
   background: transparent;
   border: 0;
   border-top: 1px solid var(--product-index-line);
@@ -306,6 +306,16 @@ html[data-full-preview="e"] body.full-style-preview .home-product-index .section
 
   body.full-style-preview .home-product-index .section-actions {
     margin-top: 22px;
+  }
+}
+
+@media (max-width: 899px) {
+  body.full-style-preview .home-product-index .blade-grid,
+  html[data-full-preview="c"] body.full-style-preview .home-product-index .blade-grid,
+  html[data-full-preview="d"] body.full-style-preview .home-product-index .blade-grid,
+  html[data-full-preview="e"] body.full-style-preview .home-product-index .blade-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 20px;
   }
 }
 

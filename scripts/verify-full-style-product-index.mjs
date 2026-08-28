@@ -33,7 +33,8 @@ for (const page of pages) {
 const css = readFileSync("full-style-preview/product-index-compact.css", "utf8");
 for (const required of [
   ".home-product-index > .container",
-  "grid-template-columns: repeat(2, minmax(0, 1fr))",
+  "grid-template-columns: repeat(3, minmax(0, 1fr))",
+  "@media (max-width: 899px)",
   "@media (max-width: 639px)",
   "@media (prefers-reduced-motion: reduce)",
 ]) {
