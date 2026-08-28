@@ -107,7 +107,7 @@
         src: "/teamstar-review/images/web/process-20260725/06-surface-inspection-full.jpg",
         width: 1600,
         height: 1202,
-        label: isEnglish ? "PHOTO A · SURFACE INSPECTION" : "照片 A · 刀具表面检测",
+        label: isEnglish ? "BLADE SURFACE INSPECTION" : "刀具表面检测",
       },
       "finished-blades": {
         src: "/teamstar-review/images/web/process-20260725/08-edge-protection-full.jpg",
@@ -116,7 +116,7 @@
         label: isEnglish ? "PHOTO C · FINISHED BLADES" : "照片 C · 成品刀具排列",
       },
     };
-    const sampleKey = query.get("hero");
+    const sampleKey = query.get("hero") || "surface-inspection";
     const sample = samples[sampleKey];
     if (!sample || !isProductDirectory) return;
 

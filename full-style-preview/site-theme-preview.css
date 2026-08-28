@@ -503,7 +503,7 @@ html[data-site-theme-preview] body.site-theme-preview-active .page-hero .button-
   border-color: var(--stp-hero-ink);
 }
 
-/* Additive product-directory hero samples. Activated only with a supported ?hero value. */
+/* Product-directory hero. Surface inspection is the shared A-E default; query variants remain additive. */
 html[data-site-theme-preview] body.site-theme-preview-active.page-products.product-hero-photo-sample .page-hero {
   min-height: clamp(460px, 42vw, 560px);
   overflow: hidden;
