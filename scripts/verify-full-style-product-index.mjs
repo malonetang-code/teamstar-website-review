@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 
-const variants = ["a", "b", "c", "d"];
+const variants = ["a", "b", "c", "d", "e"];
 const pages = variants.flatMap((variant) => [
   `full-style-preview/${variant}/index.html`,
   `full-style-preview/${variant}/en/index.html`,
@@ -40,4 +40,4 @@ for (const required of [
   if (!css.includes(required)) throw new Error(`compact product index CSS missing: ${required}`);
 }
 
-console.log("Compact full-style product index verification passed for A/B/C/D in Chinese and English.");
+console.log("Compact full-style product index verification passed for A/B/C/D/E in Chinese and English.");
