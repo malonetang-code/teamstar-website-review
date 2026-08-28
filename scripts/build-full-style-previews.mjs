@@ -6,13 +6,13 @@ import { fileURLToPath } from "node:url";
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const baseline = "teamstar-current-review-baseline-2026-08-27^{}";
 const outputRoot = resolve(projectRoot, "full-style-preview");
-const schemes = ["a", "b", "c"];
+const schemes = ["a", "b", "c", "d"];
 const baselineHeroVideo = "/teamstar-review/images/web/process-20260725/home-company-manufacturing-montage-20260730.mp4";
 const previewHeroVideo = "/teamstar-review/full-style-preview/media/home-manufacturing-closeup-preview-20260828.mp4";
 
 const schemeNames = {
-  zh: { a: "强工业黑白", b: "精密白底", c: "工业编辑式" },
-  en: { a: "Industrial Black", b: "Precision White", c: "Editorial Industrial" },
+  zh: { a: "强工业黑白", b: "精密白底", c: "工业编辑式", d: "现代欧式" },
+  en: { a: "Industrial Black", b: "Precision White", c: "Editorial Industrial", d: "European Modern" },
 };
 
 function readBaseline(path) {
@@ -142,7 +142,7 @@ function buildPage(scheme, language) {
 
   html = html.replace(/<html lang="([^"]+)">/, `<html lang="$1" data-full-preview="${scheme}">`);
   html = html.replace(/<title>([^<]+)<\/title>/, `<title>${titlePrefix}｜$1</title>`);
-  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=20260828-1" rel="stylesheet">\n</head>`);
+  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=20260828-2" rel="stylesheet">\n</head>`);
   html = html.replace(/<body class="([^"]+)"/, `<body class="full-style-preview $1"`);
   html = html.replace(/(<body[^>]*>)/, `$1${switcherMarkup(scheme, language)}`);
   html = html.replace(/<nav aria-label="(?:主要导航|Primary navigation)" class="desktop-nav">[\s\S]*?<\/nav>/, desktopNav(scheme, language));
