@@ -230,7 +230,46 @@ body.full-style-preview .language-menu-panel > a[aria-current="page"] { backgrou
 body.full-style-preview .language-menu-panel small { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .08em; }
 body.full-style-preview .language-menu-panel .is-disabled { color: var(--muted); cursor: not-allowed; }
 
-/* Refined Why Qunxin E — shared by all full-home comparisons. */
+/*
+ * Refined Why Qunxin E — shared structure, themed surface.
+ * The accepted compact layout stays identical so the comparison is about the
+ * five complete visual systems rather than five unrelated content treatments.
+ */
+html[data-full-preview="a"] body.full-style-preview {
+  --fp-why-bg: #111110;
+  --fp-why-ink: #f5f3ef;
+  --fp-why-muted: #aaa9a4;
+  --fp-why-line: #383733;
+}
+
+html[data-full-preview="b"] body.full-style-preview {
+  --fp-why-bg: #ffffff;
+  --fp-why-ink: #121a20;
+  --fp-why-muted: #59636a;
+  --fp-why-line: #d5dadd;
+}
+
+html[data-full-preview="c"] body.full-style-preview {
+  --fp-why-bg: #f8f7f3;
+  --fp-why-ink: #171717;
+  --fp-why-muted: #686762;
+  --fp-why-line: #cac9c3;
+}
+
+html[data-full-preview="d"] body.full-style-preview {
+  --fp-why-bg: #f7f4ed;
+  --fp-why-ink: #202522;
+  --fp-why-muted: #656b66;
+  --fp-why-line: #cfc9bd;
+}
+
+html[data-full-preview="e"] body.full-style-preview {
+  --fp-why-bg: #ffffff;
+  --fp-why-ink: #171a1d;
+  --fp-why-muted: #666b70;
+  --fp-why-line: #d9dadb;
+}
+
 html[data-full-preview="a"] body.full-style-preview .why-qunxin-section.fp-why-refined-e,
 html[data-full-preview="b"] body.full-style-preview .why-qunxin-section.fp-why-refined-e,
 html[data-full-preview="c"] body.full-style-preview .why-qunxin-section.fp-why-refined-e,
@@ -240,10 +279,10 @@ html[data-full-preview="e"] body.full-style-preview .why-qunxin-section.fp-why-r
   padding: 78px 0 72px;
   display: flex;
   align-items: center;
-  color: #171a1d;
-  background: #fff;
-  border-top: 1px solid #e1e1df;
-  border-bottom: 1px solid #e1e1df;
+  color: var(--fp-why-ink);
+  background: var(--fp-why-bg);
+  border-top: 1px solid var(--fp-why-line);
+  border-bottom: 1px solid var(--fp-why-line);
 }
 
 body.full-style-preview .fp-why-e-heading {
@@ -255,7 +294,7 @@ body.full-style-preview .fp-why-e-heading {
 body.full-style-preview .fp-why-e-heading > span {
   display: block;
   margin-bottom: 14px;
-  color: #666b70;
+  color: var(--fp-why-muted);
   font-size: 9px;
   font-weight: 600;
   letter-spacing: .16em;
@@ -263,7 +302,7 @@ body.full-style-preview .fp-why-e-heading > span {
 
 body.full-style-preview .fp-why-e-heading h2 {
   margin: 0 0 12px;
-  color: #171a1d;
+  color: var(--fp-why-ink);
   font-size: clamp(27px, 2.35vw, 34px);
   font-weight: 500;
   letter-spacing: -.035em;
@@ -272,7 +311,7 @@ body.full-style-preview .fp-why-e-heading h2 {
 
 body.full-style-preview .fp-why-e-heading p {
   margin: 0;
-  color: #5c6166;
+  color: var(--fp-why-muted);
   font-size: 12px;
   line-height: 1.7;
 }
@@ -292,7 +331,7 @@ body.full-style-preview .fp-why-e-specs article:last-child {
   text-align: center;
   background: transparent;
   border: 0;
-  border-right: 1px solid #d4d5d6;
+  border-right: 1px solid var(--fp-why-line);
   transform: none;
 }
 
@@ -305,7 +344,7 @@ body.full-style-preview .fp-why-e-specs strong {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  color: #171a1d;
+  color: var(--fp-why-ink);
   font-size: 34px;
   font-weight: 500;
   letter-spacing: -.045em;
@@ -324,7 +363,7 @@ body.full-style-preview .fp-why-e-specs sup {
 
 body.full-style-preview .fp-why-e-specs small {
   margin-left: 5px;
-  color: #696e73;
+  color: var(--fp-why-muted);
   font-size: .32em;
   font-weight: 400;
   letter-spacing: .05em;
@@ -333,7 +372,7 @@ body.full-style-preview .fp-why-e-specs small {
 body.full-style-preview .fp-why-e-specs h3 {
   margin: 0 0 7px;
   padding: 0;
-  color: #171a1d;
+  color: var(--fp-why-ink);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -.01em;
@@ -342,7 +381,7 @@ body.full-style-preview .fp-why-e-specs h3 {
 body.full-style-preview .fp-why-e-specs p {
   max-width: 250px;
   margin: 0 auto;
-  color: #666b70;
+  color: var(--fp-why-muted);
   font-size: 11px;
   line-height: 1.62;
 }
@@ -926,7 +965,7 @@ html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-colo
   body.full-style-preview .fp-why-e-specs {
     margin-top: 48px;
     grid-template-columns: minmax(0, 1fr);
-    border-top: 1px solid #d4d5d6;
+    border-top: 1px solid var(--fp-why-line);
   }
   body.full-style-preview .fp-why-e-specs article,
   body.full-style-preview .fp-why-e-specs article:first-child,
@@ -938,7 +977,7 @@ html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-colo
     column-gap: 20px;
     text-align: left;
     border-right: 0;
-    border-bottom: 1px solid #d4d5d6;
+    border-bottom: 1px solid var(--fp-why-line);
   }
   body.full-style-preview .fp-why-e-specs strong {
     grid-row: 1 / 3;
