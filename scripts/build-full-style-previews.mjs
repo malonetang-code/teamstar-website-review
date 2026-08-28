@@ -7,6 +7,8 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const baseline = "teamstar-current-review-baseline-2026-08-27^{}";
 const outputRoot = resolve(projectRoot, "full-style-preview");
 const schemes = ["a", "b", "c"];
+const baselineHeroVideo = "/teamstar-review/images/web/process-20260725/home-company-manufacturing-montage-20260730.mp4";
+const previewHeroVideo = "/teamstar-review/full-style-preview/media/home-manufacturing-closeup-preview-20260828.mp4";
 
 const schemeNames = {
   zh: { a: "强工业黑白", b: "精密白底", c: "工业编辑式" },
@@ -134,6 +136,7 @@ function buildPage(scheme, language) {
   const isEn = language === "en";
   const sourcePath = isEn ? "en/home/index.html" : "home/index.html";
   let html = readBaseline(sourcePath).replaceAll("/teamstar-website-review/", "/teamstar-review/");
+  html = html.replaceAll(baselineHeroVideo, previewHeroVideo);
   const pageRoot = previewPath(scheme, language);
   const titlePrefix = isEn ? `${scheme.toUpperCase()} Full Home Preview` : `${scheme.toUpperCase()} 完整首页预览`;
 
