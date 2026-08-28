@@ -132,6 +132,39 @@ function languageMenu(scheme, language) {
   return `<details class="language-menu"><summary aria-label="${isEn ? "Choose language" : "English / 选择语言"}"><span>EN</span></summary><div class="language-menu-panel"><strong>${label}</strong><a href="${previewPath(scheme, "zh")}" hreflang="zh-CN"${isEn ? "" : ' aria-current="page"'}><span>简体中文</span><small>ZH</small></a><a href="${previewPath(scheme, "en")}" hreflang="en"${isEn ? ' aria-current="page"' : ""}><span>English</span><small>EN</small></a><span class="is-disabled" aria-disabled="true"><span>Français</span><small>${planned}</small></span><span class="is-disabled" aria-disabled="true"><span>Español</span><small>${planned}</small></span></div></details>`;
 }
 
+function refinedWhyQunxin(language) {
+  const isEn = language === "en";
+  const copy = isEn
+    ? {
+        title: "Why customers choose Qunxin",
+        intro: "Experience, process control and flexible quantities support dependable long-term supply.",
+        yearsUnit: "YEARS",
+        yearsTitle: "Group manufacturing heritage",
+        yearsBody: "Established process records and experienced production teams support consistent manufacturing and long-term supply.",
+        processValue: "IN-HOUSE",
+        processTitle: "Critical processes",
+        processBody: "Important manufacturing stages are completed within our own facility for more direct quality control.",
+        quantityUnit: "PIECE",
+        quantityTitle: "Flexible custom quantities",
+        quantityBody: "From one-off trials to repeat production, quantities are arranged around the actual requirement.",
+      }
+    : {
+        title: "为什么选择群新",
+        intro: "制造经验、过程控制与数量灵活性，是我们支持长期合作的基础。",
+        yearsUnit: "年",
+        yearsTitle: "集团刀具制造积累",
+        yearsBody: "持续积累的工艺资料与经验团队，为稳定制造和长期供货提供基础。",
+        processValue: "关键工序",
+        processTitle: "自主完成",
+        processBody: "重要制造环节在厂内完成，质量控制更直接。",
+        quantityUnit: "件起",
+        quantityTitle: "灵活定制",
+        quantityBody: "从单件试制到批量供货，根据实际需求安排。",
+      };
+
+  return `<section class="why-qunxin-section fp-why-refined-e" aria-labelledby="why-qunxin-title"><div class="container fp-why-e-shell"><header class="fp-why-e-heading"><span>WHY QUNXIN</span><h2 id="why-qunxin-title">${copy.title}</h2><p>${copy.intro}</p></header><div class="fp-why-e-specs"><article><strong>40<sup>+</sup><small>${copy.yearsUnit}</small></strong><h3>${copy.yearsTitle}</h3><p>${copy.yearsBody}</p></article><article><strong class="fp-why-e-text-value">${copy.processValue}</strong><h3>${copy.processTitle}</h3><p>${copy.processBody}</p></article><article><strong>1<small>${copy.quantityUnit}</small></strong><h3>${copy.quantityTitle}</h3><p>${copy.quantityBody}</p></article></div></div></section>`;
+}
+
 function buildPage(scheme, language) {
   const isEn = language === "en";
   const sourcePath = isEn ? "en/home/index.html" : "home/index.html";
@@ -139,10 +172,11 @@ function buildPage(scheme, language) {
   html = html.replaceAll(baselineHeroVideo, previewHeroVideo);
   const pageRoot = previewPath(scheme, language);
   const titlePrefix = isEn ? `${scheme.toUpperCase()} Full Home Preview` : `${scheme.toUpperCase()} 完整首页预览`;
+  const stylesheetVersion = "20260828-3";
 
   html = html.replace(/<html lang="([^"]+)">/, `<html lang="$1" data-full-preview="${scheme}">`);
   html = html.replace(/<title>([^<]+)<\/title>/, `<title>${titlePrefix}｜$1</title>`);
-  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=20260828-2" rel="stylesheet">\n</head>`);
+  html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=${stylesheetVersion}" rel="stylesheet">\n</head>`);
   html = html.replace(/<body class="([^"]+)"/, `<body class="full-style-preview $1"`);
   html = html.replace(/(<body[^>]*>)/, `$1${switcherMarkup(scheme, language)}`);
   html = html.replace(/<nav aria-label="(?:主要导航|Primary navigation)" class="desktop-nav">[\s\S]*?<\/nav>/, desktopNav(scheme, language));
@@ -154,6 +188,8 @@ function buildPage(scheme, language) {
     html = html.replace('href="/teamstar-review/" class="brand"', `href="${pageRoot}" class="brand"`);
   }
   html = html.replace(/<a href="\/teamstar-review\/(?:en\/)?" class="language-link"[^>]*>[^<]+<\/a>/, languageMenu(scheme, language));
+
+  html = html.replace(/<section class="why-qunxin-section"[\s\S]*?<\/section>/, refinedWhyQunxin(language));
 
   const outputPath = resolve(outputRoot, scheme, isEn ? "en/index.html" : "index.html");
   mkdirSync(dirname(outputPath), { recursive: true });
