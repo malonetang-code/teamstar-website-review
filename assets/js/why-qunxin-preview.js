@@ -4,7 +4,7 @@
   const panels = Array.from(document.querySelectorAll("[data-preview-panel]"));
   const languageLink = document.querySelector("[data-language-link]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const allowedStyles = new Set(["a", "b", "c"]);
+  const allowedStyles = new Set(["a", "b", "c", "d"]);
 
   function selectedStyle() {
     const value = new URLSearchParams(window.location.search).get("style");
@@ -49,6 +49,8 @@
   }
 
   function showStyle(style, updateHistory = false) {
+    body.classList.toggle("is-style-d", style === "d");
+
     panels.forEach((panel) => {
       const active = panel.dataset.previewPanel === style;
       panel.hidden = !active;
@@ -81,7 +83,10 @@
     link.addEventListener("click", (event) => {
       event.preventDefault();
       showStyle(link.dataset.styleLink, true);
-      document.querySelector(".why-review-intro")?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
+      const target = link.dataset.styleLink === "d"
+        ? document.querySelector('[data-preview-panel="d"]')
+        : document.querySelector(".why-review-intro");
+      target?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
     });
   });
 

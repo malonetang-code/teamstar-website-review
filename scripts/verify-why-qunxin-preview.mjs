@@ -28,9 +28,11 @@ for (const page of pages) {
     ['data-preview-panel="a"', "variant A"],
     ['data-preview-panel="b"', "variant B"],
     ['data-preview-panel="c"', "variant C"],
+    ['data-preview-panel="d"', "variant D"],
     ['data-style-link="a"', "A selector"],
     ['data-style-link="b"', "B selector"],
     ['data-style-link="c"', "C selector"],
+    ['data-style-link="d"', "D selector"],
     ['data-media-toggle', "video controls"],
     ['data-proof-tab="process"', "accessible proof tabs"],
   ];
@@ -46,8 +48,8 @@ for (const phrase of [
   "重要制造环节在厂内完成，质量控制更直接。",
   "从单件试制到批量供货，根据实际需求安排。",
 ]) {
-  if ((zh.match(new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 3) {
-    throw new Error(`Chinese copy must appear identically in all three variants: ${phrase}`);
+  if ((zh.match(new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 4) {
+    throw new Error(`Chinese copy must appear identically in all four variants: ${phrase}`);
   }
 }
 
@@ -58,8 +60,8 @@ for (const phrase of [
   "Important manufacturing stages are completed within our own facility for more direct quality control.",
   "From one-off trials to repeat production, quantities are arranged around the actual requirement.",
 ]) {
-  if ((en.match(new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 3) {
-    throw new Error(`English copy must appear identically in all three variants: ${phrase}`);
+  if ((en.match(new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 4) {
+    throw new Error(`English copy must appear identically in all four variants: ${phrase}`);
   }
 }
 
