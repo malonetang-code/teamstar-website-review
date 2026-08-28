@@ -22,6 +22,8 @@
     document.body.classList.add("site-theme-preview-active");
   }
 
+  mountProductHeroSample();
+
   propagateThemeLinks();
 
   if (!validTheme(themeFromHome)) {
@@ -88,6 +90,34 @@
     switcher.append(home);
 
     document.body.prepend(switcher);
+  }
+
+  function mountProductHeroSample() {
+    const isProductDirectory = /^\/(?:teamstar-review|teamstar-website-review)\/(?:en\/)?products\/$/.test(
+      window.location.pathname,
+    );
+    if (query.get("hero") !== "real-photo" || !isProductDirectory) return;
+
+    const hero = document.querySelector(".page-hero");
+    const picture = hero?.querySelector(":scope > picture");
+    const image = picture?.querySelector("img");
+    if (!hero || !picture || !image) return;
+
+    document.body.classList.add("product-hero-photo-sample");
+    picture.querySelectorAll("source").forEach((source) => source.remove());
+    image.removeAttribute("srcset");
+    image.removeAttribute("sizes");
+    image.src = "/teamstar-review/full-style-preview/media/product-hero-laser-sample.jpg";
+    image.width = 1920;
+    image.height = 1080;
+    image.alt = "";
+    image.decoding = "async";
+    image.fetchPriority = "high";
+
+    const label = document.createElement("span");
+    label.className = "product-hero-sample-label";
+    label.textContent = isEnglish ? "PRODUCT HERO · LOCAL REVIEW" : "产品首图 · 本地样图";
+    hero.append(label);
   }
 
   function propagateThemeLinks() {
