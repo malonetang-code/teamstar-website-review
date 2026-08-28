@@ -1653,6 +1653,17 @@ html[lang="en"] .redesign-2w .hero-copy h1 {
   background: rgba(18, 20, 22, 0.76);
 }
 
+/* Keep the shared product directory hero quiet and editorial. */
+.redesign-2w.page-products .page-hero {
+  background: #f7f8f7;
+  border-bottom: 1px solid var(--line);
+}
+
+.redesign-2w.page-products .page-hero::before,
+.redesign-2w.page-products .page-hero > picture {
+  display: none;
+}
+
 .redesign-2w .page-hero h1 {
   max-width: 800px;
   font-size: 50px;
