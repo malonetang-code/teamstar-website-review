@@ -467,3 +467,34 @@ html[data-full-preview="c"] body.full-style-preview .site-footer { background: #
   body.full-style-preview *::before,
   body.full-style-preview *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/teamstar-review/assets/fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/teamstar-review/assets/fonts/ibm-plex-sans-latin-500-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/teamstar-review/assets/fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 700 800;
+  font-display: swap;
+  src: url("/teamstar-review/assets/fonts/ibm-plex-sans-latin-700-normal.woff2") format("woff2");
+}
