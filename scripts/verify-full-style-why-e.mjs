@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const styles = ["a", "b", "c", "d"];
+const styles = ["a", "b", "c", "d", "e"];
 const pages = styles.flatMap((style) => [
   [`full-style-preview/${style}/index.html`, "为什么选择群新", "关键工序", "1<small>件起</small>"],
   [`full-style-preview/${style}/en/index.html`, "Why customers choose Qunxin", "IN-HOUSE", "1<small>PIECE</small>"],
@@ -17,7 +17,7 @@ for (const [relativePath, title, process, quantity] of pages) {
     title,
     process,
     quantity,
-    "full-style-preview.css?v=20260828-3",
+    "full-style-preview.css?v=20260828-4",
     'name="robots" content="noindex,nofollow,noarchive"',
   ]) {
     if (!html.includes(required)) {
@@ -33,6 +33,9 @@ for (const [relativePath, title, process, quantity] of pages) {
 const css = fs.readFileSync(path.join(root, "full-style-preview/full-style-preview.css"), "utf8");
 for (const required of [
   'html[data-full-preview="d"] body.full-style-preview .why-qunxin-section.fp-why-refined-e',
+  'html[data-full-preview="e"] body.full-style-preview .why-qunxin-section.fp-why-refined-e',
+  'html[data-full-preview="e"] body.full-style-preview .home-product-section',
+  'html[data-full-preview="e"] body.full-style-preview .rfq-band',
   "grid-template-columns: repeat(3, minmax(0, 1fr))",
   "grid-template-columns: 112px minmax(0, 1fr)",
   "@media (max-width: 767px)",
@@ -47,11 +50,11 @@ const buildScript = fs.readFileSync(path.join(root, "scripts/build-full-style-pr
 for (const required of [
   'const baseline = "teamstar-current-review-baseline-2026-08-27^{}"',
   "refinedWhyQunxin(language)",
-  'const stylesheetVersion = "20260828-3"',
+  'const stylesheetVersion = "20260828-4"',
 ]) {
   if (!buildScript.includes(required)) {
     throw new Error(`build-full-style-previews.mjs is missing ${required}`);
   }
 }
 
-console.log("Full-style Why Qunxin E verification passed for A/B/C/D in Chinese and English.");
+console.log("Full-style Why Qunxin E verification passed for A/B/C/D/E in Chinese and English.");

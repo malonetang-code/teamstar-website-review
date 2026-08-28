@@ -6,13 +6,13 @@ import { fileURLToPath } from "node:url";
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const baseline = "teamstar-current-review-baseline-2026-08-27^{}";
 const outputRoot = resolve(projectRoot, "full-style-preview");
-const schemes = ["a", "b", "c", "d"];
+const schemes = ["a", "b", "c", "d", "e"];
 const baselineHeroVideo = "/teamstar-review/images/web/process-20260725/home-company-manufacturing-montage-20260730.mp4";
 const previewHeroVideo = "/teamstar-review/full-style-preview/media/home-manufacturing-closeup-preview-20260828.mp4";
 
 const schemeNames = {
-  zh: { a: "强工业黑白", b: "精密白底", c: "工业编辑式", d: "现代欧式" },
-  en: { a: "Industrial Black", b: "Precision White", c: "Editorial Industrial", d: "European Modern" },
+  zh: { a: "强工业黑白", b: "精密白底", c: "工业编辑式", d: "现代欧式", e: "克制极简" },
+  en: { a: "Industrial Black", b: "Precision White", c: "Editorial Industrial", d: "European Modern", e: "Restrained Minimal" },
 };
 
 function readBaseline(path) {
@@ -172,7 +172,7 @@ function buildPage(scheme, language) {
   html = html.replaceAll(baselineHeroVideo, previewHeroVideo);
   const pageRoot = previewPath(scheme, language);
   const titlePrefix = isEn ? `${scheme.toUpperCase()} Full Home Preview` : `${scheme.toUpperCase()} 完整首页预览`;
-  const stylesheetVersion = "20260828-3";
+  const stylesheetVersion = "20260828-4";
 
   html = html.replace(/<html lang="([^"]+)">/, `<html lang="$1" data-full-preview="${scheme}">`);
   html = html.replace(/<title>([^<]+)<\/title>/, `<title>${titlePrefix}｜$1</title>`);
