@@ -96,7 +96,29 @@
     const isProductDirectory = /^\/(?:teamstar-review|teamstar-website-review)\/(?:en\/)?products\/$/.test(
       window.location.pathname,
     );
-    if (query.get("hero") !== "real-photo" || !isProductDirectory) return;
+    const samples = {
+      "real-photo": {
+        src: "/teamstar-review/full-style-preview/media/product-hero-laser-sample.jpg",
+        width: 1920,
+        height: 1080,
+        label: isEnglish ? "PRODUCT HERO · LOCAL REVIEW" : "产品首图 · 本地样图",
+      },
+      "surface-inspection": {
+        src: "/teamstar-review/images/web/process-20260725/06-surface-inspection-full.jpg",
+        width: 1600,
+        height: 1202,
+        label: isEnglish ? "PHOTO A · SURFACE INSPECTION" : "照片 A · 刀具表面检测",
+      },
+      "finished-blades": {
+        src: "/teamstar-review/images/web/process-20260725/08-edge-protection-full.jpg",
+        width: 1600,
+        height: 1202,
+        label: isEnglish ? "PHOTO C · FINISHED BLADES" : "照片 C · 成品刀具排列",
+      },
+    };
+    const sampleKey = query.get("hero");
+    const sample = samples[sampleKey];
+    if (!sample || !isProductDirectory) return;
 
     const hero = document.querySelector(".page-hero");
     const picture = hero?.querySelector(":scope > picture");
@@ -104,19 +126,20 @@
     if (!hero || !picture || !image) return;
 
     document.body.classList.add("product-hero-photo-sample");
+    document.body.dataset.productHeroSample = sampleKey;
     picture.querySelectorAll("source").forEach((source) => source.remove());
     image.removeAttribute("srcset");
     image.removeAttribute("sizes");
-    image.src = "/teamstar-review/full-style-preview/media/product-hero-laser-sample.jpg";
-    image.width = 1920;
-    image.height = 1080;
+    image.src = sample.src;
+    image.width = sample.width;
+    image.height = sample.height;
     image.alt = "";
     image.decoding = "async";
     image.fetchPriority = "high";
 
     const label = document.createElement("span");
     label.className = "product-hero-sample-label";
-    label.textContent = isEnglish ? "PRODUCT HERO · LOCAL REVIEW" : "产品首图 · 本地样图";
+    label.textContent = sample.label;
     hero.append(label);
   }
 

@@ -503,7 +503,7 @@ html[data-site-theme-preview] body.site-theme-preview-active .page-hero .button-
   border-color: var(--stp-hero-ink);
 }
 
-/* Additive product-directory hero sample. Activated only with ?hero=real-photo. */
+/* Additive product-directory hero samples. Activated only with a supported ?hero value. */
 html[data-site-theme-preview] body.site-theme-preview-active.page-products.product-hero-photo-sample .page-hero {
   min-height: clamp(460px, 42vw, 560px);
   overflow: hidden;
@@ -521,6 +521,39 @@ html[data-site-theme-preview] body.product-hero-photo-sample .page-hero > pictur
   object-fit: cover;
   object-position: 54% 54%;
   filter: saturate(.82) contrast(1.06);
+}
+
+html[data-site-theme-preview] body[data-product-hero-sample="surface-inspection"] .page-hero > picture img {
+  object-position: 64% 56%;
+  filter: saturate(.76) contrast(1.04);
+}
+
+html[data-site-theme-preview] body[data-product-hero-sample="finished-blades"] .page-hero {
+  background: var(--stp-deep);
+}
+
+html[data-site-theme-preview] body[data-product-hero-sample="finished-blades"] .page-hero > picture {
+  left: 43%;
+  width: 57%;
+}
+
+html[data-site-theme-preview] body[data-product-hero-sample="finished-blades"] .page-hero > picture img {
+  object-position: 50% 43%;
+  filter: saturate(.68) contrast(1.04);
+}
+
+html[data-site-theme-preview] body[data-product-hero-sample="finished-blades"] .page-hero::before {
+  background: linear-gradient(90deg, var(--stp-deep) 0%, var(--stp-deep) 42%, color-mix(in srgb, var(--stp-deep) 72%, transparent) 54%, transparent 72%);
+}
+
+html[data-site-theme-preview="b"] body[data-product-hero-sample="finished-blades"] .page-hero,
+html[data-site-theme-preview="d"] body[data-product-hero-sample="finished-blades"] .page-hero {
+  background: var(--stp-canvas);
+}
+
+html[data-site-theme-preview="b"] body[data-product-hero-sample="finished-blades"] .page-hero::before,
+html[data-site-theme-preview="d"] body[data-product-hero-sample="finished-blades"] .page-hero::before {
+  background: linear-gradient(90deg, var(--stp-canvas) 0%, var(--stp-canvas) 42%, color-mix(in srgb, var(--stp-canvas) 74%, transparent) 54%, transparent 72%);
 }
 
 html[data-site-theme-preview] body.product-hero-photo-sample .page-hero::before {
@@ -1050,6 +1083,29 @@ html[data-site-theme-preview] body.guide-refined :is(
 
   html[data-site-theme-preview] body.product-hero-photo-sample .page-hero > picture img {
     object-position: 61% 50%;
+  }
+
+  html[data-site-theme-preview] body[data-product-hero-sample="surface-inspection"] .page-hero > picture img {
+    object-position: 67% 52%;
+  }
+
+  html[data-site-theme-preview] body[data-product-hero-sample="finished-blades"] .page-hero > picture {
+    inset: 0 0 auto;
+    width: 100%;
+    height: 52%;
+  }
+
+  html[data-site-theme-preview] body[data-product-hero-sample="finished-blades"] .page-hero > picture img {
+    object-position: 50% 35%;
+  }
+
+  html[data-site-theme-preview] body[data-product-hero-sample="finished-blades"] .page-hero::before {
+    background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--stp-deep) 74%, transparent) 35%, var(--stp-deep) 54%, var(--stp-deep) 100%);
+  }
+
+  html[data-site-theme-preview="b"] body[data-product-hero-sample="finished-blades"] .page-hero::before,
+  html[data-site-theme-preview="d"] body[data-product-hero-sample="finished-blades"] .page-hero::before {
+    background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--stp-canvas) 76%, transparent) 35%, var(--stp-canvas) 54%, var(--stp-canvas) 100%);
   }
 
   html[data-site-theme-preview] body.product-hero-photo-sample .page-hero-inner {
