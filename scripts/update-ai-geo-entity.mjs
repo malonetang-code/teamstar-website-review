@@ -21,10 +21,10 @@ const organization = {
   foundingDate: "2023-11-01",
   email: "ga01@teamstarmfg.com",
   telephone: "+8615305070074",
-  parentOrganization: {
+  memberOf: {
     "@type": "Organization",
-    name: "Great Knives Manufacture Co., Ltd.",
-    alternateName: "Wei Qun Cutting Tools Group",
+    name: "Wei Qun Cutting Tools Group",
+    alternateName: "伟群制刀工业集团",
     url: "https://www.greatknives.com.tw/",
   },
   contactPoint: [

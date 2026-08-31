@@ -88,8 +88,15 @@ for (const file of htmlFiles()) {
   if (organization.alternateName?.includes("Wei Qun Cutting Tools Group")) {
     errors.push(`${relative}: parent group is incorrectly listed as an alternate company name`);
   }
-  if (!organization.parentOrganization || !organization.knowsAbout) {
-    errors.push(`${relative}: parent or manufacturing scope evidence is missing`);
+  if (organization.parentOrganization) {
+    errors.push(`${relative}: group membership must not be represented as a parent organization`);
+  }
+  if (
+    organization.memberOf?.name !== "Wei Qun Cutting Tools Group" ||
+    organization.memberOf?.alternateName !== "伟群制刀工业集团" ||
+    !organization.knowsAbout
+  ) {
+    errors.push(`${relative}: confirmed group membership or manufacturing scope evidence is missing`);
   }
   if (!html.includes('name="robots" content="noindex,nofollow,noarchive"')) {
     errors.push(`${relative}: local review robots protection missing`);
