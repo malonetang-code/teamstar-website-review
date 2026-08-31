@@ -71,6 +71,9 @@ for (const file of htmlFiles()) {
   if (!html.includes('name="robots" content="noindex,nofollow,noarchive"')) {
     errors.push(`${relative}: local review robots protection missing`);
   }
+  if (html.includes("info@teamstarmfg.com")) {
+    errors.push(`${relative}: retired info mailbox remains`);
+  }
 }
 
 const companyChecks = [

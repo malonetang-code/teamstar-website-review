@@ -83,6 +83,25 @@ function updateOrganization(html) {
   return { html: next, found: updated };
 }
 
+function updateRetiredMailbox(html, relative) {
+  let next = html.replaceAll(
+    '<a href="mailto:info@teamstarmfg.com">info@teamstarmfg.com</a>',
+    '<a href="mailto:ga01@teamstarmfg.com">ga01@teamstarmfg.com</a>',
+  );
+  if (relative.startsWith("en/")) {
+    next = next.replace(
+      '<a href="mailto:ga01@teamstarmfg.com">ga01@teamstarmfg.com</a> <a href="tel:',
+      '<a href="mailto:ga01@teamstarmfg.com">General enquiries: ga01@teamstarmfg.com</a> <a href="mailto:rd01@teamstarmfg.com">Sales enquiries: rd01@teamstarmfg.com</a> <a href="tel:',
+    );
+  } else {
+    next = next.replace(
+      '<a href="mailto:ga01@teamstarmfg.com">ga01@teamstarmfg.com</a> <a href="tel:',
+      '<a href="mailto:ga01@teamstarmfg.com">一般咨询：ga01@teamstarmfg.com</a> <a href="mailto:rd01@teamstarmfg.com">销售咨询：rd01@teamstarmfg.com</a> <a href="tel:',
+    );
+  }
+  return next;
+}
+
 const companyCopy = new Map([
   [
     "company/index.html",
@@ -112,7 +131,7 @@ for (const file of htmlFiles()) {
   const entityUpdate = updateOrganization(original);
   if (!entityUpdate.found) continue;
   found += 1;
-  let next = entityUpdate.html;
+  let next = updateRetiredMailbox(entityUpdate.html, relative);
 
   for (const [from, to] of companyCopy.get(relative) || []) {
     if (next.includes(from)) next = next.replace(from, to);
