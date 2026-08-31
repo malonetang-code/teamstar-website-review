@@ -357,7 +357,7 @@ body.full-style-preview .fp-why-e-specs strong {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  color: var(--fp-why-ink);
+  color: var(--accent);
   font-size: 34px;
   font-weight: 500;
   letter-spacing: -.045em;
