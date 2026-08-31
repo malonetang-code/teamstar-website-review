@@ -178,6 +178,38 @@ body.redesign-2w {
   margin-top: 30px;
 }
 
+/* Technical guide bridge on product detail pages */
+.redesign-2w .product-guide-link-section {
+  color: #fff;
+  background: var(--ink);
+}
+
+.redesign-2w .product-guide-link {
+  display: grid;
+  align-items: center;
+  gap: 18px;
+  padding-top: 34px;
+  padding-bottom: 34px;
+}
+
+.redesign-2w .product-guide-link h2 {
+  max-width: 620px;
+  margin: 7px 0 0;
+  color: #fff;
+  font-size: 25px;
+}
+
+.redesign-2w .product-guide-link p {
+  max-width: 600px;
+  margin: 0;
+  color: #c7cbcd;
+  font-size: 14px;
+}
+
+.redesign-2w .product-guide-link .text-link {
+  color: #fff;
+}
+
 /* Home hero */
 .redesign-2w .home-hero {
   min-height: 680px;
@@ -825,6 +857,13 @@ html[lang="en"] .redesign-2w .hero-copy h1 {
 @media (min-width: 768px) {
   .redesign-2w .section {
     padding: 92px 0;
+  }
+
+  .redesign-2w .product-guide-link {
+    grid-template-columns: minmax(280px, 1fr) minmax(280px, 0.9fr) auto;
+    gap: 32px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .redesign-2w .section-head h2 {

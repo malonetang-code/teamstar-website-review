@@ -1064,6 +1064,38 @@ html[data-site-theme-preview="e"] body.site-theme-preview-active .rfq-band p {
   color: var(--muted);
 }
 
+/* Product-to-guide bridge stays editorial and follows each concept's contrast. */
+html[data-site-theme-preview] body.site-theme-preview-active .product-guide-link-section {
+  color: var(--stp-deep-ink);
+  background: var(--stp-deep);
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .product-guide-link h2,
+html[data-site-theme-preview] body.site-theme-preview-active .product-guide-link .text-link {
+  color: var(--stp-deep-ink);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .product-guide-link p {
+  color: var(--stp-deep-muted);
+}
+
+html[data-site-theme-preview="e"] body.site-theme-preview-active .product-guide-link-section {
+  color: var(--ink);
+  background: var(--paper-soft);
+  border-color: var(--line);
+}
+
+html[data-site-theme-preview="e"] body.site-theme-preview-active .product-guide-link h2,
+html[data-site-theme-preview="e"] body.site-theme-preview-active .product-guide-link .text-link {
+  color: var(--ink);
+}
+
+html[data-site-theme-preview="e"] body.site-theme-preview-active .product-guide-link p {
+  color: var(--muted);
+}
+
 html[data-site-theme-preview] body.site-theme-preview-active .site-footer {
   color: var(--stp-deep-ink);
   background: var(--stp-deep);
