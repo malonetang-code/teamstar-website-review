@@ -102,17 +102,27 @@ for (const file of htmlFiles()) {
   ) {
     errors.push(`${relative}: confirmed group membership or manufacturing scope evidence is missing`);
   }
+  const facilityProperties = organization.location?.additionalProperty;
+  const manufacturingSpace = Array.isArray(facilityProperties)
+    ? facilityProperties.find((property) => property?.name === "Manufacturing space")
+    : null;
+  const warehouseSpace = Array.isArray(facilityProperties)
+    ? facilityProperties.find((property) => property?.name === "Warehouse space")
+    : null;
   if (
     organization.location?.["@type"] !== "Place" ||
     organization.location?.["@id"] !== "https://www.teamstarmfg.com/company/#zhangzhou-manufacturing-site" ||
     organization.location?.name !== "Zhangzhou manufacturing site" ||
-    organization.location?.additionalProperty?.["@type"] !== "PropertyValue" ||
-    organization.location?.additionalProperty?.name !== "Manufacturing space" ||
-    organization.location?.additionalProperty?.minValue !== 10000 ||
-    organization.location?.additionalProperty?.unitCode !== "MTK" ||
-    organization.location?.additionalProperty?.unitText !== "square metres"
+    manufacturingSpace?.["@type"] !== "PropertyValue" ||
+    manufacturingSpace?.minValue !== 10000 ||
+    manufacturingSpace?.unitCode !== "MTK" ||
+    manufacturingSpace?.unitText !== "square metres" ||
+    warehouseSpace?.["@type"] !== "PropertyValue" ||
+    warehouseSpace?.value !== 2000 ||
+    warehouseSpace?.unitCode !== "MTK" ||
+    warehouseSpace?.unitText !== "square metres"
   ) {
-    errors.push(`${relative}: confirmed 10,000+ square metre Zhangzhou site fact is missing`);
+    errors.push(`${relative}: confirmed Zhangzhou manufacturing and warehouse space facts are missing`);
   }
   const certification = organization.hasCertification;
   if (
@@ -225,7 +235,8 @@ const companyChecks = [
       "群新工业（漳州）有限公司是伟群制刀工业集团成员企业",
       "漳州生产基地启动搬迁",
       "群新工业启动生产基地搬迁工作。",
-      "漳州基地生产厂房超过 10,000 平方米。",
+      "漳州基地生产厂房超过 10,000 平方米",
+      "另设 2,000 平方米仓储空间。",
     ],
     [
       "40+",
@@ -248,7 +259,8 @@ const companyChecks = [
       "Teamstar Manufacturing (Zhangzhou) Ltd.",
       "Relocation to the Zhangzhou base began",
       "Qunxin Industrial began the move to its Zhangzhou manufacturing base.",
-      "The Zhangzhou site provides more than 10,000 m² of manufacturing space.",
+      "The Zhangzhou site provides more than 10,000 m² of manufacturing space",
+      "with a further 2,000 m² dedicated to warehousing.",
     ],
     [
       "40+",
@@ -278,5 +290,5 @@ if (errors.length) {
 }
 
 console.log(
-  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the 10,000+ square metre Zhangzhou site fact, and expose the verified bilingual ISO 9001 certificate evidence.`,
+  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, and expose the verified bilingual ISO 9001 certificate evidence.`,
 );

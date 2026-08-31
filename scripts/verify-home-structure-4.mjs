@@ -90,6 +90,7 @@ const pages = [
 
 for (const page of pages) {
   const html = read(page.file);
+  expect(!html.includes("2,000"), `${page.file}: warehouse figure should remain off the Home page`);
   expect(html.includes(`<html lang="${page.locale}">`), `${page.file}: locale is incorrect`);
   expect(
     html.includes('name="robots" content="noindex,nofollow,noarchive"'),

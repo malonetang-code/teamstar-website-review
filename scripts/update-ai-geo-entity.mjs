@@ -40,13 +40,22 @@ const organization = {
       addressRegion: "Fujian",
       addressCountry: "CN",
     },
-    additionalProperty: {
-      "@type": "PropertyValue",
-      name: "Manufacturing space",
-      minValue: 10000,
-      unitCode: "MTK",
-      unitText: "square metres",
-    },
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Manufacturing space",
+        minValue: 10000,
+        unitCode: "MTK",
+        unitText: "square metres",
+      },
+      {
+        "@type": "PropertyValue",
+        name: "Warehouse space",
+        value: 2000,
+        unitCode: "MTK",
+        unitText: "square metres",
+      },
+    ],
   },
   hasCertification: {
     "@type": "Certification",
@@ -227,15 +236,15 @@ const facilityCopy = new Map([
   [
     "company/index.html",
     [
-      "<p>现场照片展示漳州基地的厂区入口、办公与生产楼、制造车间、数控设备区和检测室。</p>",
       "<p>漳州基地生产厂房超过 10,000 平方米。以下现场照片展示厂区入口、办公与生产楼、制造车间、数控设备区和检测室。</p>",
+      "<p>漳州基地生产厂房超过 10,000 平方米，另设 2,000 平方米仓储空间。以下现场照片展示厂区入口、办公与生产楼、制造车间、数控设备区和检测室。</p>",
     ],
   ],
   [
     "en/company/index.html",
     [
-      "<p>The photographs show the site entrance, office and production building, manufacturing workshop, CNC equipment area and inspection room at the Zhangzhou base.</p>",
       "<p>The Zhangzhou site provides more than 10,000 m² of manufacturing space. The photographs show the site entrance, office and production building, manufacturing workshop, CNC equipment area and inspection room.</p>",
+      "<p>The Zhangzhou site provides more than 10,000 m² of manufacturing space, with a further 2,000 m² dedicated to warehousing. The photographs show the site entrance, office and production building, manufacturing workshop, CNC equipment area and inspection room.</p>",
     ],
   ],
 ]);
@@ -282,9 +291,12 @@ const homeFacilityProof = new Map([
 function updateFacilityCopy(html, relative) {
   let next = html;
   const company = facilityCopy.get(relative);
-  if (company && !next.includes("10,000")) {
-    if (!next.includes(company[0])) throw new Error(`${relative}: factory evidence copy marker not found`);
-    next = next.replace(company[0], company[1]);
+  if (company) {
+    if (next.includes(company[0])) {
+      next = next.replace(company[0], company[1]);
+    } else if (!next.includes(company[1])) {
+      throw new Error(`${relative}: factory evidence copy marker not found`);
+    }
   }
   const home = homeFacilityProof.get(relative);
   if (home) {
