@@ -23,6 +23,8 @@ const pages = [
       "集团刀具制造积累",
       "关键工序",
       "1<small>件起</small>",
+      "10,000+<small>m²</small>",
+      "漳州基地生产厂房超过 10,000 平方米。",
       "工业刀具、手工具与裁布设备",
       "手工具",
       "裁布机成品",
@@ -39,6 +41,8 @@ const pages = [
       "集团刀具制造积累",
       "关键工序",
       "1<small>件起</small>",
+      "10,000+<small>m²</small>",
+      "漳州基地生产厂房超过 10,000 平方米。",
       "工业刀具、手工具与裁布设备",
       "手工具",
       "裁布机成品",
@@ -55,6 +59,8 @@ const pages = [
       "Group knife manufacturing since 1978",
       "Critical processes",
       "1<small>PIECE</small>",
+      "10,000+<small>m²</small>",
+      "More than 10,000 m² of manufacturing space.",
       "Industrial Knives, Hand Tools and Cloth Cutting Machines",
       "Hand Tools",
       "Complete Cloth Cutting Machines",
@@ -71,6 +77,8 @@ const pages = [
       "Group knife manufacturing since 1978",
       "Critical processes",
       "1<small>PIECE</small>",
+      "10,000+<small>m²</small>",
+      "More than 10,000 m² of manufacturing space.",
       "Industrial Knives, Hand Tools and Cloth Cutting Machines",
       "Hand Tools",
       "Complete Cloth Cutting Machines",
@@ -109,8 +117,8 @@ for (const page of pages) {
     `${page.file}: visible Home section order is incorrect`,
   );
   expect(
-    (html.match(/class="why-proof"/g) || []).length === 3,
-    `${page.file}: expected three Why Qunxin proof points`,
+    (html.match(/class="why-proof"/g) || []).length === 4,
+    `${page.file}: expected four Why Qunxin proof points`,
   );
   expect(
     (html.match(/class="blade-card(?: product-pending-card)?"/g) || []).length === 8,
@@ -180,7 +188,7 @@ console.log(
     {
       pages: pages.length,
       sectionOrder: ["hero", "logos", "why-qunxin", "products", "contact"],
-      proofPoints: 3,
+      proofPoints: 4,
       productCategories: 8,
       pendingPhotoCategories: 2,
       noindex: true,

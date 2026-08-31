@@ -137,32 +137,36 @@ function refinedWhyQunxin(language) {
   const copy = isEn
     ? {
         title: "Why customers choose Qunxin",
-        intro: "Group knife-making experience since 1978, in-house process control and flexible quantities support dependable long-term supply.",
+        intro: "Group knife-making experience, the Zhangzhou manufacturing site, in-house process control and flexible quantities support dependable long-term supply.",
         yearsValue: "1978",
         yearsTitle: "Group knife manufacturing since 1978",
         yearsBody: "The group was founded in Taiwan in 1978 and has manufactured industrial knives since then, building process knowledge over time.",
         processValue: "IN-HOUSE",
         processTitle: "Critical processes",
         processBody: "Important manufacturing stages are completed within our own facility for more direct quality control.",
+        spaceTitle: "Zhangzhou manufacturing site",
+        spaceBody: "More than 10,000 m² of manufacturing space.",
         quantityUnit: "PIECE",
         quantityTitle: "Flexible custom quantities",
         quantityBody: "From one-off trials to repeat production, quantities are arranged around the actual requirement.",
       }
     : {
         title: "为什么选择群新",
-        intro: "始于 1978 年的集团制刀积累、厂内过程控制与灵活数量，是支持长期合作的基础。",
+        intro: "集团制刀积累、漳州生产基地、厂内过程控制与灵活数量，是支持长期合作的基础。",
         yearsValue: "1978",
         yearsTitle: "集团刀具制造积累",
         yearsBody: "集团于 1978 年在台湾创立，并开始制造工业刀具，持续积累工艺资料与生产经验。",
         processValue: "关键工序",
         processTitle: "自主完成",
         processBody: "重要制造环节在厂内完成，质量控制更直接。",
+        spaceTitle: "漳州生产厂房",
+        spaceBody: "漳州基地生产厂房超过 10,000 平方米。",
         quantityUnit: "件起",
         quantityTitle: "灵活定制",
         quantityBody: "从单件试制到批量供货，根据实际需求安排。",
       };
 
-  return `<section class="why-qunxin-section fp-why-refined-e" aria-labelledby="why-qunxin-title"><div class="container fp-why-e-shell"><header class="fp-why-e-heading"><span>WHY QUNXIN</span><h2 id="why-qunxin-title">${copy.title}</h2><p>${copy.intro}</p></header><div class="fp-why-e-specs"><article><strong>${copy.yearsValue}</strong><h3>${copy.yearsTitle}</h3><p>${copy.yearsBody}</p></article><article><strong class="fp-why-e-text-value">${copy.processValue}</strong><h3>${copy.processTitle}</h3><p>${copy.processBody}</p></article><article><strong>1<small>${copy.quantityUnit}</small></strong><h3>${copy.quantityTitle}</h3><p>${copy.quantityBody}</p></article></div></div></section>`;
+  return `<section class="why-qunxin-section fp-why-refined-e" aria-labelledby="why-qunxin-title"><div class="container fp-why-e-shell"><header class="fp-why-e-heading"><span>WHY QUNXIN</span><h2 id="why-qunxin-title">${copy.title}</h2><p>${copy.intro}</p></header><div class="fp-why-e-specs"><article><strong>${copy.yearsValue}</strong><h3>${copy.yearsTitle}</h3><p>${copy.yearsBody}</p></article><article><strong class="fp-why-e-text-value">${copy.processValue}</strong><h3>${copy.processTitle}</h3><p>${copy.processBody}</p></article><article><strong>1<small>${copy.quantityUnit}</small></strong><h3>${copy.quantityTitle}</h3><p>${copy.quantityBody}</p></article><article><strong>10,000+<small>m²</small></strong><h3>${copy.spaceTitle}</h3><p>${copy.spaceBody}</p></article></div></div></section>`;
 }
 
 function buildPage(scheme, language) {

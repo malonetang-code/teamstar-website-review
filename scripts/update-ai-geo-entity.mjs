@@ -29,6 +29,25 @@ const organization = {
     foundingDate: "1978",
     description: "Wei Qun Cutting Tools Group was founded in Taiwan in 1978 and began by manufacturing industrial cutting products for the garment industry.",
   },
+  location: {
+    "@type": "Place",
+    "@id": "https://www.teamstarmfg.com/company/#zhangzhou-manufacturing-site",
+    name: "Zhangzhou manufacturing site",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "No. 6 Shunxing Road, Gutong Farm, Changtai District",
+      addressLocality: "Zhangzhou",
+      addressRegion: "Fujian",
+      addressCountry: "CN",
+    },
+    additionalProperty: {
+      "@type": "PropertyValue",
+      name: "Manufacturing space",
+      minValue: 10000,
+      unitCode: "MTK",
+      unitText: "square metres",
+    },
+  },
   hasCertification: {
     "@type": "Certification",
     "@id": "https://www.teamstarmfg.com/quality/#iso-9001-certification",
@@ -204,6 +223,89 @@ function updateHeritageCopy(html) {
   );
 }
 
+const facilityCopy = new Map([
+  [
+    "company/index.html",
+    [
+      "<p>现场照片展示漳州基地的厂区入口、办公与生产楼、制造车间、数控设备区和检测室。</p>",
+      "<p>漳州基地生产厂房超过 10,000 平方米。以下现场照片展示厂区入口、办公与生产楼、制造车间、数控设备区和检测室。</p>",
+    ],
+  ],
+  [
+    "en/company/index.html",
+    [
+      "<p>The photographs show the site entrance, office and production building, manufacturing workshop, CNC equipment area and inspection room at the Zhangzhou base.</p>",
+      "<p>The Zhangzhou site provides more than 10,000 m² of manufacturing space. The photographs show the site entrance, office and production building, manufacturing workshop, CNC equipment area and inspection room.</p>",
+    ],
+  ],
+]);
+
+const homeFacilityProof = new Map([
+  [
+    "index.html",
+    {
+      introFrom: "以长期积累、自主制造和灵活数量支持不同规模的产品需求",
+      introTo: "以制造积累、实体基地、关键工序控制和灵活数量支持长期合作",
+      marker: "<h3>灵活定制</h3>",
+      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>漳州生产厂房</h3><p>漳州基地生产厂房超过 10,000 平方米。</p></article>',
+    },
+  ],
+  [
+    "home/index.html",
+    {
+      introFrom: "以长期积累、自主制造和灵活数量支持不同规模的产品需求",
+      introTo: "以制造积累、实体基地、关键工序控制和灵活数量支持长期合作",
+      marker: "<h3>灵活定制</h3>",
+      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>漳州生产厂房</h3><p>漳州基地生产厂房超过 10,000 平方米。</p></article>',
+    },
+  ],
+  [
+    "en/index.html",
+    {
+      introFrom: "Long manufacturing experience, critical processes under our control, and quantities matched to the project.",
+      introTo: "Manufacturing heritage, a substantial operating site, in-house process control and flexible quantities support long-term supply.",
+      marker: "<h3>Flexible custom quantities</h3>",
+      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>Zhangzhou manufacturing site</h3><p>More than 10,000 m² of manufacturing space.</p></article>',
+    },
+  ],
+  [
+    "en/home/index.html",
+    {
+      introFrom: "Long manufacturing experience, critical processes under our control, and quantities matched to the project.",
+      introTo: "Manufacturing heritage, a substantial operating site, in-house process control and flexible quantities support long-term supply.",
+      marker: "<h3>Flexible custom quantities</h3>",
+      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>Zhangzhou manufacturing site</h3><p>More than 10,000 m² of manufacturing space.</p></article>',
+    },
+  ],
+]);
+
+function updateFacilityCopy(html, relative) {
+  let next = html;
+  const company = facilityCopy.get(relative);
+  if (company && !next.includes("10,000")) {
+    if (!next.includes(company[0])) throw new Error(`${relative}: factory evidence copy marker not found`);
+    next = next.replace(company[0], company[1]);
+  }
+  const home = homeFacilityProof.get(relative);
+  if (home) {
+    next = next.replace(home.introFrom, home.introTo);
+    if (next.includes("why-proof-value-space")) {
+      next = next.replace(
+        /<article class="why-proof"><strong class="why-proof-value why-proof-value-space">[\s\S]*?<\/article>/,
+        home.proof,
+      );
+    } else {
+      const markerIndex = next.indexOf(home.marker);
+      if (markerIndex < 0) throw new Error(`${relative}: Why Qunxin quantity marker not found`);
+      const articleEnd = next.indexOf("</article>", markerIndex);
+      if (articleEnd < 0) throw new Error(`${relative}: Why Qunxin quantity article end not found`);
+      const insertAt = articleEnd + "</article>".length;
+      next = `${next.slice(0, insertAt)}${home.proof}${next.slice(insertAt)}`;
+    }
+  }
+  return next;
+}
+
 const qualityCertificationCopy = new Map([
   [
     "quality/index.html",
@@ -249,6 +351,7 @@ for (const file of htmlFiles()) {
   }
 
   next = updateHeritageCopy(next);
+  next = updateFacilityCopy(next, relative);
   next = updateQualityCertification(next, relative);
 
   if (next !== original) {

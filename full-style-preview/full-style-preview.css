@@ -332,7 +332,7 @@ body.full-style-preview .fp-why-e-heading p {
 body.full-style-preview .fp-why-e-specs {
   margin-top: 64px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 body.full-style-preview .fp-why-e-specs article,
@@ -340,7 +340,7 @@ body.full-style-preview .fp-why-e-specs article:first-child,
 body.full-style-preview .fp-why-e-specs article:last-child {
   min-width: 0;
   min-height: 0;
-  padding: 0 clamp(26px, 3.4vw, 48px);
+  padding: 0 clamp(18px, 2.4vw, 36px);
   text-align: center;
   background: transparent;
   border: 0;

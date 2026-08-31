@@ -18,6 +18,7 @@ for (const [relativePath, title, process, quantity] of pages) {
     "1978",
     process,
     quantity,
+    "10,000+<small>m²</small>",
     "full-style-preview.css?v=20260828-4",
     'name="robots" content="noindex,nofollow,noarchive"',
   ]) {
@@ -40,7 +41,7 @@ for (const required of [
   'html[data-full-preview="e"] body.full-style-preview .why-qunxin-section.fp-why-refined-e',
   'html[data-full-preview="e"] body.full-style-preview .home-product-section',
   'html[data-full-preview="e"] body.full-style-preview .rfq-band',
-  "grid-template-columns: repeat(3, minmax(0, 1fr))",
+  "grid-template-columns: repeat(4, minmax(0, 1fr))",
   "grid-template-columns: 112px minmax(0, 1fr)",
   "@media (max-width: 767px)",
   "@media (prefers-reduced-motion: reduce)",
