@@ -169,7 +169,7 @@ body.full-style-preview .fp-mega a:focus-visible { outline: 3px solid rgba(215, 
 
 body.full-style-preview .language-menu { position: relative; }
 body.full-style-preview .language-menu summary {
-  min-width: 62px;
+  min-width: 104px;
   min-height: 40px;
   padding: 0 28px 0 12px;
   position: relative;
@@ -184,7 +184,20 @@ body.full-style-preview .language-menu summary {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: .04em;
+  gap: 7px;
 }
+body.full-style-preview .language-menu-icon {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+body.full-style-preview .language-menu-hint { color: var(--muted); font-size: 9px; font-weight: 600; letter-spacing: .06em; }
+body.full-style-preview .language-menu-code { color: var(--ink); }
 body.full-style-preview .language-menu summary::-webkit-details-marker { display: none; }
 body.full-style-preview .language-menu summary::after {
   content: "";
@@ -946,7 +959,8 @@ html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-colo
   .full-preview-switcher nav { display: grid; grid-template-columns: repeat(5, 1fr); }
   .full-preview-switcher nav a { min-width: 0; justify-content: center; }
   .full-preview-switcher nav span { display: none; }
-  body.full-style-preview .language-menu summary { min-width: 58px; min-height: 44px; }
+  body.full-style-preview .language-menu summary { min-width: 68px; min-height: 44px; padding-left: 10px; }
+  body.full-style-preview .language-menu-hint { display: none; }
   body.full-style-preview .language-menu-panel { width: min(224px, calc(100vw - 32px)); }
   body.full-style-preview .section { padding-block: 68px; }
   html[data-full-preview="a"] body.full-style-preview .why-qunxin-section.fp-why-refined-e,
@@ -1101,7 +1115,7 @@ html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-colo
   body.full-style-preview .brand { max-width: 150px; }
   body.full-style-preview .brand strong { font-size: 13px; white-space: nowrap; }
   body.full-style-preview .brand small { max-width: 128px; font-size: 9px; }
-  body.full-style-preview .language-menu summary { min-width: 56px; padding-right: 19px; padding-left: 8px; }
+  body.full-style-preview .language-menu summary { min-width: 64px; padding-right: 19px; padding-left: 8px; }
   body.full-style-preview .language-menu summary::after { right: 8px; }
   body.full-style-preview .fp-why-e-specs article,
   body.full-style-preview .fp-why-e-specs article:first-child,

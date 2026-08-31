@@ -146,7 +146,11 @@
   }
 
   function mountLanguageMenu() {
-    if (document.querySelector(".language-menu")) return;
+    const existingMenu = document.querySelector(".language-menu");
+    if (existingMenu) {
+      enhanceLanguageMenuTrigger(existingMenu);
+      return;
+    }
 
     const legacyLink = document.querySelector(".nav-actions > .language-link");
     if (!legacyLink) return;
@@ -172,6 +176,7 @@
     const summary = document.createElement("summary");
     summary.setAttribute("aria-label", labels.aria);
     const triggerLabel = document.createElement("span");
+    triggerLabel.className = "language-menu-code";
     triggerLabel.textContent = "EN";
     summary.append(triggerLabel);
 
@@ -212,6 +217,7 @@
     addPlannedLanguage("Español");
 
     menu.append(summary, panel);
+    enhanceLanguageMenuTrigger(menu);
     legacyLink.replaceWith(menu);
 
     menu.addEventListener("keydown", (event) => {
@@ -222,6 +228,28 @@
     document.addEventListener("click", (event) => {
       if (menu.open && !menu.contains(event.target)) menu.open = false;
     });
+  }
+
+  function enhanceLanguageMenuTrigger(menu) {
+    const summary = menu.querySelector("summary");
+    if (!summary || summary.querySelector(".language-menu-icon")) return;
+
+    const code = summary.querySelector("span") || document.createElement("span");
+    code.className = "language-menu-code";
+    code.textContent = "EN";
+
+    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    icon.classList.add("language-menu-icon");
+    icon.setAttribute("viewBox", "0 0 24 24");
+    icon.setAttribute("aria-hidden", "true");
+    icon.setAttribute("focusable", "false");
+    icon.innerHTML = '<circle cx="12" cy="12" r="10"></circle><path d="M2 12h20"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>';
+
+    const hint = document.createElement("span");
+    hint.className = "language-menu-hint";
+    hint.textContent = isEnglish ? "LANG" : "语言";
+
+    summary.replaceChildren(icon, hint, code);
   }
 
   function propagateThemeLinks() {
