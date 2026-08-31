@@ -94,6 +94,9 @@ for (const file of htmlFiles()) {
   if (
     organization.memberOf?.name !== "Wei Qun Cutting Tools Group" ||
     organization.memberOf?.alternateName !== "伟群制刀工业集团" ||
+    organization.memberOf?.foundingDate !== "1978" ||
+    organization.memberOf?.description !==
+      "Wei Qun Cutting Tools Group was founded in Taiwan in 1978 and began by manufacturing industrial cutting products for the garment industry." ||
     !organization.knowsAbout
   ) {
     errors.push(`${relative}: confirmed group membership or manufacturing scope evidence is missing`);
@@ -118,21 +121,42 @@ const companyChecks = [
     "company/index.html",
     [
       "2024.06",
+      "1978",
+      "集团在台湾创立",
+      "开始制造服装行业用工业裁切产品。",
+      "1991",
+      "深圳生产启动",
+      "集团在广东深圳启动生产。",
       "群新工业（漳州）有限公司是伟群制刀工业集团成员企业",
       "漳州生产基地启动搬迁",
       "群新工业启动生产基地搬迁工作。",
     ],
-    ["漳州群新工业成立", "开展工业机械刀具制造与销售业务。"],
+    [
+      "40+",
+      "超过 40 年",
+      "1990",
+      "漳州群新工业成立",
+      "开展工业机械刀具制造与销售业务。",
+    ],
   ],
   [
     "en/company/index.html",
     [
       "2024.06",
+      "1978",
+      "Group founded in Taiwan",
+      "Great Knives began manufacturing industrial cutting products for the garment industry.",
+      "1991",
+      "Production launched in Shenzhen",
+      "The group launched production in Shenzhen, Guangdong.",
       "Teamstar Manufacturing (Zhangzhou) Ltd.",
       "Relocation to the Zhangzhou base began",
       "Qunxin Industrial began the move to its Zhangzhou manufacturing base.",
     ],
     [
+      "40+",
+      "more than 40 years",
+      "1990",
       "Qunxin Industrial established in Zhangzhou",
       "Established for the manufacture and sale of industrial machine knives.",
     ],
@@ -157,5 +181,5 @@ if (errors.length) {
 }
 
 console.log(
-  `AI-GEO entity check passed: ${checked} canonical local-review pages use the legal 2023-11-01 founding date, the sales contact is consistent, and the visible bilingual timeline records the June 2024 Zhangzhou relocation start.`,
+  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, and retain the June 2024 Zhangzhou relocation start.`,
 );

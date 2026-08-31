@@ -84,8 +84,8 @@ function companyPanel(language) {
   const isEn = language === "en";
   const base = isEn ? "/teamstar-review/en/" : "/teamstar-review/";
   const copy = isEn
-    ? ["ABOUT TEAMSTAR", "Group knife-making heritage and the Zhangzhou base", "Learn how Teamstar connects more than 40 years of group experience with its current manufacturing operation in Zhangzhou.", "40+ years", "Group knife-making heritage", "About Teamstar"]
-    : ["ABOUT TEAMSTAR", "集团制刀积累与漳州制造基地", "了解群新如何承接集团四十余年的制刀积累，并在漳州开展现有制造业务。", "40+ 年", "集团制刀积累", "关于群新"];
+    ? ["ABOUT TEAMSTAR", "Group knife manufacturing since 1978 and the Zhangzhou base", "See how Teamstar carries forward the group’s industrial knife manufacturing heritage, which began in Taiwan in 1978, through its current Zhangzhou operation.", "SINCE 1978", "Group knife manufacturing", "About Teamstar"]
+    : ["ABOUT TEAMSTAR", "始于 1978 年的集团制刀积累与漳州基地", "集团于 1978 年在台湾创立并开始制造工业刀具，群新工业在漳州承接这份制造积累。", "始于 1978", "集团刀具制造", "关于群新"];
   return `<div class="fp-mega fp-mega-about" role="group" aria-label="${isEn ? "About Teamstar preview" : "关于群新预览"}"><div class="container fp-mega-inner"><div class="fp-mega-intro"><small>${copy[0]}</small><strong>${copy[1]}</strong><p>${copy[2]}</p><a href="${base}company/">${copy[5]} <i aria-hidden="true">↗</i></a></div><a class="fp-mega-about-visual" href="${base}company/"><img src="/teamstar-review/img/wH65hbd5BK-640.jpeg" width="960" height="640" alt=""><span><b>${copy[3]}</b><em>${copy[4]}</em></span></a></div></div>`;
 }
 
@@ -137,10 +137,10 @@ function refinedWhyQunxin(language) {
   const copy = isEn
     ? {
         title: "Why customers choose Qunxin",
-        intro: "Experience, process control and flexible quantities support dependable long-term supply.",
-        yearsUnit: "YEARS",
-        yearsTitle: "Group manufacturing heritage",
-        yearsBody: "Established process records and experienced production teams support consistent manufacturing and long-term supply.",
+        intro: "Group knife-making experience since 1978, in-house process control and flexible quantities support dependable long-term supply.",
+        yearsValue: "1978",
+        yearsTitle: "Group knife manufacturing since 1978",
+        yearsBody: "The group was founded in Taiwan in 1978 and has manufactured industrial knives since then, building process knowledge over time.",
         processValue: "IN-HOUSE",
         processTitle: "Critical processes",
         processBody: "Important manufacturing stages are completed within our own facility for more direct quality control.",
@@ -150,10 +150,10 @@ function refinedWhyQunxin(language) {
       }
     : {
         title: "为什么选择群新",
-        intro: "制造经验、过程控制与数量灵活性，是我们支持长期合作的基础。",
-        yearsUnit: "年",
+        intro: "始于 1978 年的集团制刀积累、厂内过程控制与灵活数量，是支持长期合作的基础。",
+        yearsValue: "1978",
         yearsTitle: "集团刀具制造积累",
-        yearsBody: "持续积累的工艺资料与经验团队，为稳定制造和长期供货提供基础。",
+        yearsBody: "集团于 1978 年在台湾创立，并开始制造工业刀具，持续积累工艺资料与生产经验。",
         processValue: "关键工序",
         processTitle: "自主完成",
         processBody: "重要制造环节在厂内完成，质量控制更直接。",
@@ -162,7 +162,7 @@ function refinedWhyQunxin(language) {
         quantityBody: "从单件试制到批量供货，根据实际需求安排。",
       };
 
-  return `<section class="why-qunxin-section fp-why-refined-e" aria-labelledby="why-qunxin-title"><div class="container fp-why-e-shell"><header class="fp-why-e-heading"><span>WHY QUNXIN</span><h2 id="why-qunxin-title">${copy.title}</h2><p>${copy.intro}</p></header><div class="fp-why-e-specs"><article><strong>40<sup>+</sup><small>${copy.yearsUnit}</small></strong><h3>${copy.yearsTitle}</h3><p>${copy.yearsBody}</p></article><article><strong class="fp-why-e-text-value">${copy.processValue}</strong><h3>${copy.processTitle}</h3><p>${copy.processBody}</p></article><article><strong>1<small>${copy.quantityUnit}</small></strong><h3>${copy.quantityTitle}</h3><p>${copy.quantityBody}</p></article></div></div></section>`;
+  return `<section class="why-qunxin-section fp-why-refined-e" aria-labelledby="why-qunxin-title"><div class="container fp-why-e-shell"><header class="fp-why-e-heading"><span>WHY QUNXIN</span><h2 id="why-qunxin-title">${copy.title}</h2><p>${copy.intro}</p></header><div class="fp-why-e-specs"><article><strong>${copy.yearsValue}</strong><h3>${copy.yearsTitle}</h3><p>${copy.yearsBody}</p></article><article><strong class="fp-why-e-text-value">${copy.processValue}</strong><h3>${copy.processTitle}</h3><p>${copy.processBody}</p></article><article><strong>1<small>${copy.quantityUnit}</small></strong><h3>${copy.quantityTitle}</h3><p>${copy.quantityBody}</p></article></div></div></section>`;
 }
 
 function buildPage(scheme, language) {

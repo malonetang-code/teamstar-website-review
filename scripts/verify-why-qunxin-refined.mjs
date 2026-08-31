@@ -26,8 +26,12 @@ for (const page of pages) {
     ['data-style-link="e"', "E selector"],
     ['data-style-link="f"', "F selector"],
     ['data-style-link="g"', "G selector"],
+    ["1978", "confirmed group foundation year"],
   ]) {
     if (!html.includes(needle)) throw new Error(`${path.relative(root, page)} missing ${label}`);
+  }
+  if (/40(?:<sup>\+<\/sup>|\+|余年)/.test(html)) {
+    throw new Error(`${path.relative(root, page)} contains the superseded 40+ claim`);
   }
 }
 

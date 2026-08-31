@@ -35,6 +35,7 @@ for (const page of pages) {
     ['data-style-link="d"', "D selector"],
     ['data-media-toggle', "video controls"],
     ['data-proof-tab="process"', "accessible proof tabs"],
+    ["1978", "confirmed group foundation year"],
   ];
   for (const [needle, label] of assertions) {
     if (!html.includes(needle)) throw new Error(`${path.relative(root, page)} missing ${label}`);
@@ -44,7 +45,7 @@ for (const page of pages) {
 const zh = fs.readFileSync(pages[0], "utf8");
 for (const phrase of [
   "集团刀具制造积累",
-  "持续积累的工艺资料与经验团队，为稳定制造和长期供货提供基础。",
+  "集团于 1978 年在台湾创立，并开始制造工业刀具，持续积累工艺资料与生产经验。",
   "重要制造环节在厂内完成，质量控制更直接。",
   "从单件试制到批量供货，根据实际需求安排。",
 ]) {
@@ -55,13 +56,20 @@ for (const phrase of [
 
 const en = fs.readFileSync(pages[1], "utf8");
 for (const phrase of [
-  "Group manufacturing heritage",
-  "Established process records and experienced production teams support consistent manufacturing and long-term supply.",
+  "Group knife manufacturing since 1978",
+  "The group was founded in Taiwan in 1978 and has manufactured industrial knives since then, building process knowledge and production experience over time.",
   "Important manufacturing stages are completed within our own facility for more direct quality control.",
   "From one-off trials to repeat production, quantities are arranged around the actual requirement.",
 ]) {
   if ((en.match(new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 4) {
     throw new Error(`English copy must appear identically in all four variants: ${phrase}`);
+  }
+}
+
+for (const page of pages) {
+  const html = fs.readFileSync(page, "utf8");
+  if (/40(?:<sup>\+<\/sup>|\+|余年)/.test(html)) {
+    throw new Error(`${path.relative(root, page)} contains the superseded 40+ claim`);
   }
 }
 

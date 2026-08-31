@@ -19,6 +19,7 @@ const pages = [
     locale: "zh-CN",
     markers: [
       "为什么选择群新",
+      "1978",
       "集团刀具制造积累",
       "关键工序",
       "1<small>件起</small>",
@@ -34,6 +35,7 @@ const pages = [
     locale: "zh-CN",
     markers: [
       "为什么选择群新",
+      "1978",
       "集团刀具制造积累",
       "关键工序",
       "1<small>件起</small>",
@@ -49,7 +51,8 @@ const pages = [
     locale: "en",
     markers: [
       "Why customers choose Qunxin",
-      "Group manufacturing heritage",
+      "1978",
+      "Group knife manufacturing since 1978",
       "Critical processes",
       "1<small>PIECE</small>",
       "Industrial Knives, Hand Tools and Cloth Cutting Machines",
@@ -64,7 +67,8 @@ const pages = [
     locale: "en",
     markers: [
       "Why customers choose Qunxin",
-      "Group manufacturing heritage",
+      "1978",
+      "Group knife manufacturing since 1978",
       "Critical processes",
       "1<small>PIECE</small>",
       "Industrial Knives, Hand Tools and Cloth Cutting Machines",
@@ -117,6 +121,10 @@ for (const page of pages) {
     `${page.file}: superseded Home sections are not fully isolated`,
   );
   for (const removed of [
+    "40<sup>+</sup>",
+    "more than 40 years",
+    "超过 40 年",
+    "1990",
     "提交项目资料",
     "图纸、样品与工况任选其一即可开始",
     "Send Your Project Information",

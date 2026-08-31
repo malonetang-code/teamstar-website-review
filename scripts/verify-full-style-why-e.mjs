@@ -15,6 +15,7 @@ for (const [relativePath, title, process, quantity] of pages) {
     'class="why-qunxin-section fp-why-refined-e"',
     'class="fp-why-e-specs"',
     title,
+    "1978",
     process,
     quantity,
     "full-style-preview.css?v=20260828-4",
@@ -27,6 +28,9 @@ for (const [relativePath, title, process, quantity] of pages) {
 
   if ((html.match(/fp-why-refined-e/g) || []).length !== 1) {
     throw new Error(`${relativePath} must contain exactly one refined E section`);
+  }
+  if (/40(?:<sup>\+<\/sup>|\+|余年)/.test(html)) {
+    throw new Error(`${relativePath} contains the superseded 40+ claim`);
   }
 }
 

@@ -26,6 +26,8 @@ const organization = {
     name: "Wei Qun Cutting Tools Group",
     alternateName: "伟群制刀工业集团",
     url: "https://www.greatknives.com.tw/",
+    foundingDate: "1978",
+    description: "Wei Qun Cutting Tools Group was founded in Taiwan in 1978 and began by manufacturing industrial cutting products for the garment industry.",
   },
   contactPoint: [
     {
@@ -127,6 +129,14 @@ const companyCopy = new Map([
     "company/index.html",
     [
       [
+        '<div class="timeline-year">40+</div><div><h3>工业刀具行业经验</h3><p>集团业务始于台湾，积累超过 40 年的工业刀具行业经验。</p></div></div> <div class="timeline-row"><div class="timeline-year">1990</div><div><h3>深圳生产基地成立</h3><p>拓展集团在中国大陆的制造体系。</p>',
+        '<div class="timeline-year">1978</div><div><h3>集团在台湾创立</h3><p>开始制造服装行业用工业裁切产品。</p></div></div> <div class="timeline-row"><div class="timeline-year">1991</div><div><h3>深圳生产启动</h3><p>集团在广东深圳启动生产。</p>',
+      ],
+      [
+        '<div class="timeline-year">1990</div><div><h3>集团工业刀具业务起步</h3><p>集团开始从事工业刀具制造，并建立深圳生产基地。</p>',
+        '<div class="timeline-year">1978</div><div><h3>集团在台湾创立</h3><p>开始制造服装行业用工业裁切产品。</p></div></div> <div class="timeline-row"><div class="timeline-year">1991</div><div><h3>深圳生产启动</h3><p>集团在广东深圳启动生产。</p>',
+      ],
+      [
         '<div class="timeline-year">2024</div><div><h3>漳州群新工业成立</h3><p>开展工业机械刀具制造与销售业务。</p>',
         '<div class="timeline-year">2024.06</div><div><h3>漳州生产基地启动搬迁</h3><p>群新工业启动生产基地搬迁工作。</p>',
       ],
@@ -140,6 +150,14 @@ const companyCopy = new Map([
     "en/company/index.html",
     [
       [
+        '<div class="timeline-year">40+</div><div><h3>Industrial cutting-tool experience</h3><p>The group business originated in Taiwan and has accumulated more than 40 years of industry experience.</p></div></div> <div class="timeline-row"><div class="timeline-year">1990</div><div><h3>Shenzhen production base established</h3><p>Expanded the group manufacturing system in mainland China.</p>',
+        '<div class="timeline-year">1978</div><div><h3>Group founded in Taiwan</h3><p>Great Knives began manufacturing industrial cutting products for the garment industry.</p></div></div> <div class="timeline-row"><div class="timeline-year">1991</div><div><h3>Production launched in Shenzhen</h3><p>The group launched production in Shenzhen, Guangdong.</p>',
+      ],
+      [
+        '<div class="timeline-year">1990</div><div><h3>Group industrial knife manufacturing began</h3><p>The group began manufacturing industrial knives and established its Shenzhen production base.</p>',
+        '<div class="timeline-year">1978</div><div><h3>Group founded in Taiwan</h3><p>Great Knives began manufacturing industrial cutting products for the garment industry.</p></div></div> <div class="timeline-row"><div class="timeline-year">1991</div><div><h3>Production launched in Shenzhen</h3><p>The group launched production in Shenzhen, Guangdong.</p>',
+      ],
+      [
         '<div class="timeline-year">2024</div><div><h3>Qunxin Industrial established in Zhangzhou</h3><p>Established for the manufacture and sale of industrial machine knives.</p>',
         '<div class="timeline-year">2024.06</div><div><h3>Relocation to the Zhangzhou base began</h3><p>Qunxin Industrial began the move to its Zhangzhou manufacturing base.</p>',
       ],
@@ -151,20 +169,41 @@ const companyCopy = new Map([
   ],
 ]);
 
+const heritageReplacements = [
+  ["始于 1990 年的制造积累", "始于 1978 年的集团制刀积累"],
+  ["集团自 1990 年开展工业刀具制造", "集团于 1978 年在台湾创立，并开始制造工业刀具"],
+  ["始于 1990", "始于 1978"],
+  [">1990<", ">1978<"],
+  ["Group industrial knife manufacturing since 1990", "Group industrial knife manufacturing since 1978"],
+  ["Group knife manufacturing since 1990", "Group knife manufacturing since 1978"],
+  ["The group has manufactured industrial knives since 1990", "The group was founded in Taiwan in 1978 and has manufactured industrial knives since then"],
+  ["Manufacturing experience since 1990", "Group knife-making experience since 1978"],
+  ["Since 1990", "Since 1978"],
+];
+
+function updateHeritageCopy(html) {
+  return heritageReplacements.reduce(
+    (next, [from, to]) => next.replaceAll(from, to),
+    html,
+  );
+}
+
 let changed = 0;
 let found = 0;
 for (const file of htmlFiles()) {
   const relative = path.relative(root, file);
   const original = fs.readFileSync(file, "utf8");
   const entityUpdate = updateOrganization(original);
-  if (!entityUpdate.found) continue;
-  found += 1;
-  let next = updateRetiredMailbox(entityUpdate.html, relative);
+  if (entityUpdate.found) found += 1;
+  let next = entityUpdate.found
+    ? updateRetiredMailbox(entityUpdate.html, relative)
+    : entityUpdate.html;
 
   for (const [from, to] of companyCopy.get(relative) || []) {
     if (next.includes(from)) next = next.replace(from, to);
-    else if (!next.includes(to)) throw new Error(`${relative}: expected timeline copy not found`);
   }
+
+  next = updateHeritageCopy(next);
 
   if (next !== original) {
     fs.writeFileSync(file, next);
