@@ -46,7 +46,6 @@ for (const file of htmlFiles()) {
   checked += 1;
 
   const expected = {
-    legalName: "群新工业（漳州）有限公司",
     foundingDate: "2023-11-01",
     email: "ga01@teamstarmfg.com",
   };
@@ -54,6 +53,21 @@ for (const file of htmlFiles()) {
     if (organization[key] !== value) {
       errors.push(`${relative}: Organization ${key} is ${JSON.stringify(organization[key])}`);
     }
+  }
+
+  const legalNames = Array.isArray(organization.legalName)
+    ? organization.legalName
+    : [organization.legalName].filter(Boolean);
+  for (const legalName of [
+    "群新工业（漳州）有限公司",
+    "Teamstar Manufacturing (Zhangzhou) Ltd.",
+  ]) {
+    if (!legalNames.includes(legalName)) {
+      errors.push(`${relative}: missing legal company name ${legalName}`);
+    }
+  }
+  if (organization.alternateName?.includes("Teamstar Manufacturing (Zhangzhou) Ltd.")) {
+    errors.push(`${relative}: official English company name remains classified as an alternate name`);
   }
 
   const contactPoints = Array.isArray(organization.contactPoint)
@@ -97,6 +111,7 @@ const companyChecks = [
     "company/index.html",
     [
       "2024.06",
+      "群新工业（漳州）有限公司是伟群制刀工业集团成员企业",
       "漳州生产基地启动搬迁",
       "群新工业启动生产基地搬迁工作。",
     ],
@@ -106,6 +121,7 @@ const companyChecks = [
     "en/company/index.html",
     [
       "2024.06",
+      "Teamstar Manufacturing (Zhangzhou) Ltd.",
       "Relocation to the Zhangzhou base began",
       "Qunxin Industrial began the move to its Zhangzhou manufacturing base.",
     ],

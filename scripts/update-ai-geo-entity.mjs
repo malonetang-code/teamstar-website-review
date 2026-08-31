@@ -8,11 +8,13 @@ const organization = {
   "@type": "Organization",
   "@id": "https://www.teamstarmfg.com/#organization",
   name: "Teamstar Manufacturing",
-  legalName: "群新工业（漳州）有限公司",
+  legalName: [
+    "群新工业（漳州）有限公司",
+    "Teamstar Manufacturing (Zhangzhou) Ltd.",
+  ],
   alternateName: [
     "Qunxin Industrial",
     "群新工业",
-    "Teamstar Manufacturing (Zhangzhou) Ltd.",
   ],
   url: "https://www.teamstarmfg.com/",
   logo: "https://www.teamstarmfg.com/images/web/brand-sign.jpg",
@@ -128,6 +130,10 @@ const companyCopy = new Map([
         '<div class="timeline-year">2024</div><div><h3>漳州群新工业成立</h3><p>开展工业机械刀具制造与销售业务。</p>',
         '<div class="timeline-year">2024.06</div><div><h3>漳州生产基地启动搬迁</h3><p>群新工业启动生产基地搬迁工作。</p>',
       ],
+      [
+        '<h1>群新工业</h1> <p>伟群制刀工业集团成员企业，漳州生产基地专注工业机械刀具制造。</p>',
+        '<h1>群新工业</h1> <p>群新工业（漳州）有限公司是伟群制刀工业集团成员企业，专注工业机械刀具制造。</p>',
+      ],
     ],
   ],
   [
@@ -136,6 +142,10 @@ const companyCopy = new Map([
       [
         '<div class="timeline-year">2024</div><div><h3>Qunxin Industrial established in Zhangzhou</h3><p>Established for the manufacture and sale of industrial machine knives.</p>',
         '<div class="timeline-year">2024.06</div><div><h3>Relocation to the Zhangzhou base began</h3><p>Qunxin Industrial began the move to its Zhangzhou manufacturing base.</p>',
+      ],
+      [
+        '<h1>Qunxin Industrial</h1> <p>A Wei Qun Cutting Tools Group company focused on industrial machine knife manufacturing in Zhangzhou.</p>',
+        '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>A member of Wei Qun Cutting Tools Group, focused on industrial machine knife manufacturing in Zhangzhou.</p>',
       ],
     ],
   ],
