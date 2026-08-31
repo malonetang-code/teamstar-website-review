@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -101,6 +102,24 @@ for (const file of htmlFiles()) {
   ) {
     errors.push(`${relative}: confirmed group membership or manufacturing scope evidence is missing`);
   }
+  const certification = organization.hasCertification;
+  if (
+    certification?.["@type"] !== "Certification" ||
+    certification?.["@id"] !== "https://www.teamstarmfg.com/quality/#iso-9001-certification" ||
+    certification?.name !== "ISO 9001:2015 Quality Management System Certification" ||
+    certification?.description !==
+      "Design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly." ||
+    certification?.certificationIdentification !== "CN25/00004088" ||
+    certification?.certificationStatus !== "https://schema.org/CertificationActive" ||
+    certification?.validFrom !== "2025-06-16" ||
+    certification?.expires !== "2028-06-15" ||
+    certification?.url !== "https://www.teamstarmfg.com/images/certs/iso9001-en.pdf" ||
+    certification?.issuedBy?.["@type"] !== "Organization" ||
+    certification?.issuedBy?.name !== "SGS United Kingdom Ltd." ||
+    certification?.issuedBy?.url !== "https://www.sgs.com/"
+  ) {
+    errors.push(`${relative}: verified ISO 9001 certification data is missing or inconsistent`);
+  }
   if (!html.includes('name="robots" content="noindex,nofollow,noarchive"')) {
     errors.push(`${relative}: local review robots protection missing`);
   }
@@ -114,6 +133,70 @@ for (const file of htmlFiles()) {
   ) {
     errors.push(`${relative}: non-company 181 telephone remains`);
   }
+}
+
+const qualityChecks = [
+  [
+    "quality/index.html",
+    [
+      'href="/teamstar-website-review/assets/css/ai-geo-evidence.css?v=20260831-1"',
+      'id="iso-9001-certificate"',
+      "认证主体为群新工业（漳州）有限公司",
+      "工业用精密刀具、手工具和五金件的设计和制造，包括热处理和组装",
+      "CN25/00004088",
+      "2025 年 6 月 16 日",
+      "2028 年 6 月 15 日",
+      "SGS United Kingdom Ltd.",
+      "/teamstar-website-review/images/certs/iso9001-cn.pdf",
+      "/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg",
+    ],
+  ],
+  [
+    "en/quality/index.html",
+    [
+      'href="/teamstar-website-review/assets/css/ai-geo-evidence.css?v=20260831-1"',
+      'id="iso-9001-certificate"',
+      "Teamstar Manufacturing (Zhangzhou) Ltd. is certified",
+      "design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly",
+      "CN25/00004088",
+      "16 June 2025",
+      "15 June 2028",
+      "SGS United Kingdom Ltd.",
+      "/teamstar-website-review/images/certs/iso9001-en.pdf",
+      "/teamstar-website-review/images/certs/iso9001-en-thumb.jpg",
+    ],
+  ],
+];
+
+for (const [relative, required] of qualityChecks) {
+  const html = fs.readFileSync(path.join(root, relative), "utf8");
+  for (const phrase of required) {
+    if (!html.includes(phrase)) errors.push(`${relative}: missing verified certificate evidence ${phrase}`);
+  }
+  if ((html.match(/id="iso-9001-certificate"/g) ?? []).length !== 1) {
+    errors.push(`${relative}: expected exactly one visible ISO certificate section`);
+  }
+}
+
+const certificateFiles = [
+  [
+    "images/certs/iso9001-cn.pdf",
+    "2a28a07193e060c6d3bc966c70c628db6c9d7e46800c1dbe28562734423a459f",
+  ],
+  [
+    "images/certs/iso9001-en.pdf",
+    "d98767da0ba7b7bd86b585e57a68306b6f86c368b7e7047edeb488c9a36d3edf",
+  ],
+];
+
+for (const [relative, expectedHash] of certificateFiles) {
+  const absolute = path.join(root, relative);
+  if (!fs.existsSync(absolute)) {
+    errors.push(`${relative}: verified source certificate is missing`);
+    continue;
+  }
+  const actualHash = createHash("sha256").update(fs.readFileSync(absolute)).digest("hex");
+  if (actualHash !== expectedHash) errors.push(`${relative}: source certificate digest changed`);
 }
 
 const companyChecks = [
@@ -181,5 +264,5 @@ if (errors.length) {
 }
 
 console.log(
-  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, and retain the June 2024 Zhangzhou relocation start.`,
+  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, and expose the verified bilingual ISO 9001 certificate evidence.`,
 );

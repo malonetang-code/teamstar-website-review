@@ -29,6 +29,22 @@ const organization = {
     foundingDate: "1978",
     description: "Wei Qun Cutting Tools Group was founded in Taiwan in 1978 and began by manufacturing industrial cutting products for the garment industry.",
   },
+  hasCertification: {
+    "@type": "Certification",
+    "@id": "https://www.teamstarmfg.com/quality/#iso-9001-certification",
+    name: "ISO 9001:2015 Quality Management System Certification",
+    description: "Design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly.",
+    certificationIdentification: "CN25/00004088",
+    certificationStatus: "https://schema.org/CertificationActive",
+    validFrom: "2025-06-16",
+    expires: "2028-06-15",
+    url: "https://www.teamstarmfg.com/images/certs/iso9001-en.pdf",
+    issuedBy: {
+      "@type": "Organization",
+      name: "SGS United Kingdom Ltd.",
+      url: "https://www.sgs.com/",
+    },
+  },
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -188,6 +204,35 @@ function updateHeritageCopy(html) {
   );
 }
 
+const qualityCertificationCopy = new Map([
+  [
+    "quality/index.html",
+    `<section class="section iso-certificate-section" id="iso-9001-certificate" aria-labelledby="iso-certificate-title"><div class="container iso-certificate-grid"><div class="iso-certificate-copy"><span class="eyebrow">CERTIFIED QUALITY MANAGEMENT</span><h2 id="iso-certificate-title">ISO 9001:2015 认证</h2><p>认证主体为群新工业（漳州）有限公司，认证范围涵盖工业用精密刀具、手工具和五金件的设计和制造，包括热处理和组装。</p><dl class="iso-certificate-facts"><div><dt>证书编号</dt><dd>CN25/00004088</dd></div><div><dt>有效期</dt><dd><time datetime="2025-06-16">2025 年 6 月 16 日</time>至<time datetime="2028-06-15">2028 年 6 月 15 日</time></dd></div><div><dt>认证机构</dt><dd>SGS United Kingdom Ltd.</dd></div></dl><p class="iso-certificate-note">证书须通过符合要求的监督审核保持有效。</p><a class="button button-outline" href="/teamstar-website-review/images/certs/iso9001-cn.pdf">查看中文证书</a></div><a class="iso-certificate-card" href="/teamstar-website-review/images/certs/iso9001-cn.pdf" aria-label="打开群新工业 ISO 9001:2015 中文证书"><img src="/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg" width="847" height="1200" loading="lazy" decoding="async" alt="群新工业 ISO 9001:2015 证书缩略图"></a></div></section>`,
+  ],
+  [
+    "en/quality/index.html",
+    `<section class="section iso-certificate-section" id="iso-9001-certificate" aria-labelledby="iso-certificate-title"><div class="container iso-certificate-grid"><div class="iso-certificate-copy"><span class="eyebrow">CERTIFIED QUALITY MANAGEMENT</span><h2 id="iso-certificate-title">ISO 9001:2015 Certification</h2><p>Teamstar Manufacturing (Zhangzhou) Ltd. is certified for the design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly.</p><dl class="iso-certificate-facts"><div><dt>Certificate</dt><dd>CN25/00004088</dd></div><div><dt>Validity</dt><dd><time datetime="2025-06-16">16 June 2025</time> to <time datetime="2028-06-15">15 June 2028</time></dd></div><div><dt>Certification body</dt><dd>SGS United Kingdom Ltd.</dd></div></dl><p class="iso-certificate-note">Validity remains subject to satisfactory surveillance audits.</p><a class="button button-outline" href="/teamstar-website-review/images/certs/iso9001-en.pdf">View English certificate</a></div><a class="iso-certificate-card" href="/teamstar-website-review/images/certs/iso9001-en.pdf" aria-label="Open the Teamstar ISO 9001:2015 English certificate"><img src="/teamstar-website-review/images/certs/iso9001-en-thumb.jpg" width="847" height="1200" loading="lazy" decoding="async" alt="Teamstar ISO 9001:2015 certificate thumbnail"></a></div></section>`,
+  ],
+]);
+
+function updateQualityCertification(html, relative) {
+  const section = qualityCertificationCopy.get(relative);
+  if (!section) return html;
+  let next = html;
+  if (!next.includes("ai-geo-evidence.css")) {
+    next = next.replace(
+      "</head>",
+      '<link href="/teamstar-website-review/assets/css/ai-geo-evidence.css?v=20260831-1" rel="stylesheet"></head>',
+    );
+  }
+  if (!next.includes('id="iso-9001-certificate"')) {
+    const marker = '</section> <section class="section section-system">';
+    if (!next.includes(marker)) throw new Error(`${relative}: quality introduction marker not found`);
+    next = next.replace(marker, `</section> ${section} <section class="section section-system">`);
+  }
+  return next;
+}
+
 let changed = 0;
 let found = 0;
 for (const file of htmlFiles()) {
@@ -204,6 +249,7 @@ for (const file of htmlFiles()) {
   }
 
   next = updateHeritageCopy(next);
+  next = updateQualityCertification(next, relative);
 
   if (next !== original) {
     fs.writeFileSync(file, next);
