@@ -56,11 +56,20 @@ for (const file of htmlFiles()) {
     }
   }
 
-  if (organization.contactPoint?.email !== "rd01@teamstarmfg.com") {
-    errors.push(`${relative}: sales contactPoint is not rd01@teamstarmfg.com`);
+  const contactPoints = Array.isArray(organization.contactPoint)
+    ? organization.contactPoint
+    : [organization.contactPoint].filter(Boolean);
+  const general = contactPoints.find((point) => point.contactType === "general inquiries");
+  const sales = contactPoints.find((point) => point.contactType === "sales");
+  if (
+    organization.telephone !== "+8615305070074" ||
+    general?.email !== "ga01@teamstarmfg.com" ||
+    general?.telephone !== "+8615305070074"
+  ) {
+    errors.push(`${relative}: general enquiries phone/email are not canonical`);
   }
-  if (organization.telephone || organization.contactPoint?.telephone) {
-    errors.push(`${relative}: unconfirmed telephone remains in Organization data`);
+  if (sales?.email !== "rd01@teamstarmfg.com" || sales?.telephone) {
+    errors.push(`${relative}: sales must use rd01@teamstarmfg.com without a phone number`);
   }
   if (organization.alternateName?.includes("Wei Qun Cutting Tools Group")) {
     errors.push(`${relative}: parent group is incorrectly listed as an alternate company name`);
@@ -73,6 +82,13 @@ for (const file of htmlFiles()) {
   }
   if (html.includes("info@teamstarmfg.com")) {
     errors.push(`${relative}: retired info mailbox remains`);
+  }
+  if (
+    html.includes("18150707007") ||
+    html.includes("181-5070-7007") ||
+    html.includes("tel:+8618150707007")
+  ) {
+    errors.push(`${relative}: non-company 181 telephone remains`);
   }
 }
 

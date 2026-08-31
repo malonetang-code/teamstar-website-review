@@ -18,18 +18,28 @@ const organization = {
   logo: "https://www.teamstarmfg.com/images/web/brand-sign.jpg",
   foundingDate: "2023-11-01",
   email: "ga01@teamstarmfg.com",
+  telephone: "+8615305070074",
   parentOrganization: {
     "@type": "Organization",
     name: "Great Knives Manufacture Co., Ltd.",
     alternateName: "Wei Qun Cutting Tools Group",
     url: "https://www.greatknives.com.tw/",
   },
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "sales",
-    email: "rd01@teamstarmfg.com",
-    availableLanguage: ["Chinese", "English"],
-  },
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "general inquiries",
+      email: "ga01@teamstarmfg.com",
+      telephone: "+8615305070074",
+      availableLanguage: ["Chinese", "English"],
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: "rd01@teamstarmfg.com",
+      availableLanguage: ["Chinese", "English"],
+    },
+  ],
   knowsAbout: [
     "Custom industrial machine knives",
     "Textile and apparel cutting knives",
@@ -93,10 +103,18 @@ function updateRetiredMailbox(html, relative) {
       '<a href="mailto:ga01@teamstarmfg.com">ga01@teamstarmfg.com</a> <a href="tel:',
       '<a href="mailto:ga01@teamstarmfg.com">General enquiries: ga01@teamstarmfg.com</a> <a href="mailto:rd01@teamstarmfg.com">Sales enquiries: rd01@teamstarmfg.com</a> <a href="tel:',
     );
+    next = next.replaceAll(
+      '<a href="tel:+8618150707007">+86 181-5070-7007</a>',
+      '<a href="tel:+8615305070074">General enquiries phone: +86 153-0507-0074</a>',
+    );
   } else {
     next = next.replace(
       '<a href="mailto:ga01@teamstarmfg.com">ga01@teamstarmfg.com</a> <a href="tel:',
       '<a href="mailto:ga01@teamstarmfg.com">一般咨询：ga01@teamstarmfg.com</a> <a href="mailto:rd01@teamstarmfg.com">销售咨询：rd01@teamstarmfg.com</a> <a href="tel:',
+    );
+    next = next.replaceAll(
+      '<a href="tel:+8618150707007">+86 181-5070-7007</a>',
+      '<a href="tel:+8615305070074">一般咨询电话：153 0507 0074</a>',
     );
   }
   return next;
