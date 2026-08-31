@@ -786,6 +786,21 @@ html[data-site-theme-preview] body.site-theme-preview-active :is(
   border-color: var(--line);
 }
 
+/* Equipment cards use their own surface, so their text must not inherit the
+   surrounding dark-section palette. This stays light-on-dark in A and becomes
+   dark-on-light in B-E through each theme's ink tokens. */
+html[data-site-theme-preview] body.site-theme-preview-active .section-dark .equipment-item {
+  color: var(--ink);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .section-dark .equipment-item strong {
+  color: var(--ink);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .section-dark .equipment-item span {
+  color: var(--ink-soft);
+}
+
 html[data-site-theme-preview] body.site-theme-preview-active :is(
   .product-card-summary,
   .product-card-specs dd,
