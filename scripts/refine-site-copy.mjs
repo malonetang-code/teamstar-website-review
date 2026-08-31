@@ -133,8 +133,8 @@ applyReplacements("index.html", [
     "材料分析、三坐标测量、影像测量与金相检验覆盖来料、过程和成品的关键质量要求。",
   ],
   [
-    "群新工业（漳州）有限公司成立于 2024 年，是伟群制刀工业集团成员企业，延续集团在工业刀具与切削工具领域的制造经验。",
-    "群新工业（漳州）有限公司成立于 2024 年，是伟群制刀工业集团成员企业，专注工业机械刀具的制造与销售。",
+    "群新工业（漳州）有限公司是伟群制刀工业集团成员企业，2024 年 6 月启动漳州生产基地搬迁，延续集团在工业刀具与切削工具领域的制造经验。",
+    "群新工业（漳州）有限公司是伟群制刀工业集团成员企业，2024 年 6 月启动漳州生产基地搬迁，专注工业机械刀具制造。",
   ],
   [
     "相关项目覆盖多类刀具、设备品牌与工业应用，合作对象包括品牌企业、设备制造商及工业用户。",
@@ -191,8 +191,8 @@ applyReplacements("en/index.html", [
     "Material analysis, coordinate measurement, optical measurement and metallography cover key incoming, in-process and final requirements.",
   ],
   [
-    "Qunxin Industrial was established in Zhangzhou in 2024 as a member of Wei Qun Cutting Tools Group, continuing the group’s experience in industrial knives and cutting tools.",
-    "Qunxin Industrial was established in Zhangzhou in 2024 as a member of Wei Qun Cutting Tools Group, focusing on industrial machine-knife manufacturing and sales.",
+    "Qunxin Industrial is a member of Wei Qun Cutting Tools Group. The move to its Zhangzhou manufacturing base began in June 2024, continuing the group’s experience in industrial knives and cutting tools.",
+    "Qunxin Industrial is a member of Wei Qun Cutting Tools Group. The move to its Zhangzhou manufacturing base began in June 2024, with a focus on industrial machine-knife manufacturing.",
   ],
   [
     "Relevant projects cover multiple blade families, equipment brands and industrial applications for brand owners, equipment manufacturers and industrial users.",
@@ -752,8 +752,8 @@ applyReplacements("en/quality/index.html", [
 applyReplacements("company/index.html", [
   ["集团制造体系下的<br>漳州生产基地", "群新工业漳州生产基地"],
   [
-    "群新工业（漳州）有限公司成立于 2024 年，是伟群制刀工业集团成员企业，延续集团在工业刀具与切削工具领域的制造经验。",
-    "群新工业（漳州）有限公司成立于 2024 年，是伟群制刀工业集团成员企业，开展工业机械刀具的制造与销售业务。",
+    "群新工业（漳州）有限公司是伟群制刀工业集团成员企业，2024 年 6 月启动漳州生产基地搬迁，延续集团在工业刀具与切削工具领域的制造经验。",
+    "群新工业（漳州）有限公司是伟群制刀工业集团成员企业，2024 年 6 月启动漳州生产基地搬迁，开展工业机械刀具制造业务。",
   ],
   ["集团制造体系发展历程", "集团制造体系"],
   [
@@ -765,8 +765,8 @@ applyReplacements("company/index.html", [
 applyReplacements("en/company/index.html", [
   ["Zhangzhou manufacturing base within the group network", "Qunxin Industrial Zhangzhou manufacturing base"],
   [
-    "Qunxin Industrial was established in Zhangzhou in 2024 as a member of Wei Qun Cutting Tools Group, continuing the group’s experience in industrial knives and cutting tools.",
-    "Qunxin Industrial was established in Zhangzhou in 2024 as a member of Wei Qun Cutting Tools Group, manufacturing and selling industrial machine knives.",
+    "Qunxin Industrial is a member of Wei Qun Cutting Tools Group. The move to its Zhangzhou manufacturing base began in June 2024, continuing the group’s experience in industrial knives and cutting tools.",
+    "Qunxin Industrial is a member of Wei Qun Cutting Tools Group. The move to its Zhangzhou manufacturing base began in June 2024, with a focus on industrial machine-knife manufacturing.",
   ],
   ["Development of the group manufacturing network", "Group manufacturing network"],
   [
