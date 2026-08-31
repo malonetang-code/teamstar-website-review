@@ -47,7 +47,7 @@ for (const phrase of [
   "集团刀具制造积累",
   "集团于 1978 年在台湾创立，并开始制造工业刀具，持续积累工艺资料与生产经验。",
   "重要制造环节在厂内完成，质量控制更直接。",
-  "从单件试制到批量供货，根据实际需求安排。",
+  "可接受单件试制，价格根据材料、工艺和项目要求评估。",
 ]) {
   if ((zh.match(new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 4) {
     throw new Error(`Chinese copy must appear identically in all four variants: ${phrase}`);
@@ -59,7 +59,7 @@ for (const phrase of [
   "Group knife manufacturing since 1978",
   "The group was founded in Taiwan in 1978 and has manufactured industrial knives since then, building process knowledge and production experience over time.",
   "Important manufacturing stages are completed within our own facility for more direct quality control.",
-  "From one-off trials to repeat production, quantities are arranged around the actual requirement.",
+  "Single-piece trials can be quoted, with pricing confirmed after review of material, process and project requirements.",
 ]) {
   if ((en.match(new RegExp(phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g")) || []).length !== 4) {
     throw new Error(`English copy must appear identically in all four variants: ${phrase}`);

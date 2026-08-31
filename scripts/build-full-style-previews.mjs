@@ -148,7 +148,7 @@ function refinedWhyQunxin(language) {
         spaceBody: "More than 10,000 m² of manufacturing space.",
         quantityUnit: "PIECE",
         quantityTitle: "Flexible custom quantities",
-        quantityBody: "From one-off trials to repeat production, quantities are arranged around the actual requirement.",
+        quantityBody: "Single-piece trials can be quoted, with pricing confirmed after review of material, process and project requirements.",
       }
     : {
         title: "为什么选择群新",
@@ -163,7 +163,7 @@ function refinedWhyQunxin(language) {
         spaceBody: "漳州基地生产厂房超过 10,000 平方米。",
         quantityUnit: "件起",
         quantityTitle: "灵活定制",
-        quantityBody: "从单件试制到批量供货，根据实际需求安排。",
+        quantityBody: "可接受单件试制，价格根据材料、工艺和项目要求评估。",
       };
 
   return `<section class="why-qunxin-section fp-why-refined-e" aria-labelledby="why-qunxin-title"><div class="container fp-why-e-shell"><header class="fp-why-e-heading"><span>WHY QUNXIN</span><h2 id="why-qunxin-title">${copy.title}</h2><p>${copy.intro}</p></header><div class="fp-why-e-specs"><article><strong>${copy.yearsValue}</strong><h3>${copy.yearsTitle}</h3><p>${copy.yearsBody}</p></article><article><strong class="fp-why-e-text-value">${copy.processValue}</strong><h3>${copy.processTitle}</h3><p>${copy.processBody}</p></article><article><strong>1<small>${copy.quantityUnit}</small></strong><h3>${copy.quantityTitle}</h3><p>${copy.quantityBody}</p></article><article><strong>10,000+<small>m²</small></strong><h3>${copy.spaceTitle}</h3><p>${copy.spaceBody}</p></article></div></div></section>`;

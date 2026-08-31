@@ -21,6 +21,16 @@ const organization = {
   foundingDate: "2023-11-01",
   email: "ga01@teamstarmfg.com",
   telephone: "+8615305070074",
+  areaServed: [
+    {
+      "@type": "AdministrativeArea",
+      name: "Europe",
+    },
+    {
+      "@type": "Country",
+      name: "United States",
+    },
+  ],
   memberOf: {
     "@type": "Organization",
     name: "Wei Qun Cutting Tools Group",
@@ -188,6 +198,10 @@ const companyCopy = new Map([
         '<h1>群新工业</h1> <p>伟群制刀工业集团成员企业，漳州生产基地专注工业机械刀具制造。</p>',
         '<h1>群新工业</h1> <p>群新工业（漳州）有限公司是伟群制刀工业集团成员企业，专注工业机械刀具制造。</p>',
       ],
+      [
+        '<h1>群新工业</h1> <p>群新工业（漳州）有限公司是伟群制刀工业集团成员企业，专注工业机械刀具制造。</p>',
+        '<h1>群新工业</h1> <p>群新工业（漳州）有限公司是伟群制刀工业集团成员企业，专注工业机械刀具制造，长期服务欧洲和美国客户。</p>',
+      ],
     ],
   ],
   [
@@ -209,6 +223,10 @@ const companyCopy = new Map([
         '<h1>Qunxin Industrial</h1> <p>A Wei Qun Cutting Tools Group company focused on industrial machine knife manufacturing in Zhangzhou.</p>',
         '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>A member of Wei Qun Cutting Tools Group, focused on industrial machine knife manufacturing in Zhangzhou.</p>',
       ],
+      [
+        '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>A member of Wei Qun Cutting Tools Group, focused on industrial machine knife manufacturing in Zhangzhou.</p>',
+        '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>A member of Wei Qun Cutting Tools Group, Teamstar manufactures industrial machine knives in Zhangzhou for customers in Europe and the United States.</p>',
+      ],
     ],
   ],
 ]);
@@ -227,6 +245,48 @@ const heritageReplacements = [
 
 function updateHeritageCopy(html) {
   return heritageReplacements.reduce(
+    (next, [from, to]) => next.replaceAll(from, to),
+    html,
+  );
+}
+
+const operationalReplacements = [
+  [
+    "从单件试制到批量供货，根据实际需求安排。",
+    "可接受单件试制，价格根据材料、工艺和项目要求评估。",
+  ],
+  [
+    "From one-off trials to repeat production, quantities are arranged around the actual requirement.",
+    "Single-piece trials can be quoted, with pricing confirmed after review of material, process and project requirements.",
+  ],
+  [
+    "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。",
+    "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
+  ],
+  [
+    "Inspection plans follow the product, drawing and application, with focus on material, dimensions, cutting edges and batch consistency.",
+    "Inspection plans follow the product, drawing and application, with focus on material, dimensions, cutting edges and batch consistency. If inspection or delivered products do not meet the agreed requirements, the issue is reviewed technically before remake, replacement or another agreed resolution.",
+  ],
+  [
+    "核对图纸版本、材料要求和验收项目。",
+    "核对并保存图纸或样品版本、材料要求和验收项目；复购按已确认资料复核。",
+  ],
+  [
+    "Review the drawing revision, material requirements and acceptance items.",
+    "Review and retain the drawing or sample revision, material requirements and acceptance items; repeat orders are checked against the confirmed records.",
+  ],
+  [
+    "依据验收要求执行批次放行，并保留相应检验记录。",
+    "每批依据验收要求放行，保留相应检验记录，并随批提供检验报告。",
+  ],
+  [
+    "Release each batch against the acceptance criteria and retain the relevant inspection records.",
+    "Release each batch against the acceptance criteria, retain the inspection records and provide an inspection report with the shipment.",
+  ],
+];
+
+function updateOperationalCopy(html) {
+  return operationalReplacements.reduce(
     (next, [from, to]) => next.replaceAll(from, to),
     html,
   );
@@ -363,6 +423,7 @@ for (const file of htmlFiles()) {
   }
 
   next = updateHeritageCopy(next);
+  next = updateOperationalCopy(next);
   next = updateFacilityCopy(next, relative);
   next = updateQualityCertification(next, relative);
 

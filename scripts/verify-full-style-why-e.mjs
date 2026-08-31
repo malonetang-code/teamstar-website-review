@@ -5,11 +5,11 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const styles = ["a", "b", "c", "d", "e"];
 const pages = styles.flatMap((style) => [
-  [`full-style-preview/${style}/index.html`, "为什么选择群新", "关键工序", "1<small>件起</small>"],
-  [`full-style-preview/${style}/en/index.html`, "Why customers choose Qunxin", "IN-HOUSE", "1<small>PIECE</small>"],
+  [`full-style-preview/${style}/index.html`, "为什么选择群新", "关键工序", "1<small>件起</small>", "可接受单件试制，价格根据材料、工艺和项目要求评估。"],
+  [`full-style-preview/${style}/en/index.html`, "Why customers choose Qunxin", "IN-HOUSE", "1<small>PIECE</small>", "Single-piece trials can be quoted, with pricing confirmed after review of material, process and project requirements."],
 ]);
 
-for (const [relativePath, title, process, quantity] of pages) {
+for (const [relativePath, title, process, quantity, quantityBody] of pages) {
   const html = fs.readFileSync(path.join(root, relativePath), "utf8");
   for (const required of [
     'class="why-qunxin-section fp-why-refined-e"',
@@ -18,6 +18,7 @@ for (const [relativePath, title, process, quantity] of pages) {
     "1978",
     process,
     quantity,
+    quantityBody,
     "10,000+<small>m²</small>",
     "full-style-preview.css?v=20260828-4",
     'name="robots" content="noindex,nofollow,noarchive"',

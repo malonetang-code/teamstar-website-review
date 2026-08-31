@@ -92,6 +92,19 @@ for (const file of htmlFiles()) {
   if (organization.parentOrganization) {
     errors.push(`${relative}: group membership must not be represented as a parent organization`);
   }
+  const areaServed = Array.isArray(organization.areaServed)
+    ? organization.areaServed
+    : [organization.areaServed].filter(Boolean);
+  if (
+    !areaServed.some(
+      (area) => area?.["@type"] === "AdministrativeArea" && area?.name === "Europe",
+    ) ||
+    !areaServed.some(
+      (area) => area?.["@type"] === "Country" && area?.name === "United States",
+    )
+  ) {
+    errors.push(`${relative}: confirmed Europe and United States markets are missing`);
+  }
   if (
     organization.memberOf?.name !== "Wei Qun Cutting Tools Group" ||
     organization.memberOf?.alternateName !== "伟群制刀工业集团" ||
@@ -171,6 +184,9 @@ const qualityChecks = [
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-cn.pdf",
       "/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg",
+      "核对并保存图纸或样品版本、材料要求和验收项目；复购按已确认资料复核。",
+      "每批依据验收要求放行，保留相应检验记录，并随批提供检验报告。",
+      "先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
     ],
   ],
   [
@@ -186,6 +202,9 @@ const qualityChecks = [
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-en.pdf",
       "/teamstar-website-review/images/certs/iso9001-en-thumb.jpg",
+      "Review and retain the drawing or sample revision, material requirements and acceptance items; repeat orders are checked against the confirmed records.",
+      "Release each batch against the acceptance criteria, retain the inspection records and provide an inspection report with the shipment.",
+      "the issue is reviewed technically before remake, replacement or another agreed resolution.",
     ],
   ],
 ];
@@ -233,6 +252,7 @@ const companyChecks = [
       "深圳生产启动",
       "集团在广东深圳启动生产。",
       "群新工业（漳州）有限公司是伟群制刀工业集团成员企业",
+      "长期服务欧洲和美国客户。",
       "漳州生产基地启动搬迁",
       "群新工业启动生产基地搬迁工作。",
       "漳州基地生产厂房超过 10,000 平方米",
@@ -257,6 +277,7 @@ const companyChecks = [
       "Production launched in Shenzhen",
       "The group launched production in Shenzhen, Guangdong.",
       "Teamstar Manufacturing (Zhangzhou) Ltd.",
+      "for customers in Europe and the United States.",
       "Relocation to the Zhangzhou base began",
       "Qunxin Industrial began the move to its Zhangzhou manufacturing base.",
       "The Zhangzhou site provides more than 10,000 m² of manufacturing space",
@@ -282,6 +303,22 @@ for (const [relative, required, rejected] of companyChecks) {
   }
 }
 
+const homeChecks = [
+  [
+    "home/index.html",
+    "可接受单件试制，价格根据材料、工艺和项目要求评估。",
+  ],
+  [
+    "en/home/index.html",
+    "Single-piece trials can be quoted, with pricing confirmed after review of material, process and project requirements.",
+  ],
+];
+
+for (const [relative, required] of homeChecks) {
+  const html = fs.readFileSync(path.join(root, relative), "utf8");
+  if (!html.includes(required)) errors.push(`${relative}: missing confirmed single-piece trial boundary`);
+}
+
 if (checked !== 54) errors.push(`Expected 54 canonical review pages, checked ${checked}`);
 
 if (errors.length) {
@@ -290,5 +327,5 @@ if (errors.length) {
 }
 
 console.log(
-  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, and expose the verified bilingual ISO 9001 certificate evidence.`,
+  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, identify Europe and the United States as served markets, record the qualified single-piece trial offer, repeat-order records, per-batch inspection reports and agreed nonconformance handling, and expose the verified bilingual ISO 9001 certificate evidence.`,
 );
