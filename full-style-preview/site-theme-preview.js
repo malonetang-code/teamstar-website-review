@@ -24,6 +24,8 @@
 
   mountProductHeroSample();
 
+  mountLanguageMenu();
+
   propagateThemeLinks();
 
   if (!validTheme(themeFromHome)) {
@@ -141,6 +143,85 @@
     label.className = "product-hero-sample-label";
     label.textContent = sample.label;
     hero.append(label);
+  }
+
+  function mountLanguageMenu() {
+    if (document.querySelector(".language-menu")) return;
+
+    const legacyLink = document.querySelector(".nav-actions > .language-link");
+    if (!legacyLink) return;
+
+    const normalizedPath = normalizeReviewPath(window.location.pathname);
+    const relativePath = normalizedPath
+      .replace(/^\/teamstar-review\//, "")
+      .replace(/^en\//, "");
+    const languageUrl = (language) => {
+      const url = new URL(window.location.href);
+      url.pathname = `/teamstar-review/${language === "en" ? "en/" : ""}${relativePath}`;
+      url.searchParams.set("style", theme);
+      return `${url.pathname}${url.search}${url.hash}`;
+    };
+
+    const labels = isEnglish
+      ? { aria: "Choose language", title: "Language", planned: "Planned" }
+      : { aria: "English / 选择语言", title: "多语言", planned: "筹备中" };
+
+    const menu = document.createElement("details");
+    menu.className = "language-menu";
+
+    const summary = document.createElement("summary");
+    summary.setAttribute("aria-label", labels.aria);
+    const triggerLabel = document.createElement("span");
+    triggerLabel.textContent = "EN";
+    summary.append(triggerLabel);
+
+    const panel = document.createElement("div");
+    panel.className = "language-menu-panel";
+    const title = document.createElement("strong");
+    title.textContent = labels.title;
+    panel.append(title);
+
+    const addLanguage = ({ href, label, code, current = false }) => {
+      const link = document.createElement("a");
+      link.href = href;
+      link.hreflang = code === "ZH" ? "zh-CN" : "en";
+      if (current) link.setAttribute("aria-current", "page");
+      const name = document.createElement("span");
+      name.textContent = label;
+      const abbreviation = document.createElement("small");
+      abbreviation.textContent = code;
+      link.append(name, abbreviation);
+      panel.append(link);
+    };
+
+    const addPlannedLanguage = (label) => {
+      const option = document.createElement("span");
+      option.className = "is-disabled";
+      option.setAttribute("aria-disabled", "true");
+      const name = document.createElement("span");
+      name.textContent = label;
+      const status = document.createElement("small");
+      status.textContent = labels.planned;
+      option.append(name, status);
+      panel.append(option);
+    };
+
+    addLanguage({ href: languageUrl("zh"), label: "简体中文", code: "ZH", current: !isEnglish });
+    addLanguage({ href: languageUrl("en"), label: "English", code: "EN", current: isEnglish });
+    addPlannedLanguage("Français");
+    addPlannedLanguage("Español");
+
+    menu.append(summary, panel);
+    legacyLink.replaceWith(menu);
+
+    menu.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !menu.open) return;
+      menu.open = false;
+      summary.focus();
+    });
+    document.addEventListener("click", (event) => {
+      if (menu.open && !menu.contains(event.target)) menu.open = false;
+    });
   }
 
   function propagateThemeLinks() {

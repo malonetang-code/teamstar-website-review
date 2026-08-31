@@ -331,6 +331,112 @@ html[data-site-theme-preview] .menu-button {
   border-color: var(--line);
 }
 
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu {
+  position: relative;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary {
+  min-width: 62px;
+  min-height: 40px;
+  padding: 0 28px 0 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: var(--stp-surface);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  list-style: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu[open] summary::after {
+  transform: translateY(-30%) rotate(225deg);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary:hover {
+  border-color: var(--line-dark);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary:focus-visible,
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel > a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 32%, transparent);
+  outline-offset: 3px;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel {
+  width: 224px;
+  padding: 8px;
+  position: absolute;
+  z-index: 280;
+  top: calc(100% + 9px);
+  right: 0;
+  color: var(--ink);
+  background: var(--stp-surface-raised);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .18);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel > strong {
+  padding: 9px 10px 11px;
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel > a,
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel > span {
+  min-height: 40px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel > a:hover,
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel > a[aria-current="page"] {
+  background: var(--stp-soft);
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel small {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel .is-disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
 html[data-site-theme-preview] .menu-button span {
   background: var(--ink);
 }
@@ -1044,6 +1150,15 @@ html[data-site-theme-preview] body.guide-refined :is(
     display: none;
   }
 
+  html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary {
+    min-width: 58px;
+    min-height: 44px;
+  }
+
+  html[data-site-theme-preview] body.site-theme-preview-active .language-menu-panel {
+    width: min(224px, calc(100vw - 32px));
+  }
+
   html[data-site-theme-preview] body.site-theme-preview-active .page-hero {
     min-height: 460px;
   }
@@ -1134,6 +1249,18 @@ html[data-site-theme-preview] body.guide-refined :is(
 
   html[data-site-theme-preview] body.site-theme-preview-active .section-head h2 {
     font-size: clamp(27px, 8.5vw, 36px);
+  }
+}
+
+@media (max-width: 359px) {
+  html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary {
+    min-width: 56px;
+    padding-right: 19px;
+    padding-left: 8px;
+  }
+
+  html[data-site-theme-preview] body.site-theme-preview-active .language-menu summary::after {
+    right: 8px;
   }
 }
 
