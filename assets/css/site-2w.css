@@ -1984,3 +1984,18 @@ html[lang="en"] .page-home-video .hero-copy h1 {
     display: none;
   }
 }
+
+@media (max-width: 359px) {
+  .redesign-2w .nav-shell {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px;
+  }
+
+  .redesign-2w .nav-actions {
+    gap: 6px;
+  }
+
+  .redesign-2w .brand strong {
+    font-size: 15px;
+  }
+}

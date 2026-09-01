@@ -116,6 +116,16 @@ for (const file of htmlFiles()) {
   ) {
     errors.push(`${relative}: confirmed group membership or manufacturing scope evidence is missing`);
   }
+  for (const capability of [
+    "Direct export order handling",
+    "OEM and private-label industrial knife manufacturing",
+    "Material and production-batch traceability",
+    "Industrial knife sample approval and change control",
+  ]) {
+    if (!organization.knowsAbout?.includes(capability)) {
+      errors.push(`${relative}: missing confirmed capability ${capability}`);
+    }
+  }
   const groupBrands = Array.isArray(organization.memberOf?.brand)
     ? organization.memberOf.brand
     : [];
@@ -188,6 +198,18 @@ for (const file of htmlFiles()) {
   ) {
     errors.push(`${relative}: non-company 181 telephone remains`);
   }
+  for (const unsupportedClaim of [
+    "一个工作日内回复",
+    "24 小时内回复",
+    "每批提供材质证明",
+    "within one business day",
+    "within 24 hours",
+    "Material certificates are provided with every batch",
+  ]) {
+    if (html.includes(unsupportedClaim)) {
+      errors.push(`${relative}: unsupported fixed commitment remains: ${unsupportedClaim}`);
+    }
+  }
 }
 
 const qualityChecks = [
@@ -204,9 +226,11 @@ const qualityChecks = [
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-cn.pdf",
       "/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg",
-      "核对并保存图纸或样品版本、材料要求和验收项目；原材料与生产批次保留追溯记录，复购按已确认资料复核。",
+      "核对并保存图纸或样品版本、材料要求和验收项目；原材料批次、热处理批次、生产工单、检验记录和检验报告可关联追溯，复购按已确认资料复核。",
+      "图纸、材料、热处理或关键工艺如需变更，实施前先与客户确认。",
+      "新定制项目按项目安排样品确认。",
       "每批依据验收要求放行，保留相应检验记录，并随批提供检验报告。",
-      "先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
+      "收到客户反馈后，我们会尽快回复并启动技术复核",
     ],
   ],
   [
@@ -222,9 +246,11 @@ const qualityChecks = [
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-en.pdf",
       "/teamstar-website-review/images/certs/iso9001-en-thumb.jpg",
-      "Review and retain the drawing or sample revision, material requirements and acceptance items; material and production-batch records are traceable, and repeat orders are checked against the confirmed records.",
+      "Raw-material batches, heat-treatment batches, production work orders, inspection records and inspection reports can be traced together",
+      "Changes to the drawing, material, heat treatment or key process are confirmed with the customer before implementation.",
+      "sample approval is arranged for new custom projects as appropriate.",
       "Release each batch against the acceptance criteria, retain the inspection records and provide an inspection report with the shipment.",
-      "the issue is reviewed technically before remake, replacement or another agreed resolution.",
+      "Customer feedback is answered promptly and moved into technical review",
     ],
   ],
 ];
@@ -238,8 +264,8 @@ for (const [relative, required] of qualityChecks) {
     errors.push(`${relative}: expected exactly one visible ISO certificate section`);
   }
   const nonconformancePhrase = relative.startsWith("en/")
-    ? "If inspection or delivered products do not meet the agreed requirements, the issue is reviewed technically before remake, replacement or another agreed resolution."
-    : "如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。";
+    ? "Customer feedback is answered promptly and moved into technical review before remake, replacement or another agreed resolution is arranged."
+    : "收到客户反馈后，我们会尽快回复并启动技术复核，再根据双方确认结果安排重做、补货或其他处理。";
   if ((html.split(nonconformancePhrase).length - 1) !== 1) {
     errors.push(`${relative}: nonconformance statement must appear exactly once`);
   }
@@ -277,7 +303,7 @@ const companyChecks = [
       "1991",
       "深圳生产启动",
       "集团在广东深圳启动生产。",
-      "群新的制造业务支持集团在欧洲和美国的客户，现也可直接承接客户询价与订单。",
+      "群新的制造业务支持集团在欧洲和美国的客户。群新现可直接接单，并独立办理合同、收款、开票及出口报关。",
       "GOLDEN EAGLE、QUICKLY 和 WAYKEN 是集团服装行业品牌。",
       "过往海外订单由台北集团协调并安排生产",
       "漳州生产基地启动搬迁",
@@ -304,7 +330,7 @@ const companyChecks = [
       "Production launched in Shenzhen",
       "The group launched production in Shenzhen, Guangdong.",
       "Teamstar Manufacturing (Zhangzhou) Ltd.",
-      "Teamstar manufacturing supports group customers in Europe and the United States and now also accepts direct enquiries and orders.",
+      "Teamstar manufacturing supports group customers in Europe and the United States. Teamstar now also accepts direct orders and handles contracting, payment, invoicing and export customs formalities.",
       "GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry.",
       "Overseas orders were historically coordinated by the Taipei group and assigned for production",
       "Relocation to the Zhangzhou base began",
@@ -337,7 +363,9 @@ const rfqChecks = [
     "rfq/index.html",
     [
       "技术人员会与您确认材料、硬度、刃口、安装尺寸和使用条件，并据此评估制造与报价。",
-      "支持客户品牌、中性或指定包装及 OEM 项目",
+      "支持客户品牌、OEM 与中性或指定包装",
+      "防锈、刃口保护和独立包装按产品及订单要求安排。",
+      "可提供材质证明",
       "如有保密要求，可按项目签署保密协议。",
     ],
   ],
@@ -345,8 +373,10 @@ const rfqChecks = [
     "en/rfq/index.html",
     [
       "Our technical team reviews the material, hardness, cutting edge, mounting dimensions and application with you before confirming manufacturing and quotation requirements.",
-      "Customer branding, neutral or specified packaging and OEM/private-label projects are supported",
-      "a confidentiality agreement can be signed when the project requires it.",
+      "Customer branding, OEM/private-label manufacturing and neutral or specified packaging are available.",
+      "Rust prevention, edge protection and individual packing are arranged to suit the product and order.",
+      "Material certificates can be provided",
+      "a confidentiality agreement can be signed when required.",
     ],
   ],
 ];
@@ -384,5 +414,5 @@ if (errors.length) {
 }
 
 console.log(
-  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, distinguish Taipei-group order history from Teamstar direct enquiries, record the verified group brands, qualified single-piece trial offer, OEM/private-label support, project confidentiality agreements, traceable material and production batches, technical collaboration, per-batch inspection reports and agreed nonconformance handling, and expose the verified bilingual ISO 9001 certificate evidence.`,
+  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, distinguish Taipei-group order history from Teamstar direct export handling, record the verified group brands, qualified single-piece trial offer, OEM/private-label support, project confidentiality agreements, linked material and production traceability, sample and change control, order-specific packaging support, per-batch inspection reports and prompt technical review, and expose the verified bilingual ISO 9001 certificate evidence.`,
 );

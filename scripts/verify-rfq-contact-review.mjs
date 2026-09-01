@@ -31,7 +31,9 @@ const zh = read('rfq/index.html');
 [
   '告诉我们您需要什么样的刀具',
   '技术人员会与您确认材料、硬度、刃口、安装尺寸和使用条件，并据此评估制造与报价。',
-  '支持客户品牌、中性或指定包装及 OEM 项目',
+  '支持客户品牌、OEM 与中性或指定包装',
+  '防锈、刃口保护和独立包装按产品及订单要求安排。',
+  '可提供材质证明',
   '如有保密要求，可按项目签署保密协议。',
   '直接联系我们',
   '联系方式',
@@ -59,8 +61,10 @@ const en = read('en/rfq/index.html');
 [
   'Talk to Our Knife Experts',
   'Our technical team reviews the material, hardness, cutting edge, mounting dimensions and application with you before confirming manufacturing and quotation requirements.',
-  'Customer branding, neutral or specified packaging and OEM/private-label projects are supported',
-  'a confidentiality agreement can be signed when the project requires it.',
+  'Customer branding, OEM/private-label manufacturing and neutral or specified packaging are available.',
+  'Rust prevention, edge protection and individual packing are arranged to suit the product and order.',
+  'Material certificates can be provided',
+  'a confidentiality agreement can be signed when required.',
   'Contact us directly',
   'Contact details',
   'Product &amp; requirements',

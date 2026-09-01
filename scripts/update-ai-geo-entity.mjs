@@ -122,6 +122,10 @@ const organization = {
     "Food processing machine knives",
     "Plastic crusher and granulator knives",
     "Woodworking machine knives",
+    "Direct export order handling",
+    "OEM and private-label industrial knife manufacturing",
+    "Material and production-batch traceability",
+    "Industrial knife sample approval and change control",
   ],
   address: {
     "@type": "PostalAddress",
@@ -352,12 +356,76 @@ const operationalReplacements = [
     '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team.</p>',
     '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, neutral or specified packaging and OEM/private-label projects are supported; a confidentiality agreement can be signed when the project requires it.</p>',
   ],
+  [
+    '<h1>群新工业</h1> <p>群新的制造业务支持集团在欧洲和美国的客户，现也可直接承接客户询价与订单。</p>',
+    '<h1>群新工业</h1> <p>群新的制造业务支持集团在欧洲和美国的客户。群新现可直接接单，并独立办理合同、收款、开票及出口报关。</p>',
+  ],
+  [
+    '<aside><div class="notice"><strong>集团品牌与接单方式</strong><br>GOLDEN EAGLE、QUICKLY 和 WAYKEN 是集团服装行业品牌。过往海外订单由台北集团协调并安排生产；群新现可直接承接客户询价与订单。</div></aside>',
+    '<aside><div class="notice"><strong>集团品牌与接单方式</strong><br>GOLDEN EAGLE、QUICKLY 和 WAYKEN 是集团服装行业品牌。过往海外订单由台北集团协调并安排生产；群新现可直接接单，并独立办理合同、收款、开票及出口报关。</div></aside>',
+  ],
+  [
+    '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>Teamstar manufacturing supports group customers in Europe and the United States and now also accepts direct enquiries and orders.</p>',
+    '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>Teamstar manufacturing supports group customers in Europe and the United States. Teamstar now also accepts direct orders and handles contracting, payment, invoicing and export customs formalities.</p>',
+  ],
+  [
+    '<aside><div class="notice"><strong>Group brands and order handling</strong><br>GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry. Overseas orders were historically coordinated by the Taipei group and assigned for production; Teamstar now also accepts direct enquiries and orders.</div></aside>',
+    '<aside><div class="notice"><strong>Group brands and order handling</strong><br>GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry. Overseas orders were historically coordinated by the Taipei group and assigned for production; Teamstar now also accepts direct orders and handles contracting, payment, invoicing and export customs formalities.</div></aside>',
+  ],
+  [
+    "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
+    "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。收到客户反馈后，我们会尽快回复并启动技术复核，再根据双方确认结果安排重做、补货或其他处理。",
+  ],
+  [
+    "Inspection plans follow the product, drawing and application, with focus on material, dimensions, cutting edges and batch consistency. If inspection or delivered products do not meet the agreed requirements, the issue is reviewed technically before remake, replacement or another agreed resolution.",
+    "Inspection plans follow the product, drawing and application, with focus on material, dimensions, cutting edges and batch consistency. Customer feedback is answered promptly and moved into technical review before remake, replacement or another agreed resolution is arranged.",
+  ],
+  [
+    "核对并保存图纸或样品版本、材料要求和验收项目；原材料与生产批次保留追溯记录，复购按已确认资料复核。",
+    "核对并保存图纸或样品版本、材料要求和验收项目；原材料批次、热处理批次、生产工单、检验记录和检验报告可关联追溯，复购按已确认资料复核。",
+  ],
+  [
+    "Review and retain the drawing or sample revision, material requirements and acceptance items; material and production-batch records are traceable, and repeat orders are checked against the confirmed records.",
+    "Review and retain the drawing or sample revision, material requirements and acceptance items. Raw-material batches, heat-treatment batches, production work orders, inspection records and inspection reports can be traced together; repeat orders are checked against confirmed records.",
+  ],
+  [
+    "在刀坯成形、热处理、机加工和研磨过程中实施过程检验。",
+    "按已确认工艺实施过程检验；图纸、材料、热处理或关键工艺如需变更，实施前先与客户确认。",
+  ],
+  [
+    "Perform in-process inspection during blank shaping, heat treatment, machining and grinding.",
+    "Perform in-process inspection against the confirmed process. Changes to the drawing, material, heat treatment or key process are confirmed with the customer before implementation.",
+  ],
+  [
+    "检验已确认的材料、尺寸、安装接口和刃口要求。",
+    "检验已确认的材料、尺寸、安装接口和刃口要求；新定制项目按项目安排样品确认。",
+  ],
+  [
+    "Verify the agreed material, dimensions, mounting interfaces and cutting-edge requirements.",
+    "Verify the agreed material, dimensions, mounting interfaces and cutting-edge requirements; sample approval is arranged for new custom projects as appropriate.",
+  ],
+  [
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。支持客户品牌、中性或指定包装及 OEM 项目；如有保密要求，可按项目签署保密协议。</p>',
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。支持客户品牌、OEM 与中性或指定包装；防锈、刃口保护和独立包装按产品及订单要求安排。可提供材质证明；如有保密要求，可按项目签署保密协议。</p>',
+  ],
+  [
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, neutral or specified packaging and OEM/private-label projects are supported; a confidentiality agreement can be signed when the project requires it.</p>',
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, OEM/private-label manufacturing and neutral or specified packaging are available. Rust prevention, edge protection and individual packing are arranged to suit the product and order. Material certificates can be provided, and a confidentiality agreement can be signed when required.</p>',
+  ],
 ];
 
 function updateOperationalCopy(html) {
   let next = operationalReplacements.reduce(
     (next, [from, to]) => next.replaceAll(from, to),
     html,
+  );
+  next = next.replace(
+    /(<span class="eyebrow">PROCESS CONTROL<\/span><h2>质量控制<\/h2><\/div><p>)[\s\S]*?(<\/p><\/div> <div class="quality-flow">)/,
+    "$1检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。收到客户反馈后，我们会尽快回复并启动技术复核，再根据双方确认结果安排重做、补货或其他处理。$2",
+  );
+  next = next.replace(
+    /(<span class="eyebrow">PROCESS CONTROL<\/span><h2>Quality Control<\/h2><\/div><p>)[\s\S]*?(<\/p><\/div> <div class="quality-flow">)/,
+    "$1Inspection plans follow the product, drawing and application, with focus on material, dimensions, cutting edges and batch consistency. Customer feedback is answered promptly and moved into technical review before remake, replacement or another agreed resolution is arranged.$2",
   );
   for (const suffix of [
     "如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
