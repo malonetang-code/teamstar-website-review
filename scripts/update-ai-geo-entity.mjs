@@ -124,6 +124,12 @@ const organization = {
     "OEM and private-label industrial knife manufacturing",
     "Material and production-batch traceability",
     "Industrial knife sample approval and change control",
+    "Original mill certificates and internal material inspection reports",
+    "Export documentation for industrial knife orders",
+    "EXW, FOB, CIF and DDP trade terms",
+    "RMB, USD and EUR order settlement by T/T or letter of credit",
+    "Customer-specified labels, barcodes, batch numbers, shipping marks and packing instructions",
+    "Ten-year drawing, batch and inspection record retention",
   ],
   address: {
     "@type": "PostalAddress",
@@ -438,6 +444,30 @@ const operationalReplacements = [
     '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, neutral or specified packaging and OEM/private-label projects are supported; a confidentiality agreement can be signed when the project requires it.</p>',
     '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, OEM/private-label manufacturing and neutral or specified packaging are available. Rust prevention, edge protection and individual packing are arranged to suit the product and order. Material certificates can be provided, and a confidentiality agreement can be signed when required.</p>',
   ],
+  [
+    "核对并保存图纸或样品版本、材料要求和验收项目；原材料批次、热处理批次、生产工单、检验记录和检验报告可关联追溯，复购按已确认资料复核。",
+    "保存已确认的图纸或样品版本、材料要求和验收项目；原材料批次、热处理批次、生产工单、检验记录和检验报告可关联追溯，相关资料通常保存 10 年，复购时按确认版本复核。",
+  ],
+  [
+    "Review and retain the drawing or sample revision, material requirements and acceptance items. Raw-material batches, heat-treatment batches, production work orders, inspection records and inspection reports can be traced together; repeat orders are checked against confirmed records.",
+    "Confirmed drawings or sample records, material requirements and acceptance items are retained. Raw-material batches, heat-treatment batches, production work orders, inspection records and reports can be traced together; these records are normally retained for 10 years and checked for repeat orders.",
+  ],
+  [
+    "检验已确认的材料、尺寸、安装接口和刃口要求；新定制项目按项目安排样品确认。",
+    "检验已确认的材料、尺寸、安装接口和刃口要求；新定制项目可按客户要求通过签样、检验报告、确认图纸或邮件留存样品确认记录。",
+  ],
+  [
+    "Verify the agreed material, dimensions, mounting interfaces and cutting-edge requirements; sample approval is arranged for new custom projects as appropriate.",
+    "Verify the agreed material, dimensions, mounting interfaces and cutting-edge requirements. For new custom projects, sample approval can be recorded by signed sample, inspection report, approved drawing or email, as agreed with the customer.",
+  ],
+  [
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。支持客户品牌、OEM 与中性或指定包装；防锈、刃口保护和独立包装按产品及订单要求安排。可提供材质证明；如有保密要求，可按项目签署保密协议。</p>',
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。支持客户品牌和 OEM 项目；如有保密要求，可按项目签署保密协议。</p>',
+  ],
+  [
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, OEM/private-label manufacturing and neutral or specified packaging are available. Rust prevention, edge protection and individual packing are arranged to suit the product and order. Material certificates can be provided, and a confidentiality agreement can be signed when required.</p>',
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer-brand and OEM/private-label projects are supported, and a confidentiality agreement can be signed when required.</p>',
+  ],
 ];
 
 function updateOperationalCopy(html) {
@@ -452,6 +482,22 @@ function updateOperationalCopy(html) {
   next = next.replace(
     /(<span class="eyebrow">PROCESS CONTROL<\/span><h2>Quality Control<\/h2><\/div><p>)[\s\S]*?(<\/p><\/div> <div class="quality-flow">)/,
     "$1Inspection plans follow the product, drawing and application, with focus on material, dimensions, cutting edges and batch consistency. Customer feedback is answered promptly and moved into technical review before remake, replacement or another agreed resolution is arranged.$2",
+  );
+  next = next.replace(
+    /(<h3>技术要求与材料确认<\/h3><p>)[\s\S]*?(<\/p><\/div> <div class="quality-flow-step"><b>02 \/ IN-PROCESS<\/b>)/,
+    "$1保存已确认的图纸或样品版本、材料要求和验收项目；原材料批次、热处理批次、生产工单、检验记录和检验报告可关联追溯，相关资料通常保存 10 年，复购时按确认版本复核。$2",
+  );
+  next = next.replace(
+    /(<h3>Technical and material review<\/h3><p>)[\s\S]*?(<\/p><\/div> <div class="quality-flow-step"><b>02 \/ IN-PROCESS<\/b>)/,
+    "$1Confirmed drawings or sample records, material requirements and acceptance items are retained. Raw-material batches, heat-treatment batches, production work orders, inspection records and reports can be traced together; these records are normally retained for 10 years and checked for repeat orders.$2",
+  );
+  next = next.replace(
+    /(<h3>成品检验<\/h3><p>)[\s\S]*?(<\/p><\/div> <div class="quality-flow-step"><b>04 \/ RELEASE<\/b>)/,
+    "$1检验已确认的材料、尺寸、安装接口和刃口要求；新定制项目可按客户要求通过签样、检验报告、确认图纸或邮件留存样品确认记录。$2",
+  );
+  next = next.replace(
+    /(<h3>Final inspection<\/h3><p>)[\s\S]*?(<\/p><\/div> <div class="quality-flow-step"><b>04 \/ RELEASE<\/b>)/,
+    "$1Verify the agreed material, dimensions, mounting interfaces and cutting-edge requirements. For new custom projects, sample approval can be recorded by signed sample, inspection report, approved drawing or email, as agreed with the customer.$2",
   );
   for (const suffix of [
     "如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
@@ -579,6 +625,25 @@ function updateQualityCertification(html, relative) {
   return next;
 }
 
+const rfqOrderSupportCopy = new Map([
+  [
+    "rfq/index.html",
+    '<section class="section rfq-order-support" aria-labelledby="rfq-order-support-title"><div class="container"><div class="rfq-support-head"><div><span class="eyebrow">ORDER &amp; EXPORT SUPPORT</span><h2 id="rfq-order-support-title">订单与交付配合</h2></div><p>具体文件、贸易条款、付款安排和包装要求按客户需求及订单条件确认，并以双方订单或合同约定为准。</p></div><dl class="rfq-support-grid"><div><dt>材料文件</dt><dd>可提供钢厂或材料供应商的原始材质证明，也可提供群新内部材料检验报告。</dd></div><div><dt>出口单证</dt><dd>可提供商业发票、装箱单、原产地证、提单及报关资料，具体文件随订单和运输安排确认。</dd></div><div><dt>条款与付款</dt><dd>可按项目采用 EXW、FOB、CIF 或 DDP；支持人民币、美元和欧元，以及 T/T、信用证或双方商定的其他方式。</dd></div><div><dt>标签与包装</dt><dd>可按订单使用客户指定的标签、条码、批次号、箱唛和包装说明，并安排客户品牌、中性包装及必要的防锈和刃口保护。</dd></div></dl></div></section>',
+  ],
+  [
+    "en/rfq/index.html",
+    '<section class="section rfq-order-support" aria-labelledby="rfq-order-support-title"><div class="container"><div class="rfq-support-head"><div><span class="eyebrow">ORDER &amp; EXPORT SUPPORT</span><h2 id="rfq-order-support-title">Order and Export Support</h2></div><p>Documents, trade terms, payment arrangements and packing instructions are confirmed for each order and recorded in the agreed order or contract documents.</p></div><dl class="rfq-support-grid"><div><dt>Material documents</dt><dd>Original mill or material-supplier certificates and Teamstar internal material inspection reports are both available, as specified for the order.</dd></div><div><dt>Export documents</dt><dd>Commercial invoices, packing lists, certificates of origin, bills of lading and customs declaration records can be provided as applicable to the shipment.</dd></div><div><dt>Terms and payment</dt><dd>EXW, FOB, CIF or DDP can be agreed by project. RMB, USD and EUR are supported, with T/T, letter of credit or another agreed payment method.</dd></div><div><dt>Labels and packing</dt><dd>Customer-specified labels, barcodes, batch numbers, shipping marks and packing instructions are supported, together with customer branding, neutral packing and the required rust and edge protection.</dd></div></dl></div></section>',
+  ],
+]);
+
+function updateRfqOrderSupport(html, relative) {
+  const section = rfqOrderSupportCopy.get(relative);
+  if (!section || html.includes('id="rfq-order-support-title"')) return html;
+  const marker = "</form> </div> </section> </main>";
+  if (!html.includes(marker)) throw new Error(`${relative}: RFQ support insertion marker not found`);
+  return html.replace(marker, `</form> </div> </section> ${section} </main>`);
+}
+
 let changed = 0;
 let found = 0;
 for (const file of htmlFiles()) {
@@ -598,6 +663,7 @@ for (const file of htmlFiles()) {
   next = updateOperationalCopy(next);
   next = updateFacilityCopy(next, relative);
   next = updateQualityCertification(next, relative);
+  next = updateRfqOrderSupport(next, relative);
 
   if (next !== original) {
     fs.writeFileSync(file, next);

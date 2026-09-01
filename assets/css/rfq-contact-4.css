@@ -95,6 +95,57 @@
   line-height: 1.65;
 }
 
+.page-rfq .rfq-order-support {
+  background: #fff;
+}
+
+.page-rfq .rfq-support-head {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.page-rfq .rfq-support-head h2 {
+  margin: 9px 0 0;
+  font-size: clamp(29px, 4vw, 44px);
+  letter-spacing: -0.025em;
+}
+
+.page-rfq .rfq-support-head p {
+  max-width: 680px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.page-rfq .rfq-support-grid {
+  display: grid;
+  margin: 0;
+  border-top: 3px solid var(--accent);
+}
+
+.page-rfq .rfq-support-grid > div {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.page-rfq .rfq-support-grid dt,
+.page-rfq .rfq-support-grid dd {
+  margin: 0;
+}
+
+.page-rfq .rfq-support-grid dt {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.page-rfq .rfq-support-grid dd {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
 .page-rfq .rfq-form {
   padding: clamp(22px, 4vw, 42px);
   border: 0;
@@ -179,6 +230,49 @@
   .page-rfq .rfq-layout {
     grid-template-columns: minmax(250px, 0.58fr) minmax(520px, 1.42fr);
     gap: 68px;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-rfq .rfq-support-head {
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+    align-items: end;
+  }
+
+  .page-rfq .rfq-support-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-rfq .rfq-support-grid > div {
+    min-height: 172px;
+    padding: 24px;
+  }
+
+  .page-rfq .rfq-support-grid > div:nth-child(odd) {
+    padding-left: 0;
+    border-right: 1px solid var(--line);
+  }
+}
+
+@media (min-width: 1080px) {
+  .page-rfq .rfq-support-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .page-rfq .rfq-support-grid > div,
+  .page-rfq .rfq-support-grid > div:nth-child(odd) {
+    min-height: 210px;
+    padding: 26px 22px;
+    border-right: 1px solid var(--line);
+  }
+
+  .page-rfq .rfq-support-grid > div:first-child {
+    padding-left: 0;
+  }
+
+  .page-rfq .rfq-support-grid > div:last-child {
+    padding-right: 0;
+    border-right: 0;
   }
 }
 
