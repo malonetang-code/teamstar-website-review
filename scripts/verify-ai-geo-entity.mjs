@@ -108,12 +108,32 @@ for (const file of htmlFiles()) {
   if (
     organization.memberOf?.name !== "Wei Qun Cutting Tools Group" ||
     organization.memberOf?.alternateName !== "伟群制刀工业集团" ||
+    organization.memberOf?.url !== "https://www.greatknives.com.tw/" ||
     organization.memberOf?.foundingDate !== "1978" ||
     organization.memberOf?.description !==
       "Wei Qun Cutting Tools Group was founded in Taiwan in 1978 and began by manufacturing industrial cutting products for the garment industry." ||
     !organization.knowsAbout
   ) {
     errors.push(`${relative}: confirmed group membership or manufacturing scope evidence is missing`);
+  }
+  const groupBrands = Array.isArray(organization.memberOf?.brand)
+    ? organization.memberOf.brand
+    : [];
+  for (const [name, url] of [
+    ["GOLDEN EAGLE", "https://www.greatknives.tw/"],
+    ["QUICKLY", "https://www.greatknives.com.tw/industries/38/"],
+    ["WAYKEN", "https://www.wayken.com.tw/"],
+  ]) {
+    if (
+      !groupBrands.some(
+        (brand) =>
+          brand?.["@type"] === "Brand" &&
+          brand?.name === name &&
+          brand?.url === url,
+      )
+    ) {
+      errors.push(`${relative}: missing verified group brand ${name}`);
+    }
   }
   const facilityProperties = organization.location?.additionalProperty;
   const manufacturingSpace = Array.isArray(facilityProperties)
@@ -184,7 +204,7 @@ const qualityChecks = [
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-cn.pdf",
       "/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg",
-      "核对并保存图纸或样品版本、材料要求和验收项目；复购按已确认资料复核。",
+      "核对并保存图纸或样品版本、材料要求和验收项目；原材料与生产批次保留追溯记录，复购按已确认资料复核。",
       "每批依据验收要求放行，保留相应检验记录，并随批提供检验报告。",
       "先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
     ],
@@ -202,7 +222,7 @@ const qualityChecks = [
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-en.pdf",
       "/teamstar-website-review/images/certs/iso9001-en-thumb.jpg",
-      "Review and retain the drawing or sample revision, material requirements and acceptance items; repeat orders are checked against the confirmed records.",
+      "Review and retain the drawing or sample revision, material requirements and acceptance items; material and production-batch records are traceable, and repeat orders are checked against the confirmed records.",
       "Release each batch against the acceptance criteria, retain the inspection records and provide an inspection report with the shipment.",
       "the issue is reviewed technically before remake, replacement or another agreed resolution.",
     ],
@@ -216,6 +236,12 @@ for (const [relative, required] of qualityChecks) {
   }
   if ((html.match(/id="iso-9001-certificate"/g) ?? []).length !== 1) {
     errors.push(`${relative}: expected exactly one visible ISO certificate section`);
+  }
+  const nonconformancePhrase = relative.startsWith("en/")
+    ? "If inspection or delivered products do not meet the agreed requirements, the issue is reviewed technically before remake, replacement or another agreed resolution."
+    : "如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。";
+  if ((html.split(nonconformancePhrase).length - 1) !== 1) {
+    errors.push(`${relative}: nonconformance statement must appear exactly once`);
   }
 }
 
@@ -251,8 +277,9 @@ const companyChecks = [
       "1991",
       "深圳生产启动",
       "集团在广东深圳启动生产。",
-      "群新工业（漳州）有限公司是伟群制刀工业集团成员企业",
-      "长期服务欧洲和美国客户。",
+      "群新的制造业务支持集团在欧洲和美国的客户，现也可直接承接客户询价与订单。",
+      "GOLDEN EAGLE、QUICKLY 和 WAYKEN 是集团服装行业品牌。",
+      "过往海外订单由台北集团协调并安排生产",
       "漳州生产基地启动搬迁",
       "群新工业启动生产基地搬迁工作。",
       "漳州基地生产厂房超过 10,000 平方米",
@@ -277,7 +304,9 @@ const companyChecks = [
       "Production launched in Shenzhen",
       "The group launched production in Shenzhen, Guangdong.",
       "Teamstar Manufacturing (Zhangzhou) Ltd.",
-      "for customers in Europe and the United States.",
+      "Teamstar manufacturing supports group customers in Europe and the United States and now also accepts direct enquiries and orders.",
+      "GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry.",
+      "Overseas orders were historically coordinated by the Taipei group and assigned for production",
       "Relocation to the Zhangzhou base began",
       "Qunxin Industrial began the move to its Zhangzhou manufacturing base.",
       "The Zhangzhou site provides more than 10,000 m² of manufacturing space",
@@ -300,6 +329,34 @@ for (const [relative, required, rejected] of companyChecks) {
   }
   for (const phrase of rejected) {
     if (html.includes(phrase)) errors.push(`${relative}: superseded copy remains: ${phrase}`);
+  }
+}
+
+const rfqChecks = [
+  [
+    "rfq/index.html",
+    [
+      "技术人员会与您确认材料、硬度、刃口、安装尺寸和使用条件，并据此评估制造与报价。",
+      "支持客户品牌、中性或指定包装及 OEM 项目",
+      "如有保密要求，可按项目签署保密协议。",
+    ],
+  ],
+  [
+    "en/rfq/index.html",
+    [
+      "Our technical team reviews the material, hardness, cutting edge, mounting dimensions and application with you before confirming manufacturing and quotation requirements.",
+      "Customer branding, neutral or specified packaging and OEM/private-label projects are supported",
+      "a confidentiality agreement can be signed when the project requires it.",
+    ],
+  ],
+];
+
+for (const [relative, required] of rfqChecks) {
+  const html = fs.readFileSync(path.join(root, relative), "utf8");
+  for (const phrase of required) {
+    if (!html.includes(phrase)) {
+      errors.push(`${relative}: missing confirmed customer-project support ${phrase}`);
+    }
   }
 }
 
@@ -327,5 +384,5 @@ if (errors.length) {
 }
 
 console.log(
-  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, identify Europe and the United States as served markets, record the qualified single-piece trial offer, repeat-order records, per-batch inspection reports and agreed nonconformance handling, and expose the verified bilingual ISO 9001 certificate evidence.`,
+  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, distinguish Taipei-group order history from Teamstar direct enquiries, record the verified group brands, qualified single-piece trial offer, OEM/private-label support, project confidentiality agreements, traceable material and production batches, technical collaboration, per-batch inspection reports and agreed nonconformance handling, and expose the verified bilingual ISO 9001 certificate evidence.`,
 );

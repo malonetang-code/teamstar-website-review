@@ -38,6 +38,23 @@ const organization = {
     url: "https://www.greatknives.com.tw/",
     foundingDate: "1978",
     description: "Wei Qun Cutting Tools Group was founded in Taiwan in 1978 and began by manufacturing industrial cutting products for the garment industry.",
+    brand: [
+      {
+        "@type": "Brand",
+        name: "GOLDEN EAGLE",
+        url: "https://www.greatknives.tw/",
+      },
+      {
+        "@type": "Brand",
+        name: "QUICKLY",
+        url: "https://www.greatknives.com.tw/industries/38/",
+      },
+      {
+        "@type": "Brand",
+        name: "WAYKEN",
+        url: "https://www.wayken.com.tw/",
+      },
+    ],
   },
   location: {
     "@type": "Place",
@@ -202,6 +219,14 @@ const companyCopy = new Map([
         '<h1>群新工业</h1> <p>群新工业（漳州）有限公司是伟群制刀工业集团成员企业，专注工业机械刀具制造。</p>',
         '<h1>群新工业</h1> <p>群新工业（漳州）有限公司是伟群制刀工业集团成员企业，专注工业机械刀具制造，长期服务欧洲和美国客户。</p>',
       ],
+      [
+        '<h1>群新工业</h1> <p>群新工业（漳州）有限公司是伟群制刀工业集团成员企业，专注工业机械刀具制造，长期服务欧洲和美国客户。</p>',
+        '<h1>群新工业</h1> <p>群新的制造业务支持集团在欧洲和美国的客户，现也可直接承接客户询价与订单。</p>',
+      ],
+      [
+        '<aside><div class="notice">各项目的制造工艺与检验方案，依据刀具类别、图纸及批量要求确定。</div></aside>',
+        '<aside><div class="notice"><strong>集团品牌与接单方式</strong><br>GOLDEN EAGLE、QUICKLY 和 WAYKEN 是集团服装行业品牌。过往海外订单由台北集团协调并安排生产；群新现可直接承接客户询价与订单。</div></aside>',
+      ],
     ],
   ],
   [
@@ -226,6 +251,18 @@ const companyCopy = new Map([
       [
         '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>A member of Wei Qun Cutting Tools Group, focused on industrial machine knife manufacturing in Zhangzhou.</p>',
         '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>A member of Wei Qun Cutting Tools Group, Teamstar manufactures industrial machine knives in Zhangzhou for customers in Europe and the United States.</p>',
+      ],
+      [
+        '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>A member of Wei Qun Cutting Tools Group, Teamstar manufactures industrial machine knives in Zhangzhou for customers in Europe and the United States.</p>',
+        '<h1>Teamstar Manufacturing (Zhangzhou) Ltd.</h1> <p>Teamstar manufacturing supports group customers in Europe and the United States and now also accepts direct enquiries and orders.</p>',
+      ],
+      [
+        '<aside><div class="notice">Manufacturing and inspection plans are defined according to the knife type, drawing and order requirements.</div></aside>',
+        '<aside><div class="notice"><strong>Group brands and order handling</strong><br>GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry. Overseas orders were historically coordinated by the Taipei group and assigned for production; Teamstar now also accepts direct enquiries and orders.</div></aside>',
+      ],
+      [
+        '<aside><div class="notice">Manufacturing processes and inspection plans are defined for each project according to blade family, drawing and batch requirements.</div></aside>',
+        '<aside><div class="notice"><strong>Group brands and order handling</strong><br>GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry. Overseas orders were historically coordinated by the Taipei group and assigned for production; Teamstar now also accepts direct enquiries and orders.</div></aside>',
       ],
     ],
   ],
@@ -283,13 +320,54 @@ const operationalReplacements = [
     "Release each batch against the acceptance criteria and retain the relevant inspection records.",
     "Release each batch against the acceptance criteria, retain the inspection records and provide an inspection report with the shipment.",
   ],
+  [
+    "核对并保存图纸或样品版本、材料要求和验收项目；复购按已确认资料复核。",
+    "核对并保存图纸或样品版本、材料要求和验收项目；原材料与生产批次保留追溯记录，复购按已确认资料复核。",
+  ],
+  [
+    "Review and retain the drawing or sample revision, material requirements and acceptance items; repeat orders are checked against the confirmed records.",
+    "Review and retain the drawing or sample revision, material requirements and acceptance items; material and production-batch records are traceable, and repeat orders are checked against the confirmed records.",
+  ],
+  [
+    "请告诉我们所需刀具、规格及数量。",
+    "技术人员会与您确认材料、硬度、刃口、安装尺寸和使用条件，并据此评估制造与报价。",
+  ],
+  [
+    "Tell us the blade type, specifications and quantity you need.",
+    "Our technical team reviews the material, hardness, cutting edge, mounting dimensions and application with you before confirming manufacturing and quotation requirements.",
+  ],
+  [
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。支持客户品牌、中性或指定包装及 OEM 项目；如有保密要求，可按项目签署保密协议。支持客户品牌、中性或指定包装及 OEM 项目；如有保密要求，可按项目签署保密协议。</p>',
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。支持客户品牌、中性或指定包装及 OEM 项目；如有保密要求，可按项目签署保密协议。</p>',
+  ],
+  [
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, neutral or specified packaging and OEM/private-label projects are supported; a confidentiality agreement can be signed when the project requires it. Customer branding, neutral or specified packaging and OEM/private-label projects are supported; a confidentiality agreement can be signed when the project requires it.</p>',
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, neutral or specified packaging and OEM/private-label projects are supported; a confidentiality agreement can be signed when the project requires it.</p>',
+  ],
+  [
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。</p>',
+    '<p class="rfq-guide-copy">如果您更方便通过邮件沟通，可直接发送询价和附件。支持客户品牌、中性或指定包装及 OEM 项目；如有保密要求，可按项目签署保密协议。</p>',
+  ],
+  [
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team.</p>',
+    '<p class="rfq-guide-copy">Prefer email? Send your inquiry and files directly to our sales team. Customer branding, neutral or specified packaging and OEM/private-label projects are supported; a confidentiality agreement can be signed when the project requires it.</p>',
+  ],
 ];
 
 function updateOperationalCopy(html) {
-  return operationalReplacements.reduce(
+  let next = operationalReplacements.reduce(
     (next, [from, to]) => next.replaceAll(from, to),
     html,
   );
+  for (const suffix of [
+    "如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
+    " If inspection or delivered products do not meet the agreed requirements, the issue is reviewed technically before remake, replacement or another agreed resolution.",
+  ]) {
+    while (next.includes(suffix + suffix)) {
+      next = next.replaceAll(suffix + suffix, suffix);
+    }
+  }
+  return next;
 }
 
 const facilityCopy = new Map([

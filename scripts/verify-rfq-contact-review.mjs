@@ -30,7 +30,9 @@ for (const relativePath of ['rfq/index.html', 'en/rfq/index.html']) {
 const zh = read('rfq/index.html');
 [
   '告诉我们您需要什么样的刀具',
-  '请告诉我们所需刀具、规格及数量。',
+  '技术人员会与您确认材料、硬度、刃口、安装尺寸和使用条件，并据此评估制造与报价。',
+  '支持客户品牌、中性或指定包装及 OEM 项目',
+  '如有保密要求，可按项目签署保密协议。',
   '直接联系我们',
   '联系方式',
   '产品与需求',
@@ -56,7 +58,9 @@ const zh = read('rfq/index.html');
 const en = read('en/rfq/index.html');
 [
   'Talk to Our Knife Experts',
-  'Tell us the blade type, specifications and quantity you need.',
+  'Our technical team reviews the material, hardness, cutting edge, mounting dimensions and application with you before confirming manufacturing and quotation requirements.',
+  'Customer branding, neutral or specified packaging and OEM/private-label projects are supported',
+  'a confidentiality agreement can be signed when the project requires it.',
   'Contact us directly',
   'Contact details',
   'Product &amp; requirements',
@@ -84,10 +88,20 @@ rejectText('assets/js/site.js', siteJs, 'email info@teamstarmfg.com.');
 const htmlFiles = [];
 function collectHtml(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    if (entry.name === '.git' || entry.name === 'node_modules') continue;
+    if (
+      entry.name === '.git' ||
+      entry.name === 'node_modules' ||
+      entry.name === 'full-style-preview' ||
+      entry.name === 'why-qunxin-preview' ||
+      entry.name === 'why-qunxin-refined'
+    ) continue;
     const fullPath = path.join(directory, entry.name);
     if (entry.isDirectory()) collectHtml(fullPath);
-    else if (entry.isFile() && entry.name.endsWith('.html')) htmlFiles.push(fullPath);
+    else if (
+      entry.isFile() &&
+      entry.name.endsWith('.html') &&
+      entry.name !== 'typography-preview.html'
+    ) htmlFiles.push(fullPath);
   }
 }
 collectHtml(root);
