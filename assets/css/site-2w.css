@@ -1999,3 +1999,9 @@ html[lang="en"] .page-home-video .hero-copy h1 {
     font-size: 15px;
   }
 }
+
+@media (min-width: 768px) {
+  .redesign-2w .content-grid.company-timeline-only {
+    grid-template-columns: minmax(0, 900px);
+  }
+}

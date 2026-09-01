@@ -373,6 +373,18 @@ const operationalReplacements = [
     '<aside><div class="notice"><strong>Group brands and order handling</strong><br>GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry. Overseas orders were historically coordinated by the Taipei group and assigned for production; Teamstar now also accepts direct orders and handles contracting, payment, invoicing and export customs formalities.</div></aside>',
   ],
   [
+    '<aside><div class="notice"><strong>集团品牌与接单方式</strong><br>GOLDEN EAGLE、QUICKLY 和 WAYKEN 是集团服装行业品牌。过往海外订单由台北集团协调并安排生产；群新现可直接接单，并独立办理合同、收款、开票及出口报关。</div></aside>',
+    "",
+  ],
+  [
+    '<aside><div class="notice"><strong>Group brands and order handling</strong><br>GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry. Overseas orders were historically coordinated by the Taipei group and assigned for production; Teamstar now also accepts direct orders and handles contracting, payment, invoicing and export customs formalities.</div></aside>',
+    "",
+  ],
+  [
+    '<div class="container content-grid"> <div class="content-block"><span class="eyebrow">COMPANY TIMELINE</span>',
+    '<div class="container content-grid company-timeline-only"> <div class="content-block"><span class="eyebrow">COMPANY TIMELINE</span>',
+  ],
+  [
     "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
     "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。收到客户反馈后，我们会尽快回复并启动技术复核，再根据双方确认结果安排重做、补货或其他处理。",
   ],
