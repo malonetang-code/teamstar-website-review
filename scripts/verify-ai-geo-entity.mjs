@@ -176,8 +176,8 @@ for (const file of htmlFiles()) {
       "Design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly." ||
     certification?.certificationIdentification !== "CN25/00004088" ||
     certification?.certificationStatus !== "https://schema.org/CertificationActive" ||
-    certification?.validFrom !== "2025-06-16" ||
-    certification?.expires !== "2028-06-15" ||
+    "validFrom" in certification ||
+    "expires" in certification ||
     certification?.url !== "https://www.teamstarmfg.com/images/certs/iso9001-en.pdf" ||
     certification?.issuedBy?.["@type"] !== "Organization" ||
     certification?.issuedBy?.name !== "SGS United Kingdom Ltd." ||
@@ -221,8 +221,6 @@ const qualityChecks = [
       "认证主体为群新工业（漳州）有限公司",
       "工业用精密刀具、手工具和五金件的设计和制造，包括热处理和组装",
       "CN25/00004088",
-      "2025 年 6 月 16 日",
-      "2028 年 6 月 15 日",
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-cn.pdf",
       "/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg",
@@ -241,8 +239,6 @@ const qualityChecks = [
       "Teamstar Manufacturing (Zhangzhou) Ltd. is certified",
       "design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly",
       "CN25/00004088",
-      "16 June 2025",
-      "15 June 2028",
       "SGS United Kingdom Ltd.",
       "/teamstar-website-review/images/certs/iso9001-en.pdf",
       "/teamstar-website-review/images/certs/iso9001-en-thumb.jpg",
@@ -408,6 +404,18 @@ const homeChecks = [
 for (const [relative, required] of homeChecks) {
   const html = fs.readFileSync(path.join(root, relative), "utf8");
   if (!html.includes(required)) errors.push(`${relative}: missing confirmed single-piece trial boundary`);
+}
+
+const qualityValidityChecks = [
+  ["quality/index.html", ["<dt>有效期</dt>", "2025 年 6 月 16 日", "2028 年 6 月 15 日", "证书须通过符合要求的监督审核保持有效。"]],
+  ["en/quality/index.html", ["<dt>Validity</dt>", "16 June 2025", "15 June 2028", "Validity remains subject to satisfactory surveillance audits."]],
+];
+
+for (const [relative, rejected] of qualityValidityChecks) {
+  const html = fs.readFileSync(path.join(root, relative), "utf8");
+  for (const phrase of rejected) {
+    if (html.includes(phrase)) errors.push(`${relative}: certificate validity copy should not be displayed: ${phrase}`);
+  }
 }
 
 if (checked !== 54) errors.push(`Expected 54 canonical review pages, checked ${checked}`);

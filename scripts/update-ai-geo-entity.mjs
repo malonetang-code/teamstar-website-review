@@ -91,8 +91,6 @@ const organization = {
     description: "Design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly.",
     certificationIdentification: "CN25/00004088",
     certificationStatus: "https://schema.org/CertificationActive",
-    validFrom: "2025-06-16",
-    expires: "2028-06-15",
     url: "https://www.teamstarmfg.com/images/certs/iso9001-en.pdf",
     issuedBy: {
       "@type": "Organization",
@@ -385,6 +383,22 @@ const operationalReplacements = [
     '<div class="container content-grid company-timeline-only"> <div class="content-block"><span class="eyebrow">COMPANY TIMELINE</span>',
   ],
   [
+    '<div><dt>有效期</dt><dd><time datetime="2025-06-16">2025 年 6 月 16 日</time>至<time datetime="2028-06-15">2028 年 6 月 15 日</time></dd></div>',
+    "",
+  ],
+  [
+    '<p class="iso-certificate-note">证书须通过符合要求的监督审核保持有效。</p>',
+    "",
+  ],
+  [
+    '<div><dt>Validity</dt><dd><time datetime="2025-06-16">16 June 2025</time> to <time datetime="2028-06-15">15 June 2028</time></dd></div>',
+    "",
+  ],
+  [
+    '<p class="iso-certificate-note">Validity remains subject to satisfactory surveillance audits.</p>',
+    "",
+  ],
+  [
     "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。如检验或交付与确认要求不符，先进行技术复核，再根据双方确认结果安排重做、补货或其他处理。",
     "检验方案根据产品、图纸和使用条件制定，重点控制材料、尺寸、刃口与批次一致性。收到客户反馈后，我们会尽快回复并启动技术复核，再根据双方确认结果安排重做、补货或其他处理。",
   ],
@@ -539,11 +553,11 @@ function updateFacilityCopy(html, relative) {
 const qualityCertificationCopy = new Map([
   [
     "quality/index.html",
-    `<section class="section iso-certificate-section" id="iso-9001-certificate" aria-labelledby="iso-certificate-title"><div class="container iso-certificate-grid"><div class="iso-certificate-copy"><span class="eyebrow">CERTIFIED QUALITY MANAGEMENT</span><h2 id="iso-certificate-title">ISO 9001:2015 认证</h2><p>认证主体为群新工业（漳州）有限公司，认证范围涵盖工业用精密刀具、手工具和五金件的设计和制造，包括热处理和组装。</p><dl class="iso-certificate-facts"><div><dt>证书编号</dt><dd>CN25/00004088</dd></div><div><dt>有效期</dt><dd><time datetime="2025-06-16">2025 年 6 月 16 日</time>至<time datetime="2028-06-15">2028 年 6 月 15 日</time></dd></div><div><dt>认证机构</dt><dd>SGS United Kingdom Ltd.</dd></div></dl><p class="iso-certificate-note">证书须通过符合要求的监督审核保持有效。</p><a class="button button-outline" href="/teamstar-website-review/images/certs/iso9001-cn.pdf">查看中文证书</a></div><a class="iso-certificate-card" href="/teamstar-website-review/images/certs/iso9001-cn.pdf" aria-label="打开群新工业 ISO 9001:2015 中文证书"><img src="/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg" width="847" height="1200" loading="lazy" decoding="async" alt="群新工业 ISO 9001:2015 证书缩略图"></a></div></section>`,
+    `<section class="section iso-certificate-section" id="iso-9001-certificate" aria-labelledby="iso-certificate-title"><div class="container iso-certificate-grid"><div class="iso-certificate-copy"><span class="eyebrow">CERTIFIED QUALITY MANAGEMENT</span><h2 id="iso-certificate-title">ISO 9001:2015 认证</h2><p>认证主体为群新工业（漳州）有限公司，认证范围涵盖工业用精密刀具、手工具和五金件的设计和制造，包括热处理和组装。</p><dl class="iso-certificate-facts"><div><dt>证书编号</dt><dd>CN25/00004088</dd></div><div><dt>认证机构</dt><dd>SGS United Kingdom Ltd.</dd></div></dl><a class="button button-outline" href="/teamstar-website-review/images/certs/iso9001-cn.pdf">查看中文证书</a></div><a class="iso-certificate-card" href="/teamstar-website-review/images/certs/iso9001-cn.pdf" aria-label="打开群新工业 ISO 9001:2015 中文证书"><img src="/teamstar-website-review/images/certs/iso9001-cn-thumb.jpg" width="847" height="1200" loading="lazy" decoding="async" alt="群新工业 ISO 9001:2015 证书缩略图"></a></div></section>`,
   ],
   [
     "en/quality/index.html",
-    `<section class="section iso-certificate-section" id="iso-9001-certificate" aria-labelledby="iso-certificate-title"><div class="container iso-certificate-grid"><div class="iso-certificate-copy"><span class="eyebrow">CERTIFIED QUALITY MANAGEMENT</span><h2 id="iso-certificate-title">ISO 9001:2015 Certification</h2><p>Teamstar Manufacturing (Zhangzhou) Ltd. is certified for the design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly.</p><dl class="iso-certificate-facts"><div><dt>Certificate</dt><dd>CN25/00004088</dd></div><div><dt>Validity</dt><dd><time datetime="2025-06-16">16 June 2025</time> to <time datetime="2028-06-15">15 June 2028</time></dd></div><div><dt>Certification body</dt><dd>SGS United Kingdom Ltd.</dd></div></dl><p class="iso-certificate-note">Validity remains subject to satisfactory surveillance audits.</p><a class="button button-outline" href="/teamstar-website-review/images/certs/iso9001-en.pdf">View English certificate</a></div><a class="iso-certificate-card" href="/teamstar-website-review/images/certs/iso9001-en.pdf" aria-label="Open the Teamstar ISO 9001:2015 English certificate"><img src="/teamstar-website-review/images/certs/iso9001-en-thumb.jpg" width="847" height="1200" loading="lazy" decoding="async" alt="Teamstar ISO 9001:2015 certificate thumbnail"></a></div></section>`,
+    `<section class="section iso-certificate-section" id="iso-9001-certificate" aria-labelledby="iso-certificate-title"><div class="container iso-certificate-grid"><div class="iso-certificate-copy"><span class="eyebrow">CERTIFIED QUALITY MANAGEMENT</span><h2 id="iso-certificate-title">ISO 9001:2015 Certification</h2><p>Teamstar Manufacturing (Zhangzhou) Ltd. is certified for the design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly.</p><dl class="iso-certificate-facts"><div><dt>Certificate</dt><dd>CN25/00004088</dd></div><div><dt>Certification body</dt><dd>SGS United Kingdom Ltd.</dd></div></dl><a class="button button-outline" href="/teamstar-website-review/images/certs/iso9001-en.pdf">View English certificate</a></div><a class="iso-certificate-card" href="/teamstar-website-review/images/certs/iso9001-en.pdf" aria-label="Open the Teamstar ISO 9001:2015 English certificate"><img src="/teamstar-website-review/images/certs/iso9001-en-thumb.jpg" width="847" height="1200" loading="lazy" decoding="async" alt="Teamstar ISO 9001:2015 certificate thumbnail"></a></div></section>`,
   ],
 ]);
 
