@@ -4,6 +4,7 @@
   const validTheme = (value) => value === "e";
   const validConcept = (value) => ["1", "2", "3"].includes(value);
   const query = new URLSearchParams(window.location.search);
+  const reviewRevision = query.get("rev");
   const themeFromHome = root.dataset.fullPreview;
   const themeFromQuery = query.get("style");
   const themeStorageKey = "teamstar-review-theme";
@@ -371,11 +372,13 @@
         const targetIsEnglish = relativePath === "en/" || relativePath === "en/home/";
         url.pathname = `/teamstar-review/full-style-preview/${activeConcept}/${targetIsEnglish ? "en/" : ""}`;
         url.search = "";
+        if (reviewRevision) url.searchParams.set("rev", reviewRevision);
       } else {
         url.pathname = normalizeReviewPath(url.pathname);
         url.searchParams.set("style", theme);
         if (activeConcept === "1") url.searchParams.delete("concept");
         else url.searchParams.set("concept", activeConcept);
+        if (reviewRevision) url.searchParams.set("rev", reviewRevision);
       }
 
       link.href = `${url.pathname}${url.search}${url.hash}`;

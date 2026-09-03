@@ -95,7 +95,7 @@ for (const viewport of viewports) {
     }
   });
 
-  const home = `${origin}/teamstar-review/full-style-preview/1/?qa=local-${viewport.name}`;
+  const home = `${origin}/teamstar-review/full-style-preview/1/?qa=local-${viewport.name}&rev=qa-replay`;
   current = `${viewport.name}: actual navigation`;
   await page.goto(home, { waitUntil: "domcontentloaded" });
   await page.waitForTimeout(250);
@@ -110,6 +110,7 @@ for (const viewport of viewports) {
     await page.waitForLoadState("domcontentloaded");
     await page.waitForTimeout(220);
     if (!page.url().includes(suffix)) failures.push(`${current}: did not reach ${suffix}`);
+    if (!page.url().includes("rev=qa-replay")) failures.push(`${current}: review revision was not preserved at ${suffix}`);
     const heroReveal = await page.evaluate(() => ({
       mounted: Boolean(document.querySelector(".page-hero > picture.c1-page-hero-media-wipe")),
       visible: Boolean(document.querySelector(".page-hero > picture.c1-page-hero-media-wipe.is-visible")),
