@@ -169,11 +169,7 @@ button { font: inherit; }
   padding: 20px 25px;
   object-fit: contain;
   background: #fff;
-  filter: grayscale(1);
-  opacity: .68;
-  transition: filter .25s ease, opacity .25s ease;
 }
-.logo-set img:hover { filter: none; opacity: 1; }
 .logo-viewport:hover .logo-track,
 .logo-viewport:focus-within .logo-track,
 .logo-viewport.is-paused .logo-track { animation-play-state: paused; }
