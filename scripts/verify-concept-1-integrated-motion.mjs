@@ -28,6 +28,7 @@ expect(css.includes("prefers-reduced-motion: reduce"), "reduced-motion CSS missi
 expect(js.includes('matchMedia("(prefers-reduced-motion: reduce)")'), "reduced-motion JS missing");
 expect(js.includes("IntersectionObserver"), "viewport-triggered motion missing");
 expect(js.includes("runCount"), "40+ count-up missing");
+expect(js.includes("const duration = 1800;"), "40+ count-up duration should be 1800ms");
 
 for (const languagePath of ["index.html", "en/index.html"]) {
   const html = read(`full-style-preview/1/${languagePath}`);

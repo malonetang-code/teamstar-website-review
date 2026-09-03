@@ -12,7 +12,7 @@ const baselineHeroVideo = "/teamstar-review/images/web/process-20260725/home-com
 const previewHeroVideo = "/teamstar-review/full-style-preview/media/home-manufacturing-closeup-preview-20260828.mp4";
 const themeScriptVersion = "20260901-concepts-123";
 const homeStructureVersion = "20260901-concepts-123";
-const concept1MotionVersion = "20260903-integrated-2";
+const concept1MotionVersion = "20260903-integrated-3";
 
 const conceptLabels = {
   "1": { zh: "1号方案 · 克制极简", en: "Concept 1 · Restrained Minimal" },

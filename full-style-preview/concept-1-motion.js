@@ -64,7 +64,7 @@
       return;
     }
     const start = performance.now();
-    const duration = 900;
+    const duration = 1800;
     countTextNode.nodeValue = "0+";
     const tick = (now) => {
       const progress = Math.min((now - start) / duration, 1);
