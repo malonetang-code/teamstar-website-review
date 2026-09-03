@@ -1,6 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap");
+
 :root {
   --fp-red: #d71920;
-  --fp-switcher-height: 50px;
+  --fp-switcher-height: 0px;
+}
+
+html[data-full-preview="e"] body.full-style-preview .skip-link {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-180%);
+}
+
+html[data-full-preview="e"][data-keyboard-navigation="true"] body.full-style-preview .skip-link:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .full-style-preview {
@@ -332,7 +346,7 @@ body.full-style-preview .fp-why-e-heading p {
 body.full-style-preview .fp-why-e-specs {
   margin-top: 64px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 body.full-style-preview .fp-why-e-specs article,
@@ -885,6 +899,38 @@ html[data-full-preview="e"] body.full-style-preview .product-pending-media {
   background: #ececea;
   font-size: 10px;
 }
+
+/* Six confirmed categories use the same compact directory rhythm in A-E. */
+@media (min-width: 1080px) {
+  html[data-full-preview] body.full-style-preview .home-product-section .blade-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  html[data-full-preview="d"] body.full-style-preview .blade-card,
+  html[data-full-preview="e"] body.full-style-preview .blade-card {
+    min-height: 0;
+    display: block;
+  }
+
+  html[data-full-preview="d"] body.full-style-preview .blade-media,
+  html[data-full-preview="e"] body.full-style-preview .blade-media {
+    min-height: 0;
+    border-right: 0;
+  }
+
+  html[data-full-preview="d"] body.full-style-preview .blade-media img,
+  html[data-full-preview="e"] body.full-style-preview .blade-media img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  html[data-full-preview="d"] body.full-style-preview .blade-body,
+  html[data-full-preview="e"] body.full-style-preview .blade-body {
+    min-height: 112px;
+    padding: 20px 48px 20px 20px;
+    display: block;
+  }
+}
 html[data-full-preview="e"] body.full-style-preview .section-actions .text-link {
   margin-top: 24px;
   color: #363b3f;
@@ -935,6 +981,26 @@ html[data-full-preview="e"] body.full-style-preview .footer-column span,
 html[data-full-preview="e"] body.full-style-preview .footer-bottom { color: #656a6e; }
 html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-color: #d9dadb; }
 
+html[data-full-preview="e"] body.full-style-preview .footer-inquiry-area {
+  min-width: max-content;
+  display: flex;
+  align-self: end;
+  justify-content: flex-end;
+}
+
+html[data-full-preview="e"] body.full-style-preview .footer-inquiry-area .footer-inquiry-link {
+  margin-top: 0;
+  color: #171a1d;
+  border-color: rgba(23, 26, 29, .35);
+}
+
+@media (min-width: 768px) {
+  html[data-full-preview="e"] body.full-style-preview .footer-grid {
+    grid-template-columns: minmax(240px, 1.15fr) minmax(150px, .55fr) minmax(280px, 1fr) auto;
+    align-items: stretch;
+  }
+}
+
 @media (min-width: 1080px) {
   body.full-style-preview .nav-shell { grid-template-columns: minmax(180px, 1fr) auto auto; gap: 22px; }
 }
@@ -954,7 +1020,7 @@ html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-colo
 }
 
 @media (max-width: 767px) {
-  :root { --fp-switcher-height: 52px; }
+  :root { --fp-switcher-height: 0px; }
   .full-preview-switcher { padding-inline: 10px; display: block; }
   .full-preview-switcher nav { display: grid; grid-template-columns: repeat(5, 1fr); }
   .full-preview-switcher nav a { min-width: 0; justify-content: center; }
@@ -1140,6 +1206,253 @@ html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-colo
   src: url("/teamstar-review/assets/fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2");
 }
 
+/* --------------------------------------------------------------------------
+   Concept 2 — bright corporate. Inspired by the clarity and spacing of large
+   industrial corporate sites, using only Teamstar content and media.
+   -------------------------------------------------------------------------- */
+html[data-review-concept="2"] body.full-style-preview {
+  --concept-accent: #0b8fa8;
+  color: #2f363a;
+  background: #fff;
+  font-family: "Source Sans 3", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+html[data-review-concept="2"] body.full-style-preview .topbar {
+  color: #536168;
+  background: #f3f5f5;
+  border-color: #d9dfe1;
+  font-size: 12px;
+}
+
+html[data-review-concept="2"] body.full-style-preview .topbar a { color: #263237; }
+html[data-review-concept="2"] body.full-style-preview .site-header {
+  color: #2f363a;
+  background: rgba(255, 255, 255, .98);
+  border-color: #d9dfe1;
+}
+html[data-review-concept="2"] body.full-style-preview .brand strong { font-size: 18px; font-weight: 600; }
+html[data-review-concept="2"] body.full-style-preview .brand small { color: #657178; font-size: 10px; }
+html[data-review-concept="2"] body.full-style-preview .desktop-nav .fp-nav-link { color: #4b575d; font-size: 14px; font-weight: 600; }
+html[data-review-concept="2"] body.full-style-preview .desktop-nav .fp-nav-link::after { background: #0b8fa8; }
+html[data-review-concept="2"] body.full-style-preview .nav-rfq {
+  min-height: 44px;
+  padding-inline: 22px;
+  color: #fff;
+  background: #0b8fa8;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+}
+html[data-review-concept="2"] body.full-style-preview .language-menu summary { border-radius: 22px; }
+html[data-review-concept="2"] body.full-style-preview .fp-mega { background: #fff; box-shadow: 0 18px 46px rgba(38, 50, 55, .13); }
+html[data-review-concept="2"] body.full-style-preview .fp-mega-product,
+html[data-review-concept="2"] body.full-style-preview .fp-mega-about-visual { background: #f2f6f7; }
+
+html[data-review-concept="2"] body.full-style-preview .home-video-hero {
+  min-height: 620px;
+  color: #fff;
+  background: #078daa;
+}
+html[data-review-concept="2"] body.full-style-preview .home-video-media {
+  left: 52%;
+  width: 48%;
+}
+html[data-review-concept="2"] body.full-style-preview .home-video { display: none; }
+html[data-review-concept="2"] body.full-style-preview .home-video-hero::before {
+  right: 48%;
+  background:
+    linear-gradient(140deg, transparent 0 55%, rgba(255,255,255,.055) 55% 69%, transparent 69%),
+    linear-gradient(35deg, transparent 0 64%, rgba(255,255,255,.045) 64% 78%, transparent 78%);
+}
+html[data-review-concept="2"] body.full-style-preview .hero-inner { display: flex; align-items: center; }
+html[data-review-concept="2"] body.full-style-preview .hero-copy { width: 48%; max-width: 570px; }
+html[data-review-concept="2"] body.full-style-preview .hero-copy h1,
+html[data-review-concept="2"][lang="en"] body.full-style-preview .hero-copy h1 {
+  max-width: 520px;
+  color: #fff;
+  font-size: clamp(42px, 4.2vw, 58px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+}
+html[data-review-concept="2"] body.full-style-preview .hero-actions .button {
+  min-height: 48px;
+  padding-inline: 24px;
+  border-radius: 26px;
+  font-size: 14px;
+  font-weight: 700;
+}
+html[data-review-concept="2"] body.full-style-preview .hero-actions .button-accent { color: #273338; background: #fff; border-color: #fff; }
+html[data-review-concept="2"] body.full-style-preview .hero-actions .button-outline-light { color: #fff; border-color: rgba(255,255,255,.75); }
+
+html[data-review-concept="2"] body.full-style-preview .home-logo-section { padding: 28px 0 32px; background: #fff; }
+html[data-review-concept="2"] body.full-style-preview .home-logo-heading h2 { color: #2f363a; font-size: 20px; font-weight: 600; }
+html[data-review-concept="2"] body.full-style-preview .home-logo-heading p { color: #647178; font-size: 13px; }
+html[data-review-concept="2"] body.full-style-preview .home-logo-section .logo-wall { grid-template-columns: repeat(5,minmax(0,1fr)); border-color: #d8e0e2; }
+html[data-review-concept="2"] body.full-style-preview .home-logo-section .logo-item { min-height: 86px; background: #fff; border-color: #d8e0e2; }
+
+html[data-full-preview="e"][data-review-concept="2"] body.full-style-preview .why-qunxin-section.fp-why-refined-e { padding: 84px 0 92px; color: #2f363a; background: #f2f6f7; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-heading { grid-template-columns: minmax(0,.8fr) minmax(380px,1.2fr); }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-heading h2 { color: #2f363a; font-size: 36px; font-weight: 600; line-height: 1.22; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-heading p { color: #59666c; font-size: 17px; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs { margin-top: 44px; border-color: #cbd6d9; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs article { padding-block: 30px 34px; border-color: #cbd6d9; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs strong { color: #0b8fa8; font-size: 42px; font-weight: 600; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs .fp-why-e-text-value { font-size: 31px; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs h3 { color: #2f363a; font-size: 19px; font-weight: 600; }
+html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs p { color: #59666c; font-size: 14px; }
+
+html[data-review-concept="2"] body.full-style-preview .home-product-section { padding-block: 90px 104px; background: #fff; border-color: #d9dfe1; }
+html[data-review-concept="2"] body.full-style-preview .home-product-section .section-head h2 { color: #2f363a; font-size: 36px; font-weight: 600; }
+html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-grid { gap: 20px; background: transparent; border: 0; }
+html[data-review-concept="2"] body.full-style-preview .blade-card { display: block; background: #fff; border: 1px solid #d8e0e2; box-shadow: 0 8px 22px rgba(42,55,60,.055); }
+html[data-review-concept="2"] body.full-style-preview .blade-card:hover { border-color: #0b8fa8; box-shadow: 0 13px 30px rgba(42,55,60,.1); transform: translateY(-2px); }
+html[data-review-concept="2"] body.full-style-preview .blade-media { min-height: 0; border: 0; }
+html[data-review-concept="2"] body.full-style-preview .blade-media img { aspect-ratio: 16/10; object-fit: cover; }
+html[data-review-concept="2"] body.full-style-preview .blade-body { min-height: 104px; padding: 20px 22px; display: block; }
+html[data-review-concept="2"] body.full-style-preview .blade-body h3 { color: #2f363a; font-size: 20px; font-weight: 600; }
+html[data-review-concept="2"] body.full-style-preview .blade-body p { color: #657178; font-size: 14px; }
+html[data-review-concept="2"] body.full-style-preview .site-footer { color: #2f363a; background: #f2f5f5; border-color: #d6dddf; }
+html[data-review-concept="2"] body.full-style-preview .footer-column strong { color: #0b8fa8; }
+html[data-review-concept="2"] body.full-style-preview .footer-brand p,
+html[data-review-concept="2"] body.full-style-preview .footer-column a,
+html[data-review-concept="2"] body.full-style-preview .footer-column span,
+html[data-review-concept="2"] body.full-style-preview .footer-bottom { color: #59666c; }
+
+/* --------------------------------------------------------------------------
+   Concept 3 — digital manufacturing. Strong image, blue hierarchy and one
+   restrained lime highlight; no third-party brand content is reproduced.
+   -------------------------------------------------------------------------- */
+html[data-review-concept="3"] body.full-style-preview {
+  --concept-blue: #0e6aed;
+  --concept-navy: #092c47;
+  --concept-lime: #d8f56b;
+  color: #092c47;
+  background: #fff;
+  font-family: "Open Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.62;
+}
+html[data-review-concept="3"] body.full-style-preview :is(h1,h2,h3,.brand strong) {
+  font-family: "Poppins", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+html[data-review-concept="3"] body.full-style-preview .topbar { color: #fff; background: #0e6aed; border-color: #0e6aed; font-size: 12px; }
+html[data-review-concept="3"] body.full-style-preview .topbar a { color: #fff; }
+html[data-review-concept="3"] body.full-style-preview .site-header { color: #092c47; background: #fff; border-color: #dbe3ec; }
+html[data-review-concept="3"] body.full-style-preview .brand strong { color: #092c47; font-size: 18px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .brand small { color: #536a7b; font-size: 10px; }
+html[data-review-concept="3"] body.full-style-preview .desktop-nav .fp-nav-link { color: #163b56; font-size: 14px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .desktop-nav .fp-nav-link::after { height: 3px; background: #0e6aed; }
+html[data-review-concept="3"] body.full-style-preview .nav-rfq { min-height: 42px; padding-inline: 20px; color: #fff; background: #0e6aed; font-size: 14px; font-weight: 700; }
+html[data-review-concept="3"] body.full-style-preview .fp-mega { background: #fff; box-shadow: 0 18px 48px rgba(9,44,71,.16); }
+html[data-review-concept="3"] body.full-style-preview .fp-mega-product,
+html[data-review-concept="3"] body.full-style-preview .fp-mega-about-visual { background: #f1f5fa; }
+
+html[data-review-concept="3"] body.full-style-preview .home-video-hero { min-height: 670px; color: #fff; background: #092c47; }
+html[data-review-concept="3"] body.full-style-preview .home-video-hero::before {
+  background: linear-gradient(90deg, rgba(4,27,50,.94) 0%, rgba(6,34,62,.76) 48%, rgba(5,27,51,.18) 84%), linear-gradient(0deg, rgba(4,23,43,.42), transparent 58%);
+}
+html[data-review-concept="3"] body.full-style-preview .hero-copy { max-width: 780px; }
+html[data-review-concept="3"] body.full-style-preview .hero-copy h1,
+html[data-review-concept="3"][lang="en"] body.full-style-preview .hero-copy h1 { max-width: 760px; color: #fff; font-size: clamp(45px,4.8vw,68px); font-weight: 600; letter-spacing: -.025em; line-height: 1.08; }
+html[data-review-concept="3"] body.full-style-preview .hero-copy h1::after { content: ""; width: 88px; height: 7px; margin-top: 24px; display: block; background: #d8f56b; }
+html[data-review-concept="3"] body.full-style-preview .hero-actions .button { min-height: 50px; padding-inline: 24px; font-size: 14px; font-weight: 700; }
+html[data-review-concept="3"] body.full-style-preview .hero-actions .button-accent { color: #0e6aed; background: #fff; border-color: #fff; }
+html[data-review-concept="3"] body.full-style-preview .hero-actions .button-outline-light { color: #fff; border-color: rgba(255,255,255,.8); }
+
+html[data-review-concept="3"] body.full-style-preview .home-logo-section { padding: 25px 0 30px; background: #fff; }
+html[data-review-concept="3"] body.full-style-preview .home-logo-heading h2 { color: #092c47; font-size: 18px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .home-logo-heading p { color: #607587; font-size: 12px; }
+html[data-review-concept="3"] body.full-style-preview .home-logo-section .logo-wall { grid-template-columns: repeat(5,minmax(0,1fr)); border-color: #dbe3ec; }
+html[data-review-concept="3"] body.full-style-preview .home-logo-section .logo-item { min-height: 84px; background: #fff; border-color: #dbe3ec; }
+
+html[data-full-preview="e"][data-review-concept="3"] body.full-style-preview .why-qunxin-section.fp-why-refined-e { padding: 78px 0 86px; color: #092c47; background: #d8f56b; }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-heading { grid-template-columns: minmax(0,.9fr) minmax(400px,1.1fr); border-color: rgba(9,44,71,.3); }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-heading h2 { color: #092c47; font-size: 36px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-heading p { color: #24485f; font-size: 16px; }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs { margin-top: 46px; border-color: rgba(9,44,71,.32); }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs article { padding-block: 31px 35px; border-color: rgba(9,44,71,.32); }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs strong { color: #092c47; font-family: "Poppins","PingFang SC",sans-serif; font-size: 50px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs .fp-why-e-text-value { color: #0e6aed; font-size: 31px; }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs h3 { color: #092c47; font-size: 19px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs p { color: #24485f; font-size: 14px; }
+
+html[data-review-concept="3"] body.full-style-preview .home-product-section { padding-block: 90px 106px; background: #fff; border-color: #dbe3ec; }
+html[data-review-concept="3"] body.full-style-preview .home-product-section .section-head h2 { color: #092c47; font-size: 36px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .home-product-section .blade-grid { gap: 16px; background: transparent; border: 0; }
+html[data-review-concept="3"] body.full-style-preview .blade-card { display: block; overflow: hidden; color: #092c47; background: #f4f7fb; border: 1px solid #d8e2ed; box-shadow: none; }
+html[data-review-concept="3"] body.full-style-preview .blade-card:hover { border-color: #0e6aed; box-shadow: 0 14px 34px rgba(14,106,237,.12); transform: translateY(-3px); }
+html[data-review-concept="3"] body.full-style-preview .blade-media { min-height: 0; border: 0; }
+html[data-review-concept="3"] body.full-style-preview .blade-media img { aspect-ratio: 16/10; object-fit: cover; }
+html[data-review-concept="3"] body.full-style-preview .blade-body { min-height: 108px; padding: 21px 22px; display: block; border-top: 4px solid #0e6aed; }
+html[data-review-concept="3"] body.full-style-preview .blade-body h3 { color: #092c47; font-size: 19px; font-weight: 600; }
+html[data-review-concept="3"] body.full-style-preview .blade-body p { color: #536d80; font-size: 13px; }
+html[data-review-concept="3"] body.full-style-preview .site-footer { color: #fff; background: #092c47; border-color: #24485f; }
+html[data-review-concept="3"] body.full-style-preview .footer-column strong { color: #d8f56b; }
+html[data-review-concept="3"] body.full-style-preview .footer-brand p,
+html[data-review-concept="3"] body.full-style-preview .footer-column a,
+html[data-review-concept="3"] body.full-style-preview .footer-column span,
+html[data-review-concept="3"] body.full-style-preview .footer-bottom { color: #c1ced7; }
+html[data-review-concept="3"] body.full-style-preview .footer-inquiry-link { color: #fff; border-color: rgba(255,255,255,.55); }
+
+@media (max-width: 767px) {
+  html[data-review-concept="2"] body.full-style-preview,
+  html[data-review-concept="3"] body.full-style-preview { font-size: 16px; }
+  html[data-review-concept="2"] body.full-style-preview .topbar,
+  html[data-review-concept="3"] body.full-style-preview .topbar { display: none; }
+  html[data-review-concept="2"] body.full-style-preview .home-video-hero { min-height: 610px; background: #078daa; }
+  html[data-review-concept="2"] body.full-style-preview .home-video-media { left: 0; width: 100%; opacity: .33; }
+  html[data-review-concept="2"] body.full-style-preview .home-video-hero::before { right: 0; background: linear-gradient(180deg,rgba(5,116,141,.62),rgba(4,104,127,.94)); }
+  html[data-review-concept="2"] body.full-style-preview .hero-copy { width: 100%; }
+  html[data-review-concept="2"] body.full-style-preview .hero-copy h1,
+  html[data-review-concept="2"][lang="en"] body.full-style-preview .hero-copy h1,
+  html[data-review-concept="3"] body.full-style-preview .hero-copy h1,
+  html[data-review-concept="3"][lang="en"] body.full-style-preview .hero-copy h1 { font-size: 36px; line-height: 1.16; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-heading,
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-heading { grid-template-columns: 1fr; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-heading h2,
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-heading h2,
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .section-head h2,
+  html[data-review-concept="3"] body.full-style-preview .home-product-section .section-head h2 { font-size: 30px; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs,
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs { grid-template-columns: 1fr; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs article,
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs article { padding: 25px 0; border-right: 0; border-bottom: 1px solid; }
+  html[data-review-concept="2"] body.full-style-preview .home-logo-section .logo-wall,
+  html[data-review-concept="3"] body.full-style-preview .home-logo-section .logo-wall { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-grid,
+  html[data-review-concept="3"] body.full-style-preview .home-product-section .blade-grid { grid-template-columns: 1fr; }
+}
+
+html[data-review-concept="2"] body.full-style-preview .home-logo-section,
+html[data-review-concept="3"] body.full-style-preview .home-logo-section { overflow: hidden; }
+
+@media (min-width: 768px) and (max-width: 1079px) {
+  html[data-review-concept="2"] body.full-style-preview .home-video-media {
+    left: 0;
+    width: 100%;
+    opacity: .26;
+  }
+  html[data-review-concept="2"] body.full-style-preview .home-video-hero::before {
+    right: 0;
+    background: linear-gradient(90deg, rgba(4,104,127,.96), rgba(5,116,141,.78) 66%, rgba(5,116,141,.5));
+  }
+  html[data-review-concept="2"] body.full-style-preview .hero-copy { width: min(68%, 590px); }
+  html[data-review-concept="2"] body.full-style-preview .footer-grid,
+  html[data-review-concept="3"] body.full-style-preview .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 44px;
+  }
+  html[data-review-concept="2"] body.full-style-preview .footer-inquiry-area,
+  html[data-review-concept="3"] body.full-style-preview .footer-inquiry-area {
+    min-width: 0;
+    align-self: start;
+    justify-content: flex-start;
+  }
+}
+
 @font-face {
   font-family: "Teamstar Plex";
   font-style: normal;
@@ -1162,4 +1475,58 @@ html[data-full-preview="e"] body.full-style-preview .footer-bottom { border-colo
   font-weight: 700 800;
   font-display: swap;
   src: url("/teamstar-review/assets/fonts/ibm-plex-sans-latin-700-normal.woff2") format("woff2");
+}
+
+/* 2026-09-01 architecture reset: Concepts 2 and 3 deliberately stop sharing
+   Concept 1's internal composition. */
+@media (min-width: 1080px) {
+  html[data-review-concept="2"] body.full-style-preview .home-video-hero .hero-inner { min-height:620px; display:grid; grid-template-columns:minmax(0,1fr) minmax(440px,.78fr); }
+  html[data-review-concept="2"] body.full-style-preview .concept-hero-note { position:absolute; right:0; bottom:0; width:48%; min-height:112px; padding:25px 34px; display:flex; flex-direction:column; justify-content:center; color:#2f363a; background:rgba(255,255,255,.94); backdrop-filter:blur(10px); }
+  html[data-review-concept="2"] body.full-style-preview .concept-hero-note span { color:#0b8fa8; font-size:11px; font-weight:700; letter-spacing:.1em; }
+  html[data-review-concept="2"] body.full-style-preview .concept-hero-note strong { margin-top:5px; font-size:19px; font-weight:600; }
+  html[data-full-preview="e"][data-review-concept="2"] body.full-style-preview .fp-why-e-shell { display:grid; grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr); gap:clamp(54px,7vw,112px); }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-heading { display:block; align-self:start; padding-top:8px; border:0; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-heading p { margin-top:24px; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs { margin:0; display:block; border-top:1px solid #9fb0b5; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs article { min-height:152px; padding:25px 0; display:grid; grid-template-columns:170px 150px 1fr; align-items:center; gap:22px; border-right:0; border-bottom:1px solid #cbd6d9; }
+  html[data-review-concept="2"] body.full-style-preview .fp-why-e-specs article>* { margin:0; }
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-grid { grid-template-columns:minmax(0,1.25fr) repeat(2,minmax(0,.75fr)); grid-template-rows:repeat(2,minmax(230px,auto)); }
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-card:first-child { grid-row:1 / span 2; }
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-card:first-child .blade-media img { min-height:458px; }
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-card:not(:first-child) { display:grid; grid-template-columns:46% 54%; }
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-card:not(:first-child) .blade-media img { height:100%; aspect-ratio:auto; }
+  html[data-review-concept="2"] body.full-style-preview .home-product-section .blade-card:not(:first-child) .blade-body { min-height:0; padding:20px 18px; align-self:center; }
+
+  html[data-review-concept="3"] body.full-style-preview .home-video-hero .hero-inner { min-height:670px; display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:clamp(42px,6vw,94px); align-items:center; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel { padding:26px; color:#092c47; background:rgba(255,255,255,.96); box-shadow:0 22px 60px rgba(0,0,0,.2); }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel>span { display:block; margin-bottom:12px; color:#0e6aed; font-size:11px; font-weight:700; letter-spacing:.12em; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel a { min-height:72px; display:grid; grid-template-columns:36px 1fr 20px; gap:12px; align-items:center; color:#092c47; border-top:1px solid #d8e2ed; text-decoration:none; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel b { color:#0e6aed; font-size:12px; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel strong { font-size:16px; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel i { font-style:normal; }
+  html[data-full-preview="e"][data-review-concept="3"] body.full-style-preview .fp-why-e-shell { display:grid; grid-template-columns:.72fr 1.28fr; gap:62px; }
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-heading { display:block; padding-right:42px; border:0; }
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-heading p { margin-top:22px; }
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs { margin:0; grid-template-columns:1.35fr 1fr; grid-template-rows:repeat(2,1fr); border:0; gap:1px; background:rgba(9,44,71,.28); }
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs article { padding:30px; background:#e5fb8f; border:0; }
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs article:first-child { grid-row:1 / span 2; display:flex; flex-direction:column; justify-content:flex-end; background:#092c47; }
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs article:first-child :is(strong,h3) { color:#fff; }
+  html[data-review-concept="3"] body.full-style-preview .fp-why-e-specs article:first-child p { color:#c2d0da; }
+  html[data-review-concept="3"] body.full-style-preview .home-product-section>.container { display:grid; grid-template-columns:250px 1fr; gap:50px; align-items:start; }
+  html[data-review-concept="3"] body.full-style-preview .home-product-section .section-head { position:sticky; top:108px; display:block; }
+  html[data-review-concept="3"] body.full-style-preview .home-product-section .blade-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  html[data-review-concept="3"] body.full-style-preview .home-product-section .section-actions { grid-column:2; }
+}
+
+@media (max-width:1079px) {
+  html[data-review-concept="2"] body.full-style-preview .concept-hero-note { display:none; }
+  html[data-review-concept="3"] body.full-style-preview .home-video-hero { min-height:820px; }
+  html[data-review-concept="3"] body.full-style-preview .home-video-hero .hero-inner { min-height:820px; padding-block:72px 46px; display:flex; flex-direction:column; justify-content:center; align-items:stretch; }
+  html[data-review-concept="3"] body.full-style-preview .hero-copy { width:100%; max-width:100%; }
+  html[data-review-concept="3"] body.full-style-preview .hero-copy h1,
+  html[data-review-concept="3"][lang="en"] body.full-style-preview .hero-copy h1 { max-width:100%; white-space:normal; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel { width:100%; margin:34px 0 0; padding:18px 20px; color:#092c47; background:rgba(255,255,255,.96); }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel>span { display:block; color:#0e6aed; font-size:11px; font-weight:700; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel a { min-height:58px; display:grid; grid-template-columns:32px 1fr 20px; align-items:center; color:#092c47; border-top:1px solid #d8e2ed; text-decoration:none; }
+  html[data-review-concept="3"] body.full-style-preview .concept-hero-panel i { font-style:normal; }
 }

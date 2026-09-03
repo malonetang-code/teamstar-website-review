@@ -1,97 +1,155 @@
 (() => {
   const root = document.documentElement;
-  const validTheme = (value) => /^[a-e]$/.test(value || "");
+  // The color review has concluded. E is now the single active visual system.
+  const validTheme = (value) => value === "e";
+  const validConcept = (value) => ["1", "2", "3"].includes(value);
   const query = new URLSearchParams(window.location.search);
   const themeFromHome = root.dataset.fullPreview;
   const themeFromQuery = query.get("style");
+  const themeStorageKey = "teamstar-review-theme";
+  let themeFromSession = "";
+  try {
+    themeFromSession = window.sessionStorage.getItem(themeStorageKey) || "";
+  } catch (_error) {
+    // The review still works when storage is disabled.
+  }
   const theme = validTheme(themeFromHome)
     ? themeFromHome
     : validTheme(themeFromQuery)
       ? themeFromQuery
-      : "";
+      : validTheme(themeFromSession)
+        ? themeFromSession
+        : "e";
+  const conceptStorageKey = "teamstar-review-concept";
+  const conceptFromHome = root.dataset.reviewConcept;
+  const conceptFromQuery = query.get("concept");
+  let conceptFromSession = "";
+  try {
+    conceptFromSession = window.sessionStorage.getItem(conceptStorageKey) || "";
+  } catch (_error) {
+    // The review still works when storage is disabled.
+  }
+  const activeConcept = validConcept(conceptFromHome)
+    ? conceptFromHome
+    : validConcept(conceptFromQuery)
+      ? conceptFromQuery
+      : validConcept(conceptFromSession)
+        ? conceptFromSession
+        : "1";
+  const isEnglish = root.lang.toLowerCase().startsWith("en");
+
+  root.dataset.reviewConcept = activeConcept;
+  try {
+    window.sessionStorage.setItem(conceptStorageKey, activeConcept);
+  } catch (_error) {
+    // Storage is only a convenience for review navigation.
+  }
+
+  // Browsers may restore focus to the first link after a reload. Keep the
+  // skip link available to keyboard users, but reveal it only after an actual
+  // Tab key press so ordinary page loads never show it as part of the design.
+  mountKeyboardNavigationMode();
+
+  // The selected real product-hero photo is part of the product page itself,
+  // not only of the A-E theme switcher. Mount it before the theme-only exit so
+  // direct product-directory visits retain the approved banner image.
+  mountProductHeroSample();
+  cleanChineseInterfaceLabels();
 
   if (!theme) return;
 
-  const isEnglish = root.lang.toLowerCase().startsWith("en");
+  try {
+    window.sessionStorage.setItem(themeStorageKey, theme);
+  } catch (_error) {
+    // Storage is only a convenience for review navigation.
+  }
+
+  if (!validTheme(themeFromHome) && !validTheme(themeFromQuery)) {
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set("style", theme);
+    window.history.replaceState(null, "", `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`);
+  }
+
   const reviewPrefixes = ["/teamstar-review/", "/teamstar-website-review/"];
-  const homeForTheme = (nextTheme = theme) =>
-    `/teamstar-review/full-style-preview/${nextTheme}/${isEnglish ? "en/" : ""}`;
 
   if (!validTheme(themeFromHome)) {
     root.dataset.siteThemePreview = theme;
     document.body.classList.add("site-theme-preview-active");
   }
 
-  mountProductHeroSample();
-
   mountLanguageMenu();
 
   propagateThemeLinks();
 
-  if (!validTheme(themeFromHome)) {
-    mountThemeSwitcher();
+  function mountKeyboardNavigationMode() {
+    const keyboardAttribute = "data-keyboard-navigation";
+    const skipLink = document.querySelector(".skip-link");
+
+    root.removeAttribute(keyboardAttribute);
+
+    if (document.activeElement === skipLink) {
+      skipLink.blur();
+    }
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Tab") {
+          root.setAttribute(keyboardAttribute, "true");
+        }
+      },
+      true,
+    );
+
+    document.addEventListener(
+      "pointerdown",
+      () => {
+        root.removeAttribute(keyboardAttribute);
+      },
+      true,
+    );
+
+    window.addEventListener("blur", () => {
+      root.removeAttribute(keyboardAttribute);
+    });
   }
 
-  function mountThemeSwitcher() {
-    if (document.querySelector(".site-theme-preview-switcher")) return;
+  function cleanChineseInterfaceLabels() {
+    if (isEnglish) return;
 
-    const labels = isEnglish
-      ? {
-          title: "Full-site style review",
-          home: "Theme home",
-          themes: [
-            ["a", "Industrial black"],
-            ["b", "Precision white"],
-            ["c", "Editorial"],
-            ["d", "European warm"],
-            ["e", "Restrained minimal"],
-          ],
-        }
-      : {
-          title: "全站风格对比",
-          home: "返回主题首页",
-          themes: [
-            ["a", "强工业黑白"],
-            ["b", "精密白底"],
-            ["c", "工业编辑式"],
-            ["d", "现代欧式"],
-            ["e", "克制极简"],
-          ],
-        };
+    const containsLatinText = (element) => /[A-Za-z]/.test(element.textContent || "");
 
-    const switcher = document.createElement("aside");
-    switcher.className = "site-theme-preview-switcher";
-    switcher.setAttribute("aria-label", labels.title);
-
-    const title = document.createElement("strong");
-    title.textContent = labels.title;
-    switcher.append(title);
-
-    const navigation = document.createElement("nav");
-    labels.themes.forEach(([key, label]) => {
-      const link = document.createElement("a");
-      const url = new URL(window.location.href);
-      url.pathname = normalizeReviewPath(url.pathname);
-      url.searchParams.set("style", key);
-      link.href = `${url.pathname}${url.search}${url.hash}`;
-      if (key === theme) link.setAttribute("aria-current", "page");
-
-      const keyLabel = document.createElement("b");
-      keyLabel.textContent = key.toUpperCase();
-      const text = document.createElement("span");
-      text.textContent = label;
-      link.append(keyLabel, text);
-      navigation.append(link);
+    document.querySelectorAll(".eyebrow").forEach((label) => {
+      if (containsLatinText(label)) label.remove();
     });
-    switcher.append(navigation);
 
-    const home = document.createElement("a");
-    home.className = "site-theme-home-link";
-    home.href = homeForTheme();
-    home.textContent = labels.home;
-    switcher.append(home);
+    document
+      .querySelectorAll(
+        ".guide-route-label, .fp-why-e-heading > span, .fp-mega-intro > small",
+      )
+      .forEach((label) => {
+        if (containsLatinText(label)) label.remove();
+      });
 
-    document.body.prepend(switcher);
+    document
+      .querySelectorAll(".quality-flow-step > b, .inspection-scope > b")
+      .forEach((label) => {
+        const match = (label.textContent || "").trim().match(/^(\d{2})\s*\/\s*[A-Za-z]/);
+        if (match) label.textContent = match[1];
+      });
+
+    const emailLabel = document.querySelector('label[for="rfq-email"]');
+    if (emailLabel && /^Email\s*/.test(emailLabel.textContent || "")) {
+      const textNode = Array.from(emailLabel.childNodes).find(
+        (node) => node.nodeType === Node.TEXT_NODE,
+      );
+      if (textNode) textNode.nodeValue = "电子邮箱";
+    }
+
+    const errorCode = document.querySelector(".error-code");
+    if (errorCode && /NOT FOUND/i.test(errorCode.textContent || "")) {
+      errorCode.textContent = "404";
+    }
   }
 
   function mountProductHeroSample() {
@@ -163,6 +221,8 @@
       const url = new URL(window.location.href);
       url.pathname = `/teamstar-review/${language === "en" ? "en/" : ""}${relativePath}`;
       url.searchParams.set("style", theme);
+      if (activeConcept === "1") url.searchParams.delete("concept");
+      else url.searchParams.set("concept", activeConcept);
       return `${url.pathname}${url.search}${url.hash}`;
     };
 
@@ -276,11 +336,13 @@
 
       if (isLanguageHome(relativePath)) {
         const targetIsEnglish = relativePath === "en/" || relativePath === "en/home/";
-        url.pathname = `/teamstar-review/full-style-preview/${theme}/${targetIsEnglish ? "en/" : ""}`;
+        url.pathname = `/teamstar-review/full-style-preview/${activeConcept}/${targetIsEnglish ? "en/" : ""}`;
         url.search = "";
       } else {
         url.pathname = normalizeReviewPath(url.pathname);
         url.searchParams.set("style", theme);
+        if (activeConcept === "1") url.searchParams.delete("concept");
+        else url.searchParams.set("concept", activeConcept);
       }
 
       link.href = `${url.pathname}${url.search}${url.hash}`;

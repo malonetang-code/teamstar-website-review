@@ -222,7 +222,7 @@ const qualityChecks = [
   [
     "quality/index.html",
     [
-      'href="/teamstar-website-review/assets/css/ai-geo-evidence.css?v=20260831-1"',
+      'href="/teamstar-website-review/assets/css/ai-geo-evidence.css?v=20260901-2"',
       'id="iso-9001-certificate"',
       "认证主体为群新工业（漳州）有限公司",
       "工业用精密刀具、手工具和五金件的设计和制造，包括热处理和组装",
@@ -234,13 +234,12 @@ const qualityChecks = [
       "图纸、材料、热处理或关键工艺如需变更，实施前先与客户确认。",
       "新定制项目可按客户要求通过签样、检验报告、确认图纸或邮件留存样品确认记录。",
       "每批依据验收要求放行，保留相应检验记录，并随批提供检验报告。",
-      "收到客户反馈后，我们会尽快回复并启动技术复核",
     ],
   ],
   [
     "en/quality/index.html",
     [
-      'href="/teamstar-website-review/assets/css/ai-geo-evidence.css?v=20260831-1"',
+      'href="/teamstar-website-review/assets/css/ai-geo-evidence.css?v=20260901-2"',
       'id="iso-9001-certificate"',
       "Teamstar Manufacturing (Zhangzhou) Ltd. is certified",
       "design and manufacture of precision knives, hand tools and hardware components for industrial use, including heat treatment and assembly",
@@ -253,7 +252,6 @@ const qualityChecks = [
       "Changes to the drawing, material, heat treatment or key process are confirmed with the customer before implementation.",
       "sample approval can be recorded by signed sample, inspection report, approved drawing or email, as agreed with the customer.",
       "Release each batch against the acceptance criteria, retain the inspection records and provide an inspection report with the shipment.",
-      "Customer feedback is answered promptly and moved into technical review",
     ],
   ],
 ];
@@ -265,12 +263,6 @@ for (const [relative, required] of qualityChecks) {
   }
   if ((html.match(/id="iso-9001-certificate"/g) ?? []).length !== 1) {
     errors.push(`${relative}: expected exactly one visible ISO certificate section`);
-  }
-  const nonconformancePhrase = relative.startsWith("en/")
-    ? "Customer feedback is answered promptly and moved into technical review before remake, replacement or another agreed resolution is arranged."
-    : "收到客户反馈后，我们会尽快回复并启动技术复核，再根据双方确认结果安排重做、补货或其他处理。";
-  if ((html.split(nonconformancePhrase).length - 1) !== 1) {
-    errors.push(`${relative}: nonconformance statement must appear exactly once`);
   }
 }
 
@@ -306,7 +298,7 @@ const companyChecks = [
       "1991",
       "深圳生产启动",
       "集团在广东深圳启动生产。",
-      "群新的制造业务支持集团在欧洲和美国的客户。群新现可直接接单，并独立办理合同、收款、开票及出口报关。",
+      "<h1>公司概况</h1>",
       "company-timeline-only",
       "漳州生产基地启动搬迁",
       "群新工业启动生产基地搬迁工作。",
@@ -322,6 +314,7 @@ const companyChecks = [
       "集团品牌与接单方式",
       "GOLDEN EAGLE、QUICKLY 和 WAYKEN 是集团服装行业品牌。",
       "过往海外订单由台北集团协调并安排生产",
+      "群新的制造业务支持集团在欧洲和美国的客户。群新现可直接接单，并独立办理合同、收款、开票及出口报关。",
     ],
   ],
   [
@@ -335,7 +328,7 @@ const companyChecks = [
       "Production launched in Shenzhen",
       "The group launched production in Shenzhen, Guangdong.",
       "Teamstar Manufacturing (Zhangzhou) Ltd.",
-      "Teamstar manufacturing supports group customers in Europe and the United States. Teamstar now also accepts direct orders and handles contracting, payment, invoicing and export customs formalities.",
+      "<h1>Company Overview</h1>",
       "company-timeline-only",
       "Relocation to the Zhangzhou base began",
       "Qunxin Industrial began the move to its Zhangzhou manufacturing base.",
@@ -351,6 +344,7 @@ const companyChecks = [
       "Group brands and order handling",
       "GOLDEN EAGLE, QUICKLY and WAYKEN are group brands serving the garment industry.",
       "Overseas orders were historically coordinated by the Taipei group and assigned for production",
+      "Teamstar manufacturing supports group customers in Europe and the United States. Teamstar now also accepts direct orders and handles contracting, payment, invoicing and export customs formalities.",
     ],
   ],
 ];
@@ -441,5 +435,5 @@ if (errors.length) {
 }
 
 console.log(
-  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, distinguish Taipei-group order history from Teamstar direct export handling, record the verified group brands, qualified single-piece trial offer, OEM/private-label support, project confidentiality agreements, linked material and production traceability, sample and change control, order-specific packaging support, per-batch inspection reports and prompt technical review, and expose the verified bilingual ISO 9001 certificate evidence.`,
+  `AI-GEO entity check passed: ${checked} canonical local-review pages keep the legal company date separate from the group history, record the 1978 group foundation and 1991 Shenzhen production launch, use consistent contacts, retain the June 2024 Zhangzhou relocation start, expose the separate 10,000+ square metre manufacturing and 2,000 square metre warehouse facts, distinguish Taipei-group order history from Teamstar direct export handling, record the verified group brands, qualified single-piece trial offer, OEM/private-label support, project confidentiality agreements, linked material and production traceability, sample and change control, order-specific packaging support, per-batch inspection reports, and expose the verified bilingual ISO 9001 certificate evidence.`,
 );

@@ -76,6 +76,67 @@
   height: auto;
 }
 
+.quality-media-pair {
+  display: grid;
+  align-items: start;
+  gap: 14px;
+  margin: 0 0 30px;
+}
+
+.quality-media {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.quality-media > img,
+.quality-media > video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 0;
+  background: #111719;
+  object-fit: contain;
+}
+
+.quality-media figcaption {
+  display: grid;
+  gap: 4px;
+  min-height: 70px;
+  padding: 14px 16px 16px;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.quality-media figcaption strong {
+  font-size: 14px;
+}
+
+.quality-media figcaption span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+html[data-site-theme-preview] body.page-quality.site-theme-preview-active .quality-media {
+  border-color: var(--line);
+  background: var(--stp-surface-raised);
+}
+
+html[data-site-theme-preview] body.page-quality.site-theme-preview-active .quality-media figcaption {
+  color: var(--ink);
+  background: var(--stp-surface-raised);
+}
+
+html[data-site-theme-preview] body.page-quality.site-theme-preview-active .section-dark .section-head h2 {
+  color: var(--stp-deep-ink);
+}
+
+html[data-site-theme-preview] body.page-quality.site-theme-preview-active .section-dark .section-head .eyebrow {
+  color: var(--accent);
+}
+
 @media (min-width: 768px) {
   .iso-certificate-grid {
     grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
@@ -84,6 +145,12 @@
 
   .iso-certificate-card {
     justify-self: end;
+  }
+
+  .quality-media-pair {
+    grid-template-columns: minmax(0, 1.45fr) minmax(260px, .8fr);
+    gap: 18px;
+    margin-bottom: 38px;
   }
 }
 

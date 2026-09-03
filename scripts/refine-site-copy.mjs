@@ -503,7 +503,7 @@ applyReplacements("capabilities/index.html", [
   ],
   [
     "刀坯成形、热处理、精密加工、研磨与检测协同保障刀具几何、刃口及批次要求。",
-    "制造与检验围绕安装接口、刀具几何、刃口和批次一致性展开。",
+    "",
   ],
   [
     "按材料、刀具结构及应用要求，统筹刀坯成形、热处理与后续研磨；具体参数以图纸及技术评估结果为准。",
@@ -519,7 +519,7 @@ applyReplacements("capabilities/index.html", [
   ],
   [
     "漳州基地实拍记录从来料核对到包装防护的工艺路径，具体工序按刀型、材料及经确认的技术要求安排。",
-    "漳州基地实拍展示从材料确认到包装防护的主要工序；实际路线根据刀型、材料和技术要求制定。",
+    "",
   ],
   [
     "使用手持分析设备核对材料，具体牌号与要求以技术文件及检验记录为准。",
@@ -570,7 +570,7 @@ applyReplacements("en/capabilities/index.html", [
   ],
   [
     "Integrated shaping, heat treatment, precision machining, grinding and inspection for geometry, edge and batch requirements.",
-    "Manufacturing and inspection focus on mounting interfaces, blade geometry, cutting edges and batch consistency.",
+    "",
   ],
   [
     "Coordinated blade shaping, heat treatment and downstream grinding according to material, geometry and application requirements, with final parameters set through drawing and technical review.",
@@ -586,7 +586,7 @@ applyReplacements("en/capabilities/index.html", [
   ],
   [
     "Real production media from the Zhangzhou base documents the route from incoming material checks to protective packaging, with the exact sequence set by blade geometry, material and approved technical requirements.",
-    "Production media from the Zhangzhou base shows the main stages from material verification to protective packaging. The actual route follows blade geometry, material and approved requirements.",
+    "",
   ],
   [
     "Handheld analysis supports applicable material checks, with final grades and requirements governed by controlled technical documents and inspection records.",

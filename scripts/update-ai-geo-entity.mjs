@@ -532,36 +532,32 @@ const homeFacilityProof = new Map([
     "index.html",
     {
       introFrom: "以长期积累、自主制造和灵活数量支持不同规模的产品需求",
-      introTo: "以制造积累、实体基地、关键工序控制和灵活数量支持长期合作",
-      marker: "<h3>灵活定制</h3>",
-      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>漳州生产厂房</h3><p>漳州基地生产厂房超过 10,000 平方米。</p></article>',
+      introLegacy: "以制造积累、实体基地、关键工序控制和灵活数量支持长期合作",
+      introTo: "以制造积累、关键工序控制和灵活数量支持长期合作",
     },
   ],
   [
     "home/index.html",
     {
       introFrom: "以长期积累、自主制造和灵活数量支持不同规模的产品需求",
-      introTo: "以制造积累、实体基地、关键工序控制和灵活数量支持长期合作",
-      marker: "<h3>灵活定制</h3>",
-      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>漳州生产厂房</h3><p>漳州基地生产厂房超过 10,000 平方米。</p></article>',
+      introLegacy: "以制造积累、实体基地、关键工序控制和灵活数量支持长期合作",
+      introTo: "以制造积累、关键工序控制和灵活数量支持长期合作",
     },
   ],
   [
     "en/index.html",
     {
       introFrom: "Long manufacturing experience, critical processes under our control, and quantities matched to the project.",
-      introTo: "Manufacturing heritage, a substantial operating site, in-house process control and flexible quantities support long-term supply.",
-      marker: "<h3>Flexible custom quantities</h3>",
-      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>Zhangzhou manufacturing site</h3><p>More than 10,000 m² of manufacturing space.</p></article>',
+      introLegacy: "Manufacturing heritage, a substantial operating site, in-house process control and flexible quantities support long-term supply.",
+      introTo: "Manufacturing heritage, in-house process control and flexible quantities support long-term supply.",
     },
   ],
   [
     "en/home/index.html",
     {
       introFrom: "Long manufacturing experience, critical processes under our control, and quantities matched to the project.",
-      introTo: "Manufacturing heritage, a substantial operating site, in-house process control and flexible quantities support long-term supply.",
-      marker: "<h3>Flexible custom quantities</h3>",
-      proof: '<article class="why-proof"><strong class="why-proof-value why-proof-value-space">10,000+<small>m²</small></strong><h3>Zhangzhou manufacturing site</h3><p>More than 10,000 m² of manufacturing space.</p></article>',
+      introLegacy: "Manufacturing heritage, a substantial operating site, in-house process control and flexible quantities support long-term supply.",
+      introTo: "Manufacturing heritage, in-house process control and flexible quantities support long-term supply.",
     },
   ],
 ]);
@@ -579,18 +575,12 @@ function updateFacilityCopy(html, relative) {
   const home = homeFacilityProof.get(relative);
   if (home) {
     next = next.replace(home.introFrom, home.introTo);
+    next = next.replace(home.introLegacy, home.introTo);
     if (next.includes("why-proof-value-space")) {
       next = next.replace(
         /<article class="why-proof"><strong class="why-proof-value why-proof-value-space">[\s\S]*?<\/article>/,
-        home.proof,
+        "",
       );
-    } else {
-      const markerIndex = next.indexOf(home.marker);
-      if (markerIndex < 0) throw new Error(`${relative}: Why Qunxin quantity marker not found`);
-      const articleEnd = next.indexOf("</article>", markerIndex);
-      if (articleEnd < 0) throw new Error(`${relative}: Why Qunxin quantity article end not found`);
-      const insertAt = articleEnd + "</article>".length;
-      next = `${next.slice(0, insertAt)}${home.proof}${next.slice(insertAt)}`;
     }
   }
   return next;

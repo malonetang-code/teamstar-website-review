@@ -19,18 +19,13 @@ const pages = [
     locale: "zh-CN",
     markers: [
       "为什么选择群新",
-      "1978",
-      "集团刀具制造积累",
+      "40+<small>年</small>",
+      "制刀经验",
       "关键工序",
       "1<small>件起</small>",
       "可接受单件试制，价格根据材料、工艺和项目要求评估。",
-      "10,000+<small>m²</small>",
-      "漳州基地生产厂房超过 10,000 平方米。",
-      "工业刀具、手工具与裁布设备",
-      "手工具",
-      "裁布机成品",
+      "产品目录",
       "找到适合您的刀具",
-      "请发送询价或说明您的需求",
     ],
   },
   {
@@ -38,18 +33,13 @@ const pages = [
     locale: "zh-CN",
     markers: [
       "为什么选择群新",
-      "1978",
-      "集团刀具制造积累",
+      "40+<small>年</small>",
+      "制刀经验",
       "关键工序",
       "1<small>件起</small>",
       "可接受单件试制，价格根据材料、工艺和项目要求评估。",
-      "10,000+<small>m²</small>",
-      "漳州基地生产厂房超过 10,000 平方米。",
-      "工业刀具、手工具与裁布设备",
-      "手工具",
-      "裁布机成品",
+      "产品目录",
       "找到适合您的刀具",
-      "请发送询价或说明您的需求",
     ],
   },
   {
@@ -57,18 +47,13 @@ const pages = [
     locale: "en",
     markers: [
       "Why customers choose Qunxin",
-      "1978",
-      "Group knife manufacturing since 1978",
+      "40+<small>YEARS</small>",
+      "Knife-making experience",
       "Critical processes",
       "1<small>PIECE</small>",
       "Single-piece trials can be quoted, with pricing confirmed after review of material, process and project requirements.",
-      "10,000+<small>m²</small>",
-      "More than 10,000 m² of manufacturing space.",
-      "Industrial Knives, Hand Tools and Cloth Cutting Machines",
-      "Hand Tools",
-      "Complete Cloth Cutting Machines",
+      "<h2>Products</h2>",
       "Let’s find your perfect blade",
-      "Send us your inquiry or describe your issue",
     ],
   },
   {
@@ -76,18 +61,13 @@ const pages = [
     locale: "en",
     markers: [
       "Why customers choose Qunxin",
-      "1978",
-      "Group knife manufacturing since 1978",
+      "40+<small>YEARS</small>",
+      "Knife-making experience",
       "Critical processes",
       "1<small>PIECE</small>",
       "Single-piece trials can be quoted, with pricing confirmed after review of material, process and project requirements.",
-      "10,000+<small>m²</small>",
-      "More than 10,000 m² of manufacturing space.",
-      "Industrial Knives, Hand Tools and Cloth Cutting Machines",
-      "Hand Tools",
-      "Complete Cloth Cutting Machines",
+      "<h2>Products</h2>",
       "Let’s find your perfect blade",
-      "Send us your inquiry or describe your issue",
     ],
   },
 ];
@@ -101,7 +81,7 @@ for (const page of pages) {
     `${page.file}: review robots protection is missing`,
   );
   expect(
-    html.includes("home-structure-4.css?v=20260826-4b"),
+    html.includes("home-structure-4.css?v=20260901-nav-content-1"),
     `${page.file}: structural stylesheet is missing`,
   );
   expect(
@@ -122,12 +102,14 @@ for (const page of pages) {
     `${page.file}: visible Home section order is incorrect`,
   );
   expect(
-    (html.match(/class="why-proof"/g) || []).length === 4,
-    `${page.file}: expected four Why Qunxin proof points`,
+    (html.match(/class="why-proof"/g) || []).length === 3,
+    `${page.file}: expected three Why Qunxin proof points`,
   );
+  const whySection = html.match(/<section class="why-qunxin-section"[\s\S]*?<\/section>/)?.[0] || "";
+  expect(!/10,000|manufacturing space|生产厂房/.test(whySection), `${page.file}: facility area remains in Why Qunxin`);
   expect(
-    (html.match(/class="blade-card(?: product-pending-card)?"/g) || []).length === 8,
-    `${page.file}: expected eight product categories`,
+    (html.match(/class="blade-card"/g) || []).length === 6,
+    `${page.file}: expected six product categories`,
   );
   expect(
     (html.match(/class="section legacy-home-section/g) || []).length === 4,
@@ -142,6 +124,14 @@ for (const page of pages) {
     "图纸、样品与工况任选其一即可开始",
     "Send Your Project Information",
     "Start with a drawing, sample or application description",
+    "按图纸或样品定制",
+    "按图纸、样品与实际工况确认制造方案",
+    "六类工业刀具已有实拍；手工具和裁布机成品资料正在补充",
+    "请发送询价或说明您的需求",
+    "MADE TO DRAWING OR SAMPLE",
+    "For equipment makers and industrial users. Send a drawing, sample or cutting requirement for engineering review and quotation.",
+    "Six industrial knife families are shown with current photography. Hand tool and cloth cutting machine materials are being added.",
+    "Send us your inquiry or describe your issue",
   ]) {
     expect(!html.includes(removed), `${page.file}: old RFQ copy remains: ${removed}`);
   }
@@ -180,7 +170,7 @@ for (const asset of [
 
 const css = read("assets/css/home-structure-4.css");
 expect(css.includes(".legacy-home-section"), "Superseded section isolation is missing");
-expect(css.includes("repeat(4, minmax(0, 1fr))"), "Desktop product grid is missing");
+expect(css.includes("repeat(3, minmax(0, 1fr))"), "Desktop product grid is missing");
 expect(css.includes("prefers-reduced-motion: reduce"), "Reduced-motion fallback is missing");
 
 if (errors.length) {
@@ -193,9 +183,9 @@ console.log(
     {
       pages: pages.length,
       sectionOrder: ["hero", "logos", "why-qunxin", "products", "contact"],
-      proofPoints: 4,
-      productCategories: 8,
-      pendingPhotoCategories: 2,
+      proofPoints: 3,
+      productCategories: 6,
+      pendingPhotoCategories: 0,
       noindex: true,
     },
     null,

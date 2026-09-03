@@ -46,15 +46,14 @@ for (const file of ["index.html", "en/index.html", "products/index.html", "en/pr
 }
 
 const zhProducts = read("products/index.html");
-if (
-  !zhProducts.includes(
-    "<p>六类应用产品，均可按图纸或样品定制。</p>",
-  )
-) {
-  errors.push("products/index.html: approved product-directory description missing");
+if (zhProducts.includes("<p>六类应用产品，均可按图纸或样品定制。</p>")) {
+  errors.push("products/index.html: removed product-directory description remains");
 }
-if (!zhProducts.includes("<h2>六类产品</h2>")) {
+if (!zhProducts.includes("<h2>产品目录</h2>")) {
   errors.push("products/index.html: approved knife-category heading missing");
+}
+if (zhProducts.includes("工程评估要点")) {
+  errors.push("products/index.html: removed engineering-review section remains");
 }
 if (zhProducts.includes('id="product-photo-library"')) {
   errors.push("products/index.html: duplicate five-folder navigation still present");

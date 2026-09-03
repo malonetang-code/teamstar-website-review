@@ -1703,6 +1703,47 @@ html[lang="en"] .redesign-2w .hero-copy h1 {
   display: none;
 }
 
+/* Keep the approved real-photo product banner on direct, non-theme visits. */
+.redesign-2w.page-products.product-hero-photo-sample .page-hero {
+  min-height: clamp(460px, 42vw, 560px);
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 0;
+  background: #111315;
+  color: #fff;
+}
+
+.redesign-2w.page-products.product-hero-photo-sample .page-hero::before,
+.redesign-2w.page-products.product-hero-photo-sample .page-hero > picture {
+  display: block;
+}
+
+.redesign-2w.page-products.product-hero-photo-sample .page-hero::before {
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(7, 9, 10, .82) 0%, rgba(7, 9, 10, .64) 48%, rgba(7, 9, 10, .28) 100%);
+}
+
+.redesign-2w.page-products.product-hero-photo-sample .page-hero > picture img {
+  object-fit: cover;
+  object-position: 64% 56%;
+  filter: saturate(.76) contrast(1.04);
+}
+
+.redesign-2w.page-products.product-hero-photo-sample .page-hero h1 {
+  color: #fff;
+}
+
+.redesign-2w.page-products.product-hero-photo-sample .page-hero .button-dark {
+  border-color: #fff;
+  background: #fff;
+  color: #111315;
+}
+
+.redesign-2w.page-products.product-hero-photo-sample .page-hero .button-outline {
+  border-color: #fff;
+  color: #fff;
+}
+
 .redesign-2w .page-hero h1 {
   max-width: 800px;
   font-size: 50px;
@@ -2004,4 +2045,121 @@ html[lang="en"] .page-home-video .hero-copy h1 {
   .redesign-2w .content-grid.company-timeline-only {
     grid-template-columns: minmax(0, 900px);
   }
+}
+
+/* 2026-09-01 review: one information architecture across Home and subpages. */
+.redesign-2w .desktop-nav > a[aria-current="page"],
+.redesign-2w .nav-section-group.is-current > .nav-section-trigger {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.redesign-2w .nav-section-group {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+}
+
+.redesign-2w .nav-section-trigger::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin: -3px 0 0 8px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.redesign-2w .nav-section-panel {
+  width: 238px;
+  padding: 7px;
+  position: absolute;
+  z-index: 140;
+  top: calc(100% - 1px);
+  left: 50%;
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
+  color: var(--ink);
+  background: rgba(255, 255, 255, .98);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 42px rgba(16, 24, 29, .12);
+  transform: translate(-50%, 7px);
+  transition: opacity 170ms ease, transform 170ms ease, visibility 170ms ease;
+}
+
+.redesign-2w .nav-section-group:hover .nav-section-panel,
+.redesign-2w .nav-section-group:focus-within .nav-section-panel {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.redesign-2w .desktop-nav .nav-section-panel a {
+  min-height: 44px;
+  padding: 0 13px;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+
+.redesign-2w .desktop-nav .nav-section-panel a:last-child {
+  border-bottom: 0;
+}
+
+.redesign-2w .desktop-nav .nav-section-panel a:hover,
+.redesign-2w .desktop-nav .nav-section-panel a[aria-current="page"] {
+  color: var(--ink);
+  background: var(--paper-soft);
+}
+
+.redesign-2w .mobile-menu-group {
+  display: grid;
+  border-bottom: 1px solid var(--line);
+}
+
+.redesign-2w .mobile-menu-group-title {
+  min-height: 40px;
+  display: flex;
+  align-items: end;
+  padding-bottom: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.redesign-2w .mobile-menu a.mobile-menu-subitem {
+  min-height: 44px;
+  padding-left: 16px;
+  border-bottom: 0;
+  font-size: 13px;
+}
+
+.redesign-2w .mobile-menu a[aria-current="page"],
+.redesign-2w .mobile-menu a.mobile-menu-subitem[aria-current="page"] {
+  color: var(--accent);
+}
+
+.redesign-2w .footer-inquiry-link {
+  width: fit-content;
+  min-height: 38px;
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, .45);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.redesign-2w .footer-inquiry-link span {
+  color: var(--accent);
+  transition: transform 180ms ease;
+}
+
+.redesign-2w .footer-inquiry-link:hover span,
+.redesign-2w .footer-inquiry-link:focus-visible span {
+  transform: translateX(4px);
 }
