@@ -110,6 +110,11 @@ for (const viewport of viewports) {
     await page.waitForLoadState("domcontentloaded");
     await page.waitForTimeout(220);
     if (!page.url().includes(suffix)) failures.push(`${current}: did not reach ${suffix}`);
+    const heroReveal = await page.evaluate(() => ({
+      mounted: Boolean(document.querySelector(".page-hero > picture.c1-page-hero-media-wipe")),
+      visible: Boolean(document.querySelector(".page-hero > picture.c1-page-hero-media-wipe.is-visible")),
+    }));
+    if (!heroReveal.mounted || !heroReveal.visible) failures.push(`${current}: subpage hero reveal missing at ${suffix}`);
   }
 
   for (const route of routes) {
@@ -145,6 +150,29 @@ for (const viewport of viewports) {
 
   await context.close();
 }
+
+const reducedContext = await browser.newContext({
+  viewport: { width: 390, height: 844 },
+  reducedMotion: "reduce",
+});
+const reducedPage = await reducedContext.newPage();
+await reducedPage.goto(`${origin}/teamstar-review/quality/?style=e&qa=reduced-motion`, {
+  waitUntil: "domcontentloaded",
+});
+await reducedPage.waitForTimeout(220);
+const reducedAudit = await reducedPage.evaluate(() => {
+  const media = document.querySelector(".page-hero > picture.c1-page-hero-media-wipe");
+  const style = media ? getComputedStyle(media) : null;
+  return {
+    mounted: Boolean(media),
+    visible: media?.classList.contains("is-visible") || false,
+    transitionDuration: style?.transitionDuration || "",
+  };
+});
+if (!reducedAudit.mounted || !reducedAudit.visible || reducedAudit.transitionDuration !== "0s") {
+  failures.push(`reduced-motion: subpage hero should render immediately without transition (${JSON.stringify(reducedAudit)})`);
+}
+await reducedContext.close();
 
 await browser.close();
 

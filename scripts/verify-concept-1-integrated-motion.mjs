@@ -9,11 +9,17 @@ const expect = (condition, message) => {
 
 const cssPath = "full-style-preview/concept-1-motion.css";
 const jsPath = "full-style-preview/concept-1-motion.js";
+const themeCssPath = "full-style-preview/site-theme-preview.css";
+const themeJsPath = "full-style-preview/site-theme-preview.js";
 expect(existsSync(resolve(root, cssPath)), "Concept 1 motion CSS missing");
 expect(existsSync(resolve(root, jsPath)), "Concept 1 motion JS missing");
+expect(existsSync(resolve(root, themeCssPath)), "Theme preview CSS missing");
+expect(existsSync(resolve(root, themeJsPath)), "Theme preview JS missing");
 
 const css = read(cssPath);
 const js = read(jsPath);
+const themeCss = read(themeCssPath);
+const themeJs = read(themeJsPath);
 for (const marker of [
   "c1-reveal",
   "c1-logo-viewport",
@@ -29,6 +35,9 @@ expect(js.includes('matchMedia("(prefers-reduced-motion: reduce)")'), "reduced-m
 expect(js.includes("IntersectionObserver"), "viewport-triggered motion missing");
 expect(js.includes("runCount"), "40+ count-up missing");
 expect(js.includes("const duration = 1800;"), "40+ count-up duration should be 1800ms");
+expect(themeJs.includes("mountConceptOnePageHeroReveal"), "Concept 1 subpage hero reveal missing");
+expect(themeCss.includes("c1-page-hero-media-wipe"), "Concept 1 subpage hero reveal CSS missing");
+expect(themeCss.includes("prefers-reduced-motion: reduce"), "Subpage hero reduced-motion CSS missing");
 
 for (const languagePath of ["index.html", "en/index.html"]) {
   const html = read(`full-style-preview/1/${languagePath}`);

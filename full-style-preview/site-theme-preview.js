@@ -81,6 +81,8 @@
 
   propagateThemeLinks();
 
+  mountConceptOnePageHeroReveal();
+
   function mountKeyboardNavigationMode() {
     const keyboardAttribute = "data-keyboard-navigation";
     const skipLink = document.querySelector(".skip-link");
@@ -201,6 +203,25 @@
     label.className = "product-hero-sample-label";
     label.textContent = sample.label;
     hero.append(label);
+  }
+
+  function mountConceptOnePageHeroReveal() {
+    if (activeConcept !== "1" || document.body.classList.contains("page-home")) return;
+
+    const media = document.querySelector(".page-hero > picture");
+    if (!media) return;
+
+    media.classList.add("c1-page-hero-media-wipe");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (reducedMotion.matches) {
+      media.classList.add("is-visible");
+      return;
+    }
+
+    root.classList.add("c1-subpage-motion-ready");
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => media.classList.add("is-visible"));
+    });
   }
 
   function mountLanguageMenu() {

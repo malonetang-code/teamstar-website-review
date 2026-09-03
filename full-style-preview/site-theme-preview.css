@@ -843,6 +843,17 @@ html[data-site-theme-preview] body.site-theme-preview-active .page-hero {
   background: var(--stp-image-bed);
 }
 
+/* Concept 1 repeats the restrained image reveal on image-led subpage heroes. */
+html.c1-subpage-motion-ready[data-review-concept="1"] body.site-theme-preview-active .page-hero > picture.c1-page-hero-media-wipe:not(.is-visible) {
+  clip-path: inset(0 100% 0 0);
+}
+
+html[data-review-concept="1"] body.site-theme-preview-active .page-hero > picture.c1-page-hero-media-wipe {
+  clip-path: inset(0);
+  transition: clip-path 820ms cubic-bezier(.16, .76, .3, 1);
+  will-change: clip-path;
+}
+
 html[data-site-theme-preview] body.site-theme-preview-active .page-hero::before,
 html[data-site-theme-preview] body.site-theme-preview-active .page-hero-dark::before {
   background: var(--stp-hero-overlay);
@@ -895,6 +906,13 @@ html[data-site-theme-preview] body.site-theme-preview-active .page-hero .button-
   color: var(--stp-hero-ink);
   background: color-mix(in srgb, var(--stp-canvas) 76%, transparent);
   border-color: var(--stp-hero-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-review-concept="1"] body.site-theme-preview-active .page-hero > picture.c1-page-hero-media-wipe {
+    clip-path: inset(0) !important;
+    transition: none !important;
+  }
 }
 
 /* Product-directory hero. Surface inspection is the shared A-E default; query variants remain additive. */

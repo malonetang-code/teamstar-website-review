@@ -10,7 +10,8 @@ const visualTheme = "e";
 const retiredSchemes = ["a", "b", "c", "d", "e"];
 const baselineHeroVideo = "/teamstar-review/images/web/process-20260725/home-company-manufacturing-montage-20260730.mp4";
 const previewHeroVideo = "/teamstar-review/full-style-preview/media/home-manufacturing-closeup-preview-20260828.mp4";
-const themeScriptVersion = "20260901-concepts-123";
+const themeScriptVersion = "20260903-concept1-hero-reveal-1";
+const themeStylesVersion = "20260903-concept1-hero-reveal-1";
 const homeStructureVersion = "20260901-concepts-123";
 const concept1MotionVersion = "20260903-integrated-3";
 
@@ -157,6 +158,10 @@ function buildPage(concept, language) {
   html = html.replace(
     /home-structure-4\.css\?v=[^"]+/,
     `home-structure-4.css?v=${homeStructureVersion}`,
+  );
+  html = html.replace(
+    /site-theme-preview\.css\?v=[^"]+/,
+    `site-theme-preview.css?v=${themeStylesVersion}`,
   );
   for (const removed of isEn
     ? [
