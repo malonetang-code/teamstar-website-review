@@ -22,12 +22,17 @@ for (const concept of ["1", "2", "3"]) {
 }
 
 for (const languagePath of ["index.html", "en/index.html"]) {
+  const concept1 = read(`full-style-preview/1/${languagePath}`);
   const concept2 = read(`full-style-preview/2/${languagePath}`);
   const concept3 = read(`full-style-preview/3/${languagePath}`);
+  expect(concept1.includes("concept-1-motion.css"), `Concept 1 ${languagePath}: integrated motion CSS missing`);
+  expect(concept1.includes("concept-1-motion.js"), `Concept 1 ${languagePath}: integrated motion JS missing`);
   expect(concept2.includes('class="concept-2-architecture"'), `Concept 2 ${languagePath}: architecture root missing`);
   expect(concept2.includes('class="concept-hero-note"'), `Concept 2 ${languagePath}: editorial hero structure missing`);
   expect(concept3.includes('class="concept-3-architecture"'), `Concept 3 ${languagePath}: architecture root missing`);
   expect(concept3.includes('class="concept-hero-panel"'), `Concept 3 ${languagePath}: conversion hero panel missing`);
+  expect(!concept2.includes("concept-1-motion"), `Concept 2 ${languagePath}: Concept 1 motion leaked`);
+  expect(!concept3.includes("concept-1-motion"), `Concept 3 ${languagePath}: Concept 1 motion leaked`);
 }
 
 const hub = read("full-style-preview/index.html");

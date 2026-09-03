@@ -12,6 +12,7 @@ const baselineHeroVideo = "/teamstar-review/images/web/process-20260725/home-com
 const previewHeroVideo = "/teamstar-review/full-style-preview/media/home-manufacturing-closeup-preview-20260828.mp4";
 const themeScriptVersion = "20260901-concepts-123";
 const homeStructureVersion = "20260901-concepts-123";
+const concept1MotionVersion = "20260903-integrated-2";
 
 const conceptLabels = {
   "1": { zh: "1号方案 · 克制极简", en: "Concept 1 · Restrained Minimal" },
@@ -179,6 +180,12 @@ function buildPage(concept, language) {
   html = html.replace(/<html lang="([^"]+)">/, `<html lang="$1" data-full-preview="${visualTheme}" data-review-concept="${concept}">`);
   html = html.replace(/<title>([^<]+)<\/title>/, `<title>${titlePrefix}｜$1</title>`);
   html = html.replace("</head>", `<link href="/teamstar-review/full-style-preview/full-style-preview.css?v=${stylesheetVersion}" rel="stylesheet">\n</head>`);
+  if (concept === "1") {
+    html = html.replace(
+      "</head>",
+      `<link href="/teamstar-review/full-style-preview/concept-1-motion.css?v=${concept1MotionVersion}" rel="stylesheet">\n</head>`,
+    );
+  }
   html = html.replace(/<body class="([^"]+)"/, `<body class="full-style-preview concept-${concept} $1"`);
   html = html.replace(/<nav\b(?=[^>]*class="desktop-nav")[^>]*>[\s\S]*?<\/nav>/, desktopNav(concept, language));
   html = html.replace(/<nav\b(?=[^>]*class="mobile-menu")[^>]*>[\s\S]*?<\/nav>/, mobileNav(concept, language));
@@ -199,6 +206,12 @@ function buildPage(concept, language) {
     html = html.replace(
       "</body>",
       `<script defer src="/teamstar-review/full-style-preview/site-theme-preview.js?v=${themeScriptVersion}"></script>\n</body>`,
+    );
+  }
+  if (concept === "1" && !html.includes("/full-style-preview/concept-1-motion.js")) {
+    html = html.replace(
+      "</body>",
+      `<script defer src="/teamstar-review/full-style-preview/concept-1-motion.js?v=${concept1MotionVersion}"></script>\n</body>`,
     );
   }
 
