@@ -169,7 +169,10 @@ button { font: inherit; }
   padding: 20px 25px;
   object-fit: contain;
   background: #fff;
+  transform: scale(1);
+  transition: transform .22s cubic-bezier(.2,.65,.25,1);
 }
+.logo-set img:hover { transform: scale(1.06); }
 .logo-viewport:hover .logo-track,
 .logo-viewport:focus-within .logo-track,
 .logo-viewport.is-paused .logo-track { animation-play-state: paused; }
