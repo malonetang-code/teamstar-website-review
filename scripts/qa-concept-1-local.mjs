@@ -22,6 +22,16 @@ const routes = [
   "/en/company/",
   "/en/rfq/",
 ];
+const expectedBannerTitles = new Map([
+  ["/products/", "产品目录"],
+  ["/capabilities/", "制造能力"],
+  ["/quality/", "质量体系"],
+  ["/company/", "公司概况"],
+  ["/en/products/", "Products"],
+  ["/en/capabilities/", "Manufacturing"],
+  ["/en/quality/", "Quality"],
+  ["/en/company/", "Company"],
+]);
 const viewports = [
   { name: "desktop", width: 1440, height: 960 },
   { name: "mobile", width: 390, height: 844 },
@@ -58,6 +68,7 @@ const scrollAndAudit = async (page) => page.evaluate(async () => {
     overflow: document.documentElement.scrollWidth - innerWidth,
     robots: document.querySelector('meta[name="robots"]')?.content || "",
     title: document.title,
+    bannerTitle: document.querySelector(".page-hero h1")?.textContent.trim() || "",
     visibleH1: Boolean(document.querySelector("h1")?.getBoundingClientRect().height),
     videos: videos.map((video) => ({
       error: video.error?.message || "",
@@ -130,6 +141,10 @@ for (const viewport of viewports) {
     await page.waitForTimeout(220);
     const audit = await scrollAndAudit(page);
     if (!audit.visibleH1) failures.push(`${current}: visible H1 missing`);
+    const expectedBannerTitle = expectedBannerTitles.get(route);
+    if (expectedBannerTitle && audit.bannerTitle !== expectedBannerTitle) {
+      failures.push(`${current}: expected banner title "${expectedBannerTitle}", found "${audit.bannerTitle}"`);
+    }
     if (audit.overflow > 1) failures.push(`${current}: horizontal overflow ${audit.overflow}px`);
     if (audit.brokenImages.length) failures.push(`${current}: broken images ${audit.brokenImages.join(", ")}`);
     if (/Times New Roman|^serif$/i.test(audit.bodyFont.trim())) failures.push(`${current}: site stylesheet did not apply (${audit.bodyFont})`);

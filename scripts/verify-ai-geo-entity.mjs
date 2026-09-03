@@ -328,7 +328,7 @@ const companyChecks = [
       "Production launched in Shenzhen",
       "The group launched production in Shenzhen, Guangdong.",
       "Teamstar Manufacturing (Zhangzhou) Ltd.",
-      "<h1>Company Overview</h1>",
+      "<h1>Company</h1>",
       "company-timeline-only",
       "Relocation to the Zhangzhou base began",
       "Qunxin Industrial began the move to its Zhangzhou manufacturing base.",
@@ -427,7 +427,7 @@ for (const [relative, rejected] of qualityValidityChecks) {
   }
 }
 
-if (checked !== 54) errors.push(`Expected 54 canonical review pages, checked ${checked}`);
+if (checked !== 62) errors.push(`Expected 62 canonical review pages, checked ${checked}`);
 
 if (errors.length) {
   console.error(errors.join("\n"));
