@@ -213,14 +213,26 @@
 
     media.classList.add("c1-page-hero-media-wipe");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reducedMotion.matches) {
-      media.classList.add("is-visible");
-      return;
-    }
+    const playReveal = () => {
+      media.dataset.c1RevealRuns = String(Number(media.dataset.c1RevealRuns || "0") + 1);
+      if (reducedMotion.matches) {
+        media.classList.add("is-visible");
+        return;
+      }
 
-    root.classList.add("c1-subpage-motion-ready");
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => media.classList.add("is-visible"));
+      root.classList.add("c1-subpage-motion-ready");
+      media.classList.remove("is-visible");
+      // Commit the concealed state before restoring the class so a document
+      // returned from the browser's back/forward cache replays the transition.
+      void media.offsetWidth;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => media.classList.add("is-visible"));
+      });
+    };
+
+    playReveal();
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) playReveal();
     });
   }
 

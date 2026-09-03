@@ -174,6 +174,31 @@ if (!reducedAudit.mounted || !reducedAudit.visible || reducedAudit.transitionDur
 }
 await reducedContext.close();
 
+const replayContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+const replayPage = await replayContext.newPage();
+await replayPage.goto(`${origin}/teamstar-review/company/?style=e&qa=replay`, {
+  waitUntil: "domcontentloaded",
+});
+await replayPage.waitForTimeout(900);
+const replayAudit = await replayPage.evaluate(async () => {
+  const media = document.querySelector(".page-hero > picture.c1-page-hero-media-wipe");
+  const before = Number(media?.dataset.c1RevealRuns || "0");
+  window.dispatchEvent(new PageTransitionEvent("pageshow", { persisted: true }));
+  await new Promise((resolve) => setTimeout(resolve, 40));
+  const during = media ? getComputedStyle(media).clipPath : "";
+  await new Promise((resolve) => setTimeout(resolve, 900));
+  return {
+    after: Number(media?.dataset.c1RevealRuns || "0"),
+    before,
+    during,
+    final: media ? getComputedStyle(media).clipPath : "",
+  };
+});
+if (replayAudit.after !== replayAudit.before + 1 || replayAudit.during === "inset(0px)" || replayAudit.final !== "inset(0px)") {
+  failures.push(`cached re-entry: subpage hero did not replay cleanly (${JSON.stringify(replayAudit)})`);
+}
+await replayContext.close();
+
 await browser.close();
 
 if (failures.length) {

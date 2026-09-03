@@ -36,6 +36,8 @@ expect(js.includes("IntersectionObserver"), "viewport-triggered motion missing")
 expect(js.includes("runCount"), "40+ count-up missing");
 expect(js.includes("const duration = 1800;"), "40+ count-up duration should be 1800ms");
 expect(themeJs.includes("mountConceptOnePageHeroReveal"), "Concept 1 subpage hero reveal missing");
+expect(themeJs.includes('addEventListener("pageshow"'), "Subpage hero reveal does not handle cached page re-entry");
+expect(themeJs.includes("event.persisted"), "Subpage hero reveal does not detect back/forward cache restoration");
 expect(themeCss.includes("c1-page-hero-media-wipe"), "Concept 1 subpage hero reveal CSS missing");
 expect(themeCss.includes("prefers-reduced-motion: reduce"), "Subpage hero reduced-motion CSS missing");
 
